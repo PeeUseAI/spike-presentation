@@ -805,8 +805,8 @@ html, body {
   <div class="slide-header">
     <h2 id="s6-title">January 2026</h2>
     <div>
-      <span class="score-badge" id="s6-score">58.9</span>
-      <span class="rank-badge" id="s6-rank">Rank #8</span>
+      <span class="score-badge" id="s6-score">34.9</span>
+      <span class="rank-badge" id="s6-rank">Rank #16</span>
     </div>
   </div>
   <div class="bar-chart" id="chart2026">
@@ -817,27 +817,27 @@ html, body {
 <!-- ========== SLIDE 6: ROAD TO #1 ========== -->
 <div class="slide" id="slide7">
   <div class="slide-header">
-    <h2 id="s7-title">The Road to #1</h2>
+    <h2 id="s7-title">End of Year Target</h2>
   </div>
   <div class="gauge-section">
     <div class="score-circle current" id="s7-current">
-      <div class="number">58.9</div>
-      <div class="label-text">Current</div>
+      <div class="number">34.9</div>
+      <div class="label-text">January</div>
     </div>
     <div class="score-arrow" id="s7-arrow">→</div>
     <div class="score-circle target" id="s7-target">
-      <div class="number">75.2</div>
+      <div class="number">62.2</div>
       <div class="label-text">Target</div>
     </div>
     <div class="gap-info" id="s7-gap">
-      <div class="points">+16.3</div>
+      <div class="points">+27.3</div>
       <div class="label-text">points needed</div>
     </div>
   </div>
   <div class="rank-goal" id="s7-rankgoal">
-    <div class="rank-circle rank-from">#8</div>
+    <div class="rank-circle rank-from">#16</div>
     <span style="font-size:28px;color:var(--accent)">→</span>
-    <div class="rank-circle rank-to">#1</div>
+    <div class="rank-circle rank-to">#7</div>
   </div>
   <table class="gap-table" id="gap-table">
     <thead>
@@ -871,12 +871,12 @@ html, body {
     <div class="timeline-line"><div class="fill" id="tl-fill2"></div></div>
     <div class="timeline-node">
       <div class="year">2026 Target</div>
-      <div class="circle">75.2</div>
-      <div class="rank">#1</div>
+      <div class="circle">62.2</div>
+      <div class="rank">#7</div>
     </div>
   </div>
-  <div class="key-message" id="key-msg">From <span>#12</span> to targeting <span>#1</span></div>
-  <div class="closing-sub" id="closing-sub">+22.7 points over 3 years of continuous improvement</div>
+  <div class="key-message" id="key-msg">From <span>#12</span> to targeting <span>#7</span></div>
+  <div class="closing-sub" id="closing-sub">+9.7 points over 3 years of continuous improvement</div>
 </div>
 
 <!-- ========== SLIDE COUNTER ========== -->
@@ -919,20 +919,21 @@ const data2025 = [
 // 2026 January: [category name, max points, target, january score, note or null, group category]
 // Using the 8 official KPIs from the 2026 framework
 const data2026 = [
-  ['Availability',                  10, 10,    10,    null,         'Agile — 20%'],
-  ['Responsiveness',                10,  9,     9,    null,         null],
-  ['FOB / Landed Cost Achievement', 15, 11,    11,    null,         'Competitive — 15%'],
-  ['Social Compliance',             10,  8.5,   0,    'Audited Q4', 'ESG — 20%'],
-  ['Sourcing Sustainability',       10,  7.2,   5.85, null,         null],
-  ['Quality',                       15,  8.5,   5,    null,         'Quality — 15%'],
-  ['Product & Dev Competency',      20, 13,    10,    null,         'Competency — 30%'],
-  ['Engineering Solutions',         10,  8,     8,    null,         null],   // under Competency
+  ['Availability',                  10, 10,    10,    null,            'Agile — 20%'],
+  ['Responsiveness',                10,  9,     9,    null,            null],
+  ['FOB / Landed Cost Achievement', 15,  0,     0,    'Target TBD',   'Competitive — 15%'],
+  ['Social Compliance',             10,  8.5,   0,    'Audited Q4',   'ESG — 20%'],
+  ['Sourcing Sustainability',       10,  7.2,   5.85, null,            null],
+  ['Quality',                       15,  8.5,   0,    'Not yet scored','Quality — 15%'],
+  ['Product & Dev Competency',      20, 13,    10,    null,            'Competency — 30%'],
+  ['Engineering Solutions',         10,  6,     0,    'Not yet scored', null],
 ];
 
 // Gap analysis rows for slide 6: [category, current, target, gap]
 const gapData = [
   ['Social Compliance',        0,     8.5,  +8.5],
-  ['Quality',                  5,     8.5,  +3.5],
+  ['Quality',                  0,     8.5,  +8.5],
+  ['Engineering Solutions',    0,     6,    +6.0],
   ['Product & Dev Competency', 10,   13,    +3.0],
   ['Sourcing Sustainability',  5.85,  7.2,  +1.35],
 ];
