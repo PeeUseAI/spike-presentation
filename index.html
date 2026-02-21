@@ -1890,6 +1890,7 @@ const kpiData = [
     rollingPct: null,
     janPct: null,
     targetPct: '8.5 / 15 pts — Target: 4Q (≥ 80%)',
+    trendImage: 'qkpi-trend.png',
     description: 'All active facilities measured and scored in Q-KPI or Q-KPI Light program. Performance measured by Quality team. AD4 SPIKE = average of COO-TH and COO-MM scores.',
     // Full 16-level scoring from PPTX
     scoring: [
@@ -1900,7 +1901,7 @@ const kpiData = [
     currentRange: 'Not yet scored',
     // 2025 QKPI factory breakdown from PPTX slide 28
     factoryData: {
-      headers: ['2025 QKPI', 'TTT', 'VAS', 'TITAN', 'TTM'],
+      headers: ['2025 QKPI', 'AD4001<br>TTT', 'AD4001<br>VAS', 'AD4001<br>TITAN', 'AD4014<br>TTM'],
       rows: [
         ['Digital-Pivot88 (10)', '5', '5', '5', '5'],
         ['CE - Defective Return (10)', '4', '4', '4', '7'],
@@ -1969,22 +1970,16 @@ const kpiData = [
         ],
       },
       {
-        title: 'Quality — 2025 WH Claim Analysis',
-        type: 'content',
-        sections: [
-          { heading: '2025 WH Claim by Market Claim', items: [
-            'AD4001 (COO-TH): CMA failure — 11,491 pcs (75%)',
-            'AD4001: Soiling — 84 pcs (0.5%)',
-            'AD4014 (COO-MM): Labeling & Workmanship — 3,731 pcs (24.5%)',
-            'AD4014 details: Wrong color & security tags, back panels seam uneven issue',
-          ]},
-          { heading: 'WH Claim 2024 vs 2025 Comparison', items: [
-            'TTM: 62,089 pcs / $294K (2024) → 3,869 pcs / $5K (2025)',
-            'VAS: 3,561 pcs / $6.8K (2024) → 13,033 pcs / $23.8K (2025)',
-            'TTT: 0 pcs (2024) → 1,896 pcs / $3.9K (2025)',
-            'Grand Total: 65,650 pcs / $301K (2024) → 18,798 pcs / $32.7K (2025)',
-          ]},
-        ],
+        title: 'CE QKPI — 2025 WH Claim Analysis',
+        type: 'visual',
+        image: 'whclaim-analysis.png',
+        caption: 'Total Claim 18,798 pcs. China claimed 15,306 pcs (81%). AD4001 CMA failure 11,491 pcs (75%), AD4014 Labeling & Workmanship 3,731 pcs (24.5%).',
+      },
+      {
+        title: 'WH Claim — 2024 VS 2025 Performance Comparison',
+        type: 'visual',
+        image: 'whclaim-comparison.png',
+        caption: 'Grand Total: 65,650 pcs / $301K (2024) → 18,798 pcs / $32.7K (2025) — 71% reduction. TTM improved significantly from 62,089 to 3,869 pcs.',
       },
       {
         title: 'Quality — 2026 QKPI Plan by Facility',
@@ -2427,6 +2422,12 @@ function buildKpiDataSlide(kpi) {
     chartHtml = `<div class="kpi-chart-card">${buildSvgChart(chartData, targetNum, 100, kpi.catColor, projData)}</div>`;
   }
 
+  // Trend image (if present — e.g. Quality Q-KPI end year 2025)
+  let trendImageHtml = '';
+  if (kpi.trendImage) {
+    trendImageHtml = `<div style="margin:4px 0;text-align:center"><img src="${kpi.trendImage}" alt="End Year 2025 Trend" style="max-width:100%;max-height:180px;border-radius:6px;border:1px solid #e0e0e0"></div>`;
+  }
+
   // Monthly data table (if present — MDP, SDP, Responsiveness, EFD, Traceability)
   let monthlyHtml = '';
   if (kpi.monthlyData) {
@@ -2523,23 +2524,33 @@ function buildKpiDataSlide(kpi) {
   }
 
   // CSC scoring table for Social Compliance (Route 2)
+  let cscTableHtml = '';
   if (kpi.scoringCSC) {
-    tableHtml += `<div class="kpi-scoring-label">${kpi.scoringCSCLabel || 'CSC Scoring'}</div>`;
-    tableHtml += '<table class="kpi-scoring-table"><thead><tr><th>Range</th><th class="pts-col">Points</th></tr></thead><tbody>';
+    cscTableHtml += `<div class="kpi-scoring-label">${kpi.scoringCSCLabel || 'CSC Scoring'}</div>`;
+    cscTableHtml += '<table class="kpi-scoring-table"><thead><tr><th>Range</th><th class="pts-col">Points</th></tr></thead><tbody>';
     kpi.scoringCSC.forEach(([range, pts]) => {
-      tableHtml += `<tr><td>${range}</td><td class="pts-col">${pts}</td></tr>`;
+      cscTableHtml += `<tr><td>${range}</td><td class="pts-col">${pts}</td></tr>`;
     });
-    tableHtml += '</tbody></table>';
+    cscTableHtml += '</tbody></table>';
   }
 
   // Score scale reference (SI-KPI performance levels)
+  let scaleTableHtml = '';
   if (kpi.scoreScale) {
-    tableHtml += '<div class="kpi-scoring-label">SI-KPI ScoreScale</div>';
-    tableHtml += '<table class="kpi-scoring-table"><thead><tr><th>Range</th><th class="pts-col">Level</th></tr></thead><tbody>';
+    scaleTableHtml += '<div class="kpi-scoring-label">SI-KPI ScoreScale</div>';
+    scaleTableHtml += '<table class="kpi-scoring-table"><thead><tr><th>Range</th><th class="pts-col">Level</th></tr></thead><tbody>';
     kpi.scoreScale.forEach(([range, level]) => {
-      tableHtml += `<tr><td>${range}</td><td class="pts-col">${level}</td></tr>`;
+      scaleTableHtml += `<tr><td>${range}</td><td class="pts-col">${level}</td></tr>`;
     });
-    tableHtml += '</tbody></table>';
+    scaleTableHtml += '</tbody></table>';
+  }
+  // If no separate CSC/scale, append to main tableHtml
+  if (!kpi.scoringCSC && !kpi.scoreScale) {
+    // nothing extra
+  } else if (!kpi.scoringCSC) {
+    tableHtml += scaleTableHtml;
+  } else {
+    // Keep them separate for multi-column layout
   }
 
   // Description — handle newlines as <br> tags
@@ -2599,6 +2610,36 @@ function buildKpiDataSlide(kpi) {
     </div>`;
   }
 
+  // For KPIs with CSC + Scale tables (Social Compliance), use 3-column layout
+  const hasManyScoringTables = kpi.scoringCSC && kpi.scoreScale;
+  if (hasManyScoringTables) {
+    return `
+    <div class="slide" id="kpi-${kpi.id}-data" data-animate="kpi-data">
+      <div class="kpi-data-slide">
+        <div class="kpi-top-bar">
+          ${badge}
+          <span class="kpi-title">${kpi.name}</span>
+          <span class="kpi-lead">Lead: ${kpi.lead}</span>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;flex:1;min-height:0">
+          <div style="flex:1;display:flex;flex-direction:column;gap:6px;opacity:0" class="kpi-left">
+            <div class="kpi-score-display" style="opacity:1;padding:8px">
+              <div class="kpi-score-big" style="color:${scoreColor}">${scoreText}<span class="kpi-score-max"> / ${kpi.maxPts}</span></div>
+              <div class="kpi-score-label">January 2026 Score</div>
+            </div>
+            <div class="kpi-desc" style="font-size:11px">
+              <strong>What it measures:</strong> ${descHtml}<br>
+              <strong>Target:</strong> ${kpi.targetPct}
+            </div>
+            ${scaleTableHtml}
+          </div>
+          <div style="flex:1;opacity:0" class="kpi-right">${tableHtml}</div>
+          <div style="flex:1;opacity:0" class="kpi-right">${cscTableHtml}</div>
+        </div>
+      </div>
+    </div>`;
+  }
+
   return `
     <div class="slide" id="kpi-${kpi.id}-data" data-animate="kpi-data">
       <div class="kpi-data-slide">
@@ -2610,6 +2651,7 @@ function buildKpiDataSlide(kpi) {
         <div class="kpi-body">
           <div class="kpi-left">
             ${chartHtml}
+            ${trendImageHtml}
             ${monthlyHtml}
             ${factoryHtml}
             ${subKpiHtml}
@@ -2724,7 +2766,7 @@ function buildKpiExtraSlide(kpi, extra) {
     }
     bodyHtml = topImg + bottomRow;
     if (extra.scaleImage) {
-      bodyHtml += `<div style="text-align:center;margin-top:6px"><img src="${extra.scaleImage}" alt="Q-KPI Scale" style="max-width:200px;max-height:40px;border-radius:4px"></div>`;
+      bodyHtml += `<div style="text-align:center;margin-top:8px"><img src="${extra.scaleImage}" alt="Q-KPI Scale" style="max-width:400px;max-height:80px;border-radius:4px;border:1px solid #e0e0e0"></div>`;
     }
   }
 
