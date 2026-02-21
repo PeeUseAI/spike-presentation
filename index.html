@@ -1757,27 +1757,7 @@ const kpiData = [
           'Timely communication on new initiatives',
         ],
       },
-      {
-        title: 'Social Compliance — 2026 Target & January Results',
-        type: 'target-results',
-        targetTable: {
-          headers: ['SI-KPI 2026 Target', 'TTT', 'VAS', 'TITAN', 'TM'],
-          rows: [
-            ['Target Score Scale', 'High Perf.', 'High Perf.', 'High Perf.', 'High Perf.'],
-            ['Target SPIKE Points', '8–9', '8–9', '8–9', '8–9'],
-          ],
-          summary: 'Group target: 8.5 SPIKE points (average across facilities)',
-        },
-        janResults: {
-          headers: ['January 2026 Result', 'TTT', 'VAS', 'TITAN', 'TM'],
-          rows: [
-            ['Score %', '~48%', '~48%', '~48%', '~48%'],
-            ['Performance Level', 'Low Perf.', 'Low Perf.', 'Low Perf.', 'Low Perf.'],
-            ['SPIKE Score', '0', '0', '0', '0'],
-          ],
-          summary: 'SI-KPI will only be audited in Q4 — January result is preliminary baseline only',
-        },
-      },
+      // Target & January Results moved into Environmental data slide (combined slide 21+22)
     ],
   },
   {
@@ -1791,7 +1771,23 @@ const kpiData = [
     rollingPct: null,
     janPct: null,
     targetPct: '4.2 / 7 pts',
-    description: 'Environmental performance covers 3 topics: Decarbonization (3 pts), Nature (3 pts), EA — Environmental Assessment (1 pt). Eligible facilities listed in annually compiled Environmental program coverage.',
+    description: 'Environmental performance covers 3 topics: Decarbonization (3 pts), Nature (3 pts), EA — Environmental Assessment (1 pt).',
+    // Social Compliance target data (combined from former slide 21)
+    socialTargetData: {
+      targetHeaders: ['SI-KPI 2026 Target', 'TTT', 'VAS', 'TITAN', 'TM'],
+      targetRows: [
+        ['Target Score Scale', 'High Perf.', 'High Perf.', 'High Perf.', 'High Perf.'],
+        ['Target SPIKE Points', '8–9', '8–9', '8–9', '8–9'],
+      ],
+      targetSummary: 'Group target: 8.5 SPIKE points',
+      janHeaders: ['January 2026 Result', 'TTT', 'VAS', 'TITAN', 'TM'],
+      janRows: [
+        ['Score %', '~48%', '~48%', '~48%', '~48%'],
+        ['Performance Level', 'Low Perf.', 'Low Perf.', 'Low Perf.', 'Low Perf.'],
+        ['SPIKE Score', '0', '0', '0', '0'],
+      ],
+      janSummary: 'SI-KPI audited Q4 only — January is preliminary baseline',
+    },
     // Factory breakdown table instead of simple scoring ranges
     scoring: [],
     scoringIsFactories: true,
@@ -2443,6 +2439,19 @@ function buildKpiDataSlide(kpi) {
     }
   }
 
+  // Social Compliance target data (combined slide for Environmental)
+  let socialTargetHtml = '';
+  if (kpi.socialTargetData) {
+    const st = kpi.socialTargetData;
+    socialTargetHtml += `<div style="margin-top:8px;border-top:2px solid #2e7d32;padding-top:8px">`;
+    socialTargetHtml += `<div style="font-size:12px;font-weight:700;color:#2e7d32;margin-bottom:4px">Social Compliance — 2026 Target & January Results</div>`;
+    socialTargetHtml += buildDataTable(st.targetHeaders, st.targetRows);
+    if (st.targetSummary) socialTargetHtml += `<div style="text-align:center;font-size:11px;color:var(--accent);margin-top:3px;font-weight:600">${st.targetSummary}</div>`;
+    socialTargetHtml += buildDataTable(st.janHeaders, st.janRows);
+    if (st.janSummary) socialTargetHtml += `<div style="text-align:center;font-size:10px;color:#888;margin-top:3px">${st.janSummary}</div>`;
+    socialTargetHtml += `</div>`;
+  }
+
   // Sub-KPI tracking table (Product & Dev Competency)
   let subKpiHtml = '';
   if (kpi.subKpis) {
@@ -2654,6 +2663,7 @@ function buildKpiDataSlide(kpi) {
             ${trendImageHtml}
             ${monthlyHtml}
             ${factoryHtml}
+            ${socialTargetHtml}
             ${subKpiHtml}
             <div class="kpi-desc">
               <strong>What it measures:</strong> ${descHtml}<br>
