@@ -2454,6 +2454,7 @@ function buildKpiDataSlide(kpi) {
 
   // Scoring criteria table(s)
   let tableHtml = '';
+  let explanationHtml = '';  // full-width explanation (placed below kpi-body)
 
   // Component-based scoring with separate tables (Traceability)
   if (kpi.componentScoring) {
@@ -2468,20 +2469,20 @@ function buildKpiDataSlide(kpi) {
         tableHtml += '</tr>';
       });
       tableHtml += '</tbody></table>';
-      // Explanation card (e.g., Duty Benefit Optimization)
+      // Explanation card — extracted to full-width section below columns
       if (comp.explanation) {
-        tableHtml += `<div style="background:rgba(26,115,232,0.06);border:1px solid rgba(26,115,232,0.2);border-radius:8px;padding:10px 14px;margin-top:8px;">`;
-        tableHtml += `<div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:4px">${comp.explanation.title}</div>`;
-        tableHtml += `<div style="font-size:12px;color:#666;line-height:1.5;margin-bottom:6px">${comp.explanation.text}</div>`;
+        explanationHtml += `<div style="background:rgba(26,115,232,0.06);border:1px solid rgba(26,115,232,0.2);border-radius:8px;padding:14px 20px;margin-top:12px;">`;
+        explanationHtml += `<div style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:6px">${comp.explanation.title}</div>`;
+        explanationHtml += `<div style="font-size:13px;color:#555;line-height:1.6;margin-bottom:8px">${comp.explanation.text}</div>`;
         if (comp.explanation.example) {
-          tableHtml += `<div style="font-size:12px;font-weight:600;color:#444;margin-bottom:3px">${comp.explanation.example.title}:</div>`;
-          tableHtml += `<ul style="font-size:11px;color:#666;line-height:1.5;padding-left:16px;margin:0">`;
+          explanationHtml += `<div style="font-size:13px;font-weight:600;color:#333;margin-bottom:4px">${comp.explanation.example.title}:</div>`;
+          explanationHtml += `<ul style="font-size:12px;color:#555;line-height:1.6;padding-left:20px;margin:0">`;
           comp.explanation.example.steps.forEach(step => {
-            tableHtml += `<li style="margin-bottom:2px">${step}</li>`;
+            explanationHtml += `<li style="margin-bottom:3px">${step}</li>`;
           });
-          tableHtml += `</ul>`;
+          explanationHtml += `</ul>`;
         }
-        tableHtml += `</div>`;
+        explanationHtml += `</div>`;
       }
     });
   }
@@ -2572,6 +2573,7 @@ function buildKpiDataSlide(kpi) {
             ${tableHtml}
           </div>
         </div>
+        ${explanationHtml}
       </div>
     </div>`;
 }
