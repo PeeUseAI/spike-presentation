@@ -26,8 +26,9 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px 80px;
+  padding: 40px 50px;
   opacity: 0;                 /* hidden by default */
+  overflow-y: auto;           /* allow scrolling for tall content */
   pointer-events: none;       /* can't interact when hidden */
   transition: opacity 0.6s ease;
 }
@@ -752,112 +753,118 @@ html, body {
 /* ===== KPI DATA SLIDE ===== */
 .kpi-data-slide {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   align-items: stretch;
 }
 /* Top bar: category badge + title + lead */
 .kpi-top-bar {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   opacity: 0;
 }
 .kpi-cat-badge {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  padding: 4px 12px;
+  padding: 3px 10px;
   border-radius: 4px;
   white-space: nowrap;
 }
 .kpi-title {
-  font-size: 34px;
+  font-size: 26px;
   font-weight: 700;
   flex: 1;
 }
 .kpi-lead {
-  font-size: 15px;
+  font-size: 13px;
   color: var(--text-dim);
   white-space: nowrap;
 }
 /* Two-column body */
 .kpi-body {
   display: flex;
-  gap: 24px;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
 }
 .kpi-left {
   flex: 3;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
   opacity: 0;
+  min-height: 0;
+  overflow-y: auto;
 }
 .kpi-right {
   flex: 2;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
   opacity: 0;
+  min-height: 0;
+  overflow-y: auto;
 }
 /* SVG chart container */
 .kpi-chart-card {
   background: var(--bg-card);
   border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 10px;
+  padding: 12px;
 }
 .kpi-chart-card svg {
   width: 100%;
   height: auto;
 }
 .kpi-desc {
-  font-size: 16px;
+  font-size: 13px;
   color: #555;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 .kpi-desc strong { color: #1a1a1a; }
 /* Score display */
 .kpi-score-display {
   background: var(--bg-card);
   border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 10px;
+  padding: 12px;
   text-align: center;
   opacity: 0;
 }
 .kpi-score-big {
-  font-size: 56px;
+  font-size: 42px;
   font-weight: 700;
 }
 .kpi-score-max {
-  font-size: 24px;
+  font-size: 20px;
   color: var(--text-dim);
 }
 .kpi-score-label {
-  font-size: 15px;
+  font-size: 13px;
   color: var(--text-dim);
-  margin-top: 4px;
+  margin-top: 2px;
 }
 /* Rolling percentage badges */
 .kpi-pct-row {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 .kpi-pct-badge {
   background: rgba(0,0,0,0.04);
-  border-radius: 8px;
-  padding: 6px 14px;
+  border-radius: 6px;
+  padding: 4px 10px;
   text-align: center;
-  font-size: 15px;
+  font-size: 13px;
 }
 .kpi-pct-badge .val {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 700;
   display: block;
 }
@@ -865,17 +872,17 @@ html, body {
 .kpi-scoring-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
+  font-size: 12px;
 }
 .kpi-scoring-table th {
   text-align: left;
   color: var(--text-dim);
-  padding: 4px 8px;
+  padding: 3px 6px;
   border-bottom: 1px solid #ddd;
   font-weight: 600;
 }
 .kpi-scoring-table td {
-  padding: 4px 8px;
+  padding: 3px 6px;
   border-bottom: 1px solid #eee;
 }
 .kpi-scoring-table tr.active-range {
@@ -891,11 +898,11 @@ html, body {
 /* ===== KPI LEARNING SLIDE ===== */
 .kpi-learning-slide {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
+  gap: 14px;
 }
 .kpi-learn-top {
   display: flex;
@@ -905,10 +912,10 @@ html, body {
 }
 /* Score circles for learning slide */
 .kpi-circle {
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  border: 6px solid var(--bg-bar);
+  border: 5px solid var(--bg-bar);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -916,38 +923,42 @@ html, body {
   opacity: 0;
 }
 .kpi-circle .num {
-  font-size: 42px;
+  font-size: 30px;
   font-weight: 700;
 }
 .kpi-circle .lbl {
-  font-size: 14px;
+  font-size: 11px;
   color: var(--text-dim);
 }
 .kpi-circle.prev { border-color: var(--text-dim); }
 .kpi-circle.next { border-color: var(--green); }
 .kpi-learn-arrow {
-  font-size: 42px;
+  font-size: 32px;
   color: var(--accent);
   opacity: 0;
 }
 /* Two-card layout */
 .kpi-cards {
   display: flex;
-  gap: 24px;
+  gap: 16px;
   width: 100%;
+  flex: 1;
+  min-height: 0;
 }
 .kpi-card {
   flex: 1;
   background: var(--bg-card);
   border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 20px 24px;
+  border-radius: 10px;
+  padding: 14px 18px;
   opacity: 0;
+  overflow-y: auto;
+  min-height: 0;
 }
 .kpi-card h4 {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -959,12 +970,12 @@ html, body {
   padding: 0;
 }
 .kpi-card li {
-  font-size: 16px;
+  font-size: 13px;
   color: #444;
-  line-height: 1.6;
-  padding-left: 16px;
+  line-height: 1.5;
+  padding-left: 14px;
   position: relative;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 .kpi-card li::before {
   content: '•';
@@ -1034,13 +1045,13 @@ html, body {
 /* Key Success slide */
 .kpi-extra-slide {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
 }
 .kpi-extra-title {
-  font-size: 34px;
+  font-size: 24px;
   font-weight: 700;
   opacity: 0;
 }
@@ -1155,20 +1166,20 @@ html, body {
 
 /* Dual scoring table label */
 .kpi-scoring-label {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--text-dim);
-  margin-top: 8px;
-  margin-bottom: 2px;
+  margin-top: 4px;
+  margin-bottom: 1px;
 }
 
 /* ===== EVALUATING NOTE (for criteria-only KPIs) ===== */
 .kpi-evaluating-note {
   background: rgba(230,168,0,0.08);
   border: 1px solid rgba(230,168,0,0.3);
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 15px;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
   color: #b38600;
   text-align: center;
   margin-top: 4px;
@@ -1924,22 +1935,14 @@ const kpiData = [
     ],
     extraSlides: [
       {
-        title: 'Quality — Q-KPI Score Scale',
-        type: 'visual',
-        image: 'qkpi-scale.png',
-        caption: 'Q-KPI scoring ranges from 1Q (0-30%) to 5Q (90-100%)',
-      },
-      {
-        title: 'Quality — 2025 Q-KPI Dashboard: COO-TH (TTT)',
-        type: 'visual',
-        image: 'qkpi-ttt.png',
-        caption: 'AD4TTT — Total Score: 59.0 (2Q) | Digital: 5, Pivot88: 5 | Consumer Exp: 20 | Foundation: 34.0',
-      },
-      {
-        title: 'Quality — 2025 Q-KPI Dashboard: COO-MM (TTM)',
-        type: 'visual',
-        image: 'qkpi-ttm.png',
-        caption: 'AD4TTM — Total Score: 76.0 (3Q) | Consumer Exp: 39 (WH Claims: 25) | Foundation: 32.0',
+        title: 'End Year 2025 QKPI Score — Updated from adidas Global',
+        type: 'visual-combined',
+        images: [
+          { src: 'qkpi-all.png', label: 'AD4 — GROUP LEVEL', width: '60%' },
+          { src: 'qkpi-ttt.png', label: 'AD4001 — COO TH', width: '48%' },
+          { src: 'qkpi-ttm.png', label: 'AD4014 — COO MM', width: '48%' },
+        ],
+        scaleImage: 'qkpi-scale.png',
       },
       {
         title: 'Quality — 2024 vs 2025 QKPI Comparison',
@@ -2475,12 +2478,12 @@ function buildKpiDataSlide(kpi) {
       tableHtml += '</tbody></table>';
       // Explanation card — extracted to full-width section below columns
       if (comp.explanation) {
-        explanationHtml += `<div style="background:rgba(26,115,232,0.06);border:1px solid rgba(26,115,232,0.2);border-radius:8px;padding:14px 20px;margin-top:12px;">`;
-        explanationHtml += `<div style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:6px">${comp.explanation.title}</div>`;
-        explanationHtml += `<div style="font-size:13px;color:#555;line-height:1.6;margin-bottom:8px">${comp.explanation.text}</div>`;
+        explanationHtml += `<div style="background:rgba(26,115,232,0.06);border:1px solid rgba(26,115,232,0.2);border-radius:6px;padding:10px 16px;margin-top:8px;">`;
+        explanationHtml += `<div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px">${comp.explanation.title}</div>`;
+        explanationHtml += `<div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">${comp.explanation.text}</div>`;
         if (comp.explanation.example) {
-          explanationHtml += `<div style="font-size:13px;font-weight:600;color:#333;margin-bottom:4px">${comp.explanation.example.title}:</div>`;
-          explanationHtml += `<ul style="font-size:12px;color:#555;line-height:1.6;padding-left:20px;margin:0">`;
+          explanationHtml += `<div style="font-size:11px;font-weight:600;color:#333;margin-bottom:3px">${comp.explanation.example.title}:</div>`;
+          explanationHtml += `<ul style="font-size:11px;color:#555;line-height:1.5;padding-left:18px;margin:0">`;
           comp.explanation.example.steps.forEach(step => {
             explanationHtml += `<li style="margin-bottom:3px">${step}</li>`;
           });
@@ -2546,6 +2549,54 @@ function buildKpiDataSlide(kpi) {
   let evalNoteHtml = '';
   if (kpi.evaluatingNote) {
     evalNoteHtml = `<div class="kpi-evaluating-note">${kpi.evaluatingNote}</div>`;
+  }
+
+  // For component-scored KPIs with no chart (e.g. Competitive), use 3-column layout
+  const hasNoChart = !chartHtml && !monthlyHtml && !factoryHtml && !subKpiHtml;
+  const isMultiComponent = kpi.componentScoring && kpi.componentScoring.length >= 3;
+
+  if (hasNoChart && isMultiComponent) {
+    // Three-column layout: spread scoring tables across columns
+    let cols = ['', '', ''];
+    kpi.componentScoring.forEach((comp, idx) => {
+      let colHtml = `<div class="kpi-scoring-label">${comp.label}</div>`;
+      colHtml += '<table class="kpi-scoring-table"><thead><tr>';
+      comp.headers.forEach(h => { colHtml += `<th>${h}</th>`; });
+      colHtml += '</tr></thead><tbody>';
+      comp.rows.forEach(row => {
+        colHtml += '<tr>';
+        row.forEach((cell, i) => { colHtml += `<td${i === row.length - 1 ? ' class="pts-col"' : ''}>${cell}</td>`; });
+        colHtml += '</tr>';
+      });
+      colHtml += '</tbody></table>';
+      cols[idx % 3] += colHtml;
+    });
+
+    return `
+    <div class="slide" id="kpi-${kpi.id}-data" data-animate="kpi-data">
+      <div class="kpi-data-slide">
+        <div class="kpi-top-bar">
+          ${badge}
+          <span class="kpi-title">${kpi.name}</span>
+          <span class="kpi-lead">Lead: ${kpi.lead}</span>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <div class="kpi-desc" style="flex:0 0 auto;max-width:220px">
+            <div class="kpi-score-display" style="margin-bottom:10px;opacity:1">
+              <div class="kpi-score-big" style="color:${scoreColor}">${scoreText}<span class="kpi-score-max"> / ${kpi.maxPts}</span></div>
+              <div class="kpi-score-label">January 2026 Score</div>
+            </div>
+            <strong>What it measures:</strong> ${descHtml}<br>
+            <strong>Target:</strong> ${kpi.targetPct}
+            ${evalNoteHtml}
+          </div>
+          <div style="flex:1;opacity:0" class="kpi-right">${cols[0]}</div>
+          <div style="flex:1;opacity:0" class="kpi-right">${cols[1]}</div>
+          <div style="flex:1;opacity:0" class="kpi-right">${cols[2]}</div>
+        </div>
+        ${explanationHtml}
+      </div>
+    </div>`;
   }
 
   return `
@@ -2645,6 +2696,35 @@ function buildKpiExtraSlide(kpi, extra) {
       </div>`;
     if (extra.caption) {
       bodyHtml += `<div style="text-align:center;font-size:13px;color:#777;margin-top:8px;line-height:1.5">${extra.caption}</div>`;
+    }
+  }
+
+  else if (extra.type === 'visual-combined') {
+    // Combined image layout: first image on top, remaining side by side below
+    const imgs = extra.images || [];
+    let topImg = '';
+    let bottomRow = '';
+    if (imgs.length > 0) {
+      topImg = `
+        <div style="text-align:center;margin-bottom:8px">
+          <div style="font-size:13px;font-weight:700;color:#333;margin-bottom:4px;background:#ffeb3b;display:inline-block;padding:2px 12px">${imgs[0].label}</div>
+          <img src="${imgs[0].src}" alt="${imgs[0].label}" style="max-width:${imgs[0].width || '55%'};max-height:32vh;border-radius:6px;border:1px solid #e0e0e0;box-shadow:0 2px 8px rgba(0,0,0,0.08)">
+        </div>`;
+    }
+    if (imgs.length > 1) {
+      bottomRow = '<div style="display:flex;gap:12px;justify-content:center;align-items:flex-start">';
+      for (let i = 1; i < imgs.length; i++) {
+        bottomRow += `
+          <div style="text-align:center;flex:1;max-width:${imgs[i].width || '48%'}">
+            <div style="font-size:12px;font-weight:700;color:#333;margin-bottom:3px;background:#ffeb3b;display:inline-block;padding:1px 10px">${imgs[i].label}</div>
+            <img src="${imgs[i].src}" alt="${imgs[i].label}" style="width:100%;max-height:28vh;border-radius:6px;border:1px solid #e0e0e0;box-shadow:0 2px 8px rgba(0,0,0,0.08)">
+          </div>`;
+      }
+      bottomRow += '</div>';
+    }
+    bodyHtml = topImg + bottomRow;
+    if (extra.scaleImage) {
+      bodyHtml += `<div style="text-align:center;margin-top:6px"><img src="${extra.scaleImage}" alt="Q-KPI Scale" style="max-width:200px;max-height:40px;border-radius:4px"></div>`;
     }
   }
 
@@ -3319,16 +3399,26 @@ function animateKpiDataSlide(el) {
 
   // 2) Slide in the left column (chart + description)
   const left = el.querySelector('.kpi-left');
-  setTimeout(() => { left.style.animation = 'slideInLeft 0.5s ease forwards'; }, 400);
+  if (left) {
+    setTimeout(() => { left.style.animation = 'slideInLeft 0.5s ease forwards'; }, 400);
+  }
 
-  // 3) Slide in the right column (score + scoring table)
-  const right = el.querySelector('.kpi-right');
-  setTimeout(() => { right.style.animation = 'slideInRight 0.5s ease forwards'; }, 600);
+  // 3) Slide in the right column(s) (score + scoring table)
+  const rights = el.querySelectorAll('.kpi-right');
+  rights.forEach((right, i) => {
+    setTimeout(() => { right.style.animation = 'slideInRight 0.5s ease forwards'; }, 400 + i * 200);
+  });
 
   // 4) Pop in the score display
   const scoreDisplay = el.querySelector('.kpi-score-display');
   if (scoreDisplay) {
     setTimeout(() => { scoreDisplay.style.animation = 'popIn 0.4s ease forwards'; }, 900);
+  }
+
+  // 5) Fade in the kpi-desc in multi-column layout
+  const desc = el.querySelector('.kpi-desc');
+  if (desc && desc.parentElement && !desc.closest('.kpi-left')) {
+    setTimeout(() => { desc.style.animation = 'fadeInUp 0.5s ease forwards'; }, 300);
   }
 }
 
