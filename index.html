@@ -706,6 +706,263 @@ html, body {
   text-align: center;
 }
 
+/* ===== KPI CATEGORY HEADER SLIDE ===== */
+.kpi-cat-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.kpi-cat-name {
+  font-size: 52px;
+  font-weight: 700;
+  opacity: 0;
+}
+.kpi-cat-pts {
+  font-size: 24px;
+  color: var(--text-dim);
+  opacity: 0;
+}
+.kpi-cat-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+.kpi-cat-list li {
+  background: var(--bg-card);
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 15px;
+  opacity: 0;
+}
+
+/* ===== KPI DATA SLIDE ===== */
+.kpi-data-slide {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: stretch;
+}
+/* Top bar: category badge + title + lead */
+.kpi-top-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+}
+.kpi-cat-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.kpi-title {
+  font-size: 28px;
+  font-weight: 700;
+  flex: 1;
+}
+.kpi-lead {
+  font-size: 13px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+/* Two-column body */
+.kpi-body {
+  display: flex;
+  gap: 24px;
+}
+.kpi-left {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  opacity: 0;
+}
+.kpi-right {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  opacity: 0;
+}
+/* SVG chart container */
+.kpi-chart-card {
+  background: var(--bg-card);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 16px;
+}
+.kpi-chart-card svg {
+  width: 100%;
+  height: auto;
+}
+.kpi-desc {
+  font-size: 14px;
+  color: #bbb;
+  line-height: 1.5;
+}
+.kpi-desc strong { color: #fff; }
+/* Score display */
+.kpi-score-display {
+  background: var(--bg-card);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  opacity: 0;
+}
+.kpi-score-big {
+  font-size: 48px;
+  font-weight: 700;
+}
+.kpi-score-max {
+  font-size: 20px;
+  color: var(--text-dim);
+}
+.kpi-score-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+/* Rolling percentage badges */
+.kpi-pct-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 8px;
+}
+.kpi-pct-badge {
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 6px 14px;
+  text-align: center;
+  font-size: 13px;
+}
+.kpi-pct-badge .val {
+  font-size: 20px;
+  font-weight: 700;
+  display: block;
+}
+/* Scoring criteria table */
+.kpi-scoring-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.kpi-scoring-table th {
+  text-align: left;
+  color: var(--text-dim);
+  padding: 4px 8px;
+  border-bottom: 1px solid #333;
+  font-weight: 600;
+}
+.kpi-scoring-table td {
+  padding: 4px 8px;
+  border-bottom: 1px solid #1a1a1a;
+}
+.kpi-scoring-table tr.active-range {
+  background: rgba(26,115,232,0.15);
+  border-radius: 4px;
+}
+.kpi-scoring-table .pts-col {
+  text-align: right;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ===== KPI LEARNING SLIDE ===== */
+.kpi-learning-slide {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+.kpi-learn-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+}
+/* Score circles for learning slide */
+.kpi-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 6px solid var(--bg-bar);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+.kpi-circle .num {
+  font-size: 36px;
+  font-weight: 700;
+}
+.kpi-circle .lbl {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.kpi-circle.prev { border-color: var(--text-dim); }
+.kpi-circle.next { border-color: var(--green); }
+.kpi-learn-arrow {
+  font-size: 36px;
+  color: var(--accent);
+  opacity: 0;
+}
+/* Two-card layout */
+.kpi-cards {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+.kpi-card {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px 24px;
+  opacity: 0;
+}
+.kpi-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.kpi-card.learning h4 { color: var(--yellow); }
+.kpi-card.plan h4 { color: var(--green); }
+.kpi-card ul {
+  list-style: none;
+  padding: 0;
+}
+.kpi-card li {
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.6;
+  padding-left: 16px;
+  position: relative;
+  margin-bottom: 6px;
+}
+.kpi-card li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--text-dim);
+}
+
 /* ===== RESPONSIVE (smaller screens) ===== */
 @media (max-width: 1024px) {
   .slide { padding: 30px 30px; }
@@ -948,6 +1205,324 @@ const weightData = [
   { name: 'Competency',  from: 15, to: 30, barCls: 'weight-bar-competency',  labelCls: 'fw-cat-competency' },
 ];
 
+// Category header data: [name, color, total points, sub-KPI names]
+const categoryHeaders = [
+  { name: 'Agile',      color: '#4fc3f7', pts: 20, badge: 'fw-cat-agile',
+    kpis: ['MDP (7 pts)', 'SDP (3 pts)', 'Responsiveness (5 pts)', 'EFD (5 pts)'] },
+  { name: 'ESG',        color: '#81c784', pts: 20, badge: 'fw-cat-esg',
+    kpis: ['Social Compliance (10 pts)', 'Environmental (7 pts)', 'Product Traceability (3 pts)'] },
+  { name: 'Quality',    color: '#ce93d8', pts: 15, badge: 'fw-cat-quality',
+    kpis: ['Q-KPI (15 pts)'] },
+  { name: 'Competency', color: '#ffb74d', pts: 30, badge: 'fw-cat-competency',
+    kpis: ['Product & Dev Competency (20 pts)', 'Engineering Solutions (10 pts)'] },
+];
+
+// All KPI detail data — each object drives one data slide (and optionally one learning slide)
+const kpiData = [
+  // ===== AGILE =====
+  {
+    id: 'mdp',                                           // unique slug for slide IDs
+    name: 'MDP — Material Delivery Performance',         // full display name
+    category: 'Agile',                                   // parent category
+    catColor: '#4fc3f7',                                 // category accent color
+    lead: 'Apisak',                                      // lead person
+    maxPts: 7,                                           // maximum points possible
+    currentScore: 7,                                     // January 2026 score
+    rollingPct: 97.8,                                    // rolling year-to-date %
+    janPct: 98.6,                                        // January %
+    targetPct: '91% (APP/FTW) / 94% (A&G)',             // target threshold description
+    description: 'PODD (FGR) on-time delivery vs Customer Request Date. Measures how reliably materials arrive by the date the customer originally requested.',
+    // Scoring criteria: [range label, points awarded]
+    scoring: [
+      ['< 70%', 0], ['70–79%', 1], ['80–84%', 2], ['85–87%', 3],
+      ['88–90%', 4], ['91–93%', 5], ['94–96%', 6], ['≥ 97%', 7],
+    ],
+    currentRange: '≥ 97%',                               // which scoring range we're in
+    hasLearning: true,                                   // show a learning slide?
+    endYear2025: 4,                                      // end-of-year 2025 score
+    maxPts2025: 10,                                      // 2025 scale max
+    target2026: 7,                                       // 2026 target score
+    keyLearning: [                                       // bullet points for learning card
+      'Backlog from 2024 caused delays in early months',
+      'Insufficient material management and planning',
+      'Reactive approach to PO tracking',
+    ],
+    improvementPlan: [                                   // bullet points for plan card
+      'Actively track PO status in real-time',
+      'Weekly material reviews 3 buckets ahead',
+      'Set up early-warning alerts for at-risk POs',
+    ],
+  },
+  {
+    id: 'sdp',
+    name: 'SDP — Shipping Delivery Performance',
+    category: 'Agile',
+    catColor: '#4fc3f7',
+    lead: 'Apisak',
+    maxPts: 3,
+    currentScore: 3,
+    rollingPct: 99.6,
+    janPct: 99.0,
+    targetPct: '97%',
+    description: 'Shipped on-time vs Confirmed Ship Date. Measures how reliably finished goods ship by the confirmed date.',
+    scoring: [
+      ['< 90%', 0], ['90–94%', 1], ['95–96%', 2], ['≥ 97%', 3],
+    ],
+    currentRange: '≥ 97%',
+    hasLearning: true,
+    endYear2025: 0,
+    maxPts2025: 3,
+    target2026: 3,
+    keyLearning: [
+      'Too focused on MDP, neglected SDP monitoring',
+      'Orders confirmed with less than 21 days lead time',
+      'Lack of daily shipping schedule follow-up',
+    ],
+    improvementPlan: [
+      'Refocus team attention on SDP alongside MDP',
+      'Ensure minimum 21-day production lead time',
+      'Daily shipping status reviews in morning meetings',
+    ],
+  },
+  {
+    id: 'responsiveness',
+    name: 'Responsiveness',
+    category: 'Agile',
+    catColor: '#4fc3f7',
+    lead: 'Apisak',
+    maxPts: 5,
+    currentScore: 4,
+    rollingPct: 27.2,
+    janPct: 27.2,
+    targetPct: '≥ 30%',
+    description: 'Percentage of shipped volume from Responsiveness Programs: Rapid Creation, In Season, Planned Responsiveness, NOS/SLT, Customization, CHASE & Components.',
+    scoring: [
+      ['< 5%', 0], ['5–10%', 1], ['10–15%', 2], ['15–20%', 3], ['20–30%', 4], ['≥ 30%', 5],
+    ],
+    currentRange: '20–30%',
+    hasLearning: false,                                  // no learning slide for responsiveness
+  },
+  {
+    id: 'efd',
+    name: 'EFD — Elevated Focus Delivery',
+    category: 'Agile',
+    catColor: '#4fc3f7',
+    lead: 'Atipat / Kanyakorn',
+    maxPts: 5,
+    currentScore: 5,
+    rollingPct: 99.3,
+    janPct: 99.3,
+    targetPct: '95% (MDP) / 99% (Samples)',
+    description: 'On-time delivery for Priority Products (MDP EFD) and sample submissions (Sample MDP). Ensures elevated focus items get top priority.',
+    scoring: [
+      ['< 85%', 0], ['85–90%', 1], ['90–92%', 2], ['93–94%', 3], ['95–97%', 4], ['≥ 98%', 5],
+    ],
+    currentRange: '≥ 98%',
+    hasLearning: true,
+    endYear2025: 3,
+    maxPts2025: 5,
+    target2026: 5,
+    keyLearning: [
+      'Lack of proper follow-up on elevated focus items',
+      'Insufficient Priority Product awareness across teams',
+      'Late identification of at-risk priority shipments',
+    ],
+    improvementPlan: [
+      'Clearly identify Priority Products in all reports',
+      'Enforce no-delay policy for SPOMA priority items',
+      'Weekly priority product status review with all teams',
+    ],
+  },
+  // ===== ESG =====
+  {
+    id: 'social-compliance',
+    name: 'Social Compliance (SI-KPI)',
+    category: 'ESG',
+    catColor: '#81c784',
+    lead: 'Natchamai',
+    maxPts: 10,
+    currentScore: 0,
+    rollingPct: null,                                    // no rolling % — audited Q4 only
+    janPct: null,
+    targetPct: '≥ 95% (Best in Class)',
+    description: 'Social & Labor KPI score based on annual audit. Covers health & safety, worker rights, working hours, and management systems. Audited in Q4.',
+    scoring: [
+      ['< 30% (High Risk)', 0], ['30–60% (Low Perf)', 0], ['60–80% (Basic)', '1–5'],
+      ['80–95% (High Perf)', '6–9'], ['≥ 95% (Best in Class)', 10],
+    ],
+    currentRange: 'Audited Q4',
+    hasLearning: true,
+    endYear2025: 9.25,
+    maxPts2025: 10,
+    target2026: 8.5,
+    keyLearning: [
+      'Zero Lost Time Injury maintained throughout 2025',
+      'Strong safety compliance programs in place',
+      'TTT achieved 5S certificate (all other factories 4S)',
+    ],
+    improvementPlan: [
+      'Maintain zero injuries track record',
+      'Strengthen worker participation via Welfare Committee',
+      'Prepare early for Q4 audit with mock assessments',
+    ],
+  },
+  {
+    id: 'environmental',
+    name: 'Environmental',
+    category: 'ESG',
+    catColor: '#81c784',
+    lead: 'Anuchit',
+    maxPts: 7,
+    currentScore: 3.85,
+    rollingPct: null,
+    janPct: null,
+    targetPct: '4.2 / 7 pts',
+    description: 'Covers 3 topics: Decarbonization (3 pts), Nature (3 pts), Environmental Assessment (1 pt). Scored as average across 4 factories: TTT, VAS, Titan, TM2.',
+    scoring: [
+      ['TTT', 5.1], ['VAS', 3.3], ['Titan', 5.2], ['TM2', 1.8],
+    ],
+    currentRange: 'Avg = 3.85',
+    scoringIsFactories: true,                            // flag: scoring table shows factories, not ranges
+    hasLearning: true,
+    endYear2025: 4,
+    maxPts2025: 5,
+    target2026: 4.2,
+    keyLearning: [
+      'SBTi: Successfully reduced Scope 1, 2, 3 emissions',
+      'TM2 scores lowest at 1.8 — needs focused improvement',
+      'Nature pillar requires better waste segregation data',
+    ],
+    improvementPlan: [
+      'Solar rooftop expansion and I-REC procurement',
+      'Waste segregation improvements across all factories',
+      'RO reject water reuse project implementation',
+      'Focus on TM2 to bring score up to group average',
+    ],
+  },
+  {
+    id: 'traceability',
+    name: 'Product Traceability',
+    category: 'ESG',
+    catColor: '#81c784',
+    lead: 'Pradthana',
+    maxPts: 3,
+    currentScore: 2,
+    rollingPct: null,
+    janPct: null,
+    targetPct: '3 / 3 pts',
+    description: 'Measures supply chain data: Completeness (SMTT PO Mapping), Timeliness (data submission), and Accuracy (audit results). Current: Completeness=1, Timeliness=1, Accuracy=N/A.',
+    scoring: [
+      ['Completeness', 1], ['Timeliness', 1], ['Accuracy', 'N/A'],
+    ],
+    currentRange: '2 / 3',
+    scoringIsComponents: true,                           // flag: scoring table shows components, not ranges
+    hasLearning: true,
+    endYear2025: 5,
+    maxPts2025: 5,
+    target2026: 3,
+    keyLearning: [
+      'Data completeness achieved 100% through consistent SMTT PO mapping',
+      'Timeliness maintained at 100% submission rate',
+      'Accuracy score pending — audit not yet conducted',
+    ],
+    improvementPlan: [
+      'Weekly SMTT monitoring to maintain data quality',
+      'Prepare for accuracy audit in advance',
+      'Cross-train team on traceability requirements',
+    ],
+  },
+  // ===== QUALITY =====
+  {
+    id: 'quality',
+    name: 'Quality (Q-KPI)',
+    category: 'Quality',
+    catColor: '#ce93d8',
+    lead: 'Rapeepat',
+    maxPts: 15,
+    currentScore: 0,
+    rollingPct: null,
+    janPct: null,
+    targetPct: '8.5 / 15 pts (4Q = 80%)',
+    description: 'Quality Key Performance Index. Scored by quartile: <60% = 0 pts, ≥80% = 8 pts, ≥92% = 15 pts. 2025 actual: TTT=59(2Q), VAS=59(2Q), TITAN=59(2Q), TTM=76(3Q). AD4 SPIKE = 3.0.',
+    scoring: [
+      ['< 60% (1Q)', 0], ['60–79% (2Q)', '0–4'], ['80–91% (3Q)', '5–8'],
+      ['80–91% (4Q)', '8–14'], ['≥ 92% (4Q+)', 15],
+    ],
+    currentRange: 'Not yet scored',
+    hasLearning: true,
+    endYear2025: 3.0,
+    maxPts2025: 15,
+    target2026: 8.5,
+    keyLearning: [
+      'TTM improved significantly from 40 to 76 (3Q level)',
+      'Testing component achieved maximum score of 10',
+      'WHC score decreased 16 points due to VAS CMA failures in Q1-Q2',
+      'WH Claim reduced: 65,650 pcs → 18,798 pcs (-71%)',
+    ],
+    improvementPlan: [
+      'Target all factories at 4Q level (≥ 80%)',
+      'QMS: CTQ/OCPT integration, ISO 9001:2015 alignment',
+      'People: Digital AI quality upskilling program',
+      'Process: Lab testing capacity expansion',
+      'Compliance: RQC reinforcement across all COOs',
+    ],
+  },
+  // ===== COMPETENCY =====
+  {
+    id: 'product-dev',
+    name: 'Product & Dev Competency',
+    category: 'Competency',
+    catColor: '#ffb74d',
+    lead: 'Kanyakorn',
+    maxPts: 20,
+    currentScore: 10,
+    rollingPct: null,
+    janPct: null,
+    targetPct: '13 / 20 pts',
+    description: '7 sub-KPIs: Category Knowledge, Product Expertise, Dev Sample Performance, Buy Ready Excellence, Adaptability, Adherence to Policy, Product Mix. All at "Meet expectation" level in January.',
+    scoring: [
+      ['Below expectation', '0–6'], ['Meet expectation', '7–13'],
+      ['Exceed expectation', '14–17'], ['Outstanding', '18–20'],
+    ],
+    currentRange: 'Meet expectation',
+    hasLearning: true,
+    endYear2025: 9,
+    maxPts2025: 15,
+    target2026: 13,
+    keyLearning: [
+      'Cross-category alignment improved team collaboration',
+      'Football License readiness achieved (Base 26-28)',
+      'Complex bonding capabilities developed (Stella, FB GK)',
+      '99% Buy Ready on-time, 98% Proto / 99% Commercial on-time',
+    ],
+    improvementPlan: [
+      'Strategic capacity planning for seasonal peaks',
+      'Expand to Outdoor and Kids Bra categories (FB LIC Base29)',
+      'Digital enablement: automation of sample tracking',
+      'CTQ / Fit4Purpose implementation across all categories',
+    ],
+  },
+  {
+    id: 'engineering',
+    name: 'Engineering Solutions',
+    category: 'Competency',
+    catColor: '#ffb74d',
+    lead: 'Araya',
+    maxPts: 10,
+    currentScore: null,                                  // not yet scored
+    rollingPct: null,
+    janPct: null,
+    targetPct: '6 / 10 pts',
+    description: 'NEW KPI in 2026 (replaces ME from Competitive). 4 areas: Fundamentals (4 pts — Lean, Automation, Digital, Commitment), Concepts (6 pts — HPC Delivery, Ingredients, Commitment).',
+    scoring: [
+      ['Fundamentals', 4], ['Concepts', 6],
+    ],
+    currentRange: 'Not yet scored',
+    scoringIsComponents: true,
+    hasLearning: false,                                  // new KPI, no 2025 comparison
+  },
+];
+
 // Slide 5 data: grouped by category so left and right rows always align
 const fwGroups = [
   {
@@ -1061,6 +1636,210 @@ function buildBarRow2026(label, max, target, jan, note) {
           <span class="bar-target-label">target ${target}</span>
         </div>
         <span class="bar-pct" style="right:-85px">${progressPct}% of target</span>
+      </div>
+    </div>`;
+}
+
+// =============================================
+// KPI SLIDE BUILDERS
+// =============================================
+
+// Build an SVG mini line chart showing monthly data with a target line
+// data = array of monthly values (Jan=index 0), targetVal = dashed target line, color = line color
+function buildSvgChart(data, targetVal, maxY, color) {
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const w = 500;                            // SVG viewBox width
+  const h = 180;                            // SVG viewBox height
+  const pad = 40;                           // padding for axes
+  const chartW = w - pad * 2;               // usable chart width
+  const chartH = h - pad * 2;               // usable chart height
+
+  // Scale a value (0–maxY) to a Y pixel coordinate (top = high values)
+  function yPos(val) { return pad + chartH - (val / maxY) * chartH; }
+  // Scale a month index (0–11) to an X pixel coordinate
+  function xPos(i) { return pad + (i / 11) * chartW; }
+
+  let svg = `<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">`;
+
+  // Background grid lines (horizontal at 25%, 50%, 75%, 100%)
+  for (let p = 0; p <= 100; p += 25) {
+    const y = yPos(maxY * p / 100);
+    svg += `<line x1="${pad}" y1="${y}" x2="${w - pad}" y2="${y}" stroke="#333" stroke-width="0.5"/>`;
+    svg += `<text x="${pad - 6}" y="${y + 4}" fill="#666" font-size="9" text-anchor="end">${Math.round(maxY * p / 100)}%</text>`;
+  }
+
+  // Month labels along bottom
+  months.forEach((m, i) => {
+    svg += `<text x="${xPos(i)}" y="${h - 8}" fill="#666" font-size="8" text-anchor="middle">${m}</text>`;
+  });
+
+  // Target dashed line
+  if (targetVal != null) {
+    const ty = yPos(targetVal);
+    svg += `<line x1="${pad}" y1="${ty}" x2="${w - pad}" y2="${ty}" stroke="${color}" stroke-width="1" stroke-dasharray="6,4" opacity="0.5"/>`;
+    svg += `<text x="${w - pad + 4}" y="${ty + 3}" fill="${color}" font-size="9" opacity="0.7">Target</text>`;
+  }
+
+  // Data line and dots
+  if (data.length > 0) {
+    // Draw connecting line if multiple points
+    if (data.length > 1) {
+      const points = data.map((val, i) => `${xPos(i)},${yPos(val)}`).join(' ');
+      svg += `<polyline points="${points}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+    }
+    // Draw dots and value labels for each data point
+    data.forEach((val, i) => {
+      const cx = xPos(i);
+      const cy = yPos(val);
+      svg += `<circle cx="${cx}" cy="${cy}" r="5" fill="${color}" stroke="#1a1a1a" stroke-width="2"/>`;
+      svg += `<text x="${cx}" y="${cy - 10}" fill="#fff" font-size="10" font-weight="bold" text-anchor="middle">${val}%</text>`;
+    });
+  }
+
+  // "No data yet" placeholders for empty months
+  for (let i = data.length; i < 12; i++) {
+    svg += `<circle cx="${xPos(i)}" cy="${yPos(0)}" r="3" fill="#333" opacity="0.3"/>`;
+  }
+
+  svg += '</svg>';
+  return svg;
+}
+
+// Build HTML for a KPI category header slide
+function buildCategoryHeaderSlide(cat) {
+  const kpiList = cat.kpis.map(k => `<li>${k}</li>`).join('');
+  return `
+    <div class="slide" data-animate="kpi-category">
+      <div class="kpi-cat-header">
+        <div class="kpi-cat-name" style="color:${cat.color}">${cat.name}</div>
+        <div class="kpi-cat-pts">${cat.pts} points · ${cat.kpis.length} KPI${cat.kpis.length > 1 ? 's' : ''}</div>
+        <ul class="kpi-cat-list">${kpiList}</ul>
+      </div>
+    </div>`;
+}
+
+// Build HTML for a KPI data slide (chart + scoring table + score display)
+function buildKpiDataSlide(kpi) {
+  // Category badge with colored background
+  const badge = `<span class="kpi-cat-badge" style="background:${kpi.catColor}22;color:${kpi.catColor};border:1px solid ${kpi.catColor}44">${kpi.category}</span>`;
+
+  // Score display — show current score or "X" if not yet scored
+  const scoreText = kpi.currentScore != null ? kpi.currentScore : 'X';
+  const scoreColor = kpi.currentScore != null ? kpi.catColor : 'var(--text-dim)';
+
+  // Rolling percentage badges (only for KPIs that have percentage data)
+  let pctBadges = '';
+  if (kpi.rollingPct != null || kpi.janPct != null) {
+    pctBadges = '<div class="kpi-pct-row">';
+    if (kpi.rollingPct != null) {
+      pctBadges += `<div class="kpi-pct-badge"><span class="val" style="color:${kpi.catColor}">${kpi.rollingPct}%</span>Rolling</div>`;
+    }
+    if (kpi.janPct != null) {
+      pctBadges += `<div class="kpi-pct-badge"><span class="val" style="color:${kpi.catColor}">${kpi.janPct}%</span>January</div>`;
+    }
+    pctBadges += '</div>';
+  }
+
+  // SVG chart (only for KPIs with percentage-based rolling data)
+  let chartHtml = '';
+  if (kpi.rollingPct != null) {
+    const chartData = [kpi.janPct || kpi.rollingPct];  // at minimum, January value
+    const targetNum = parseFloat(kpi.targetPct) || 90;  // extract numeric target for the line
+    chartHtml = `<div class="kpi-chart-card">${buildSvgChart(chartData, targetNum, 100, kpi.catColor)}</div>`;
+  }
+
+  // Scoring criteria table
+  let tableHtml = '<table class="kpi-scoring-table"><thead><tr>';
+  // Choose column headers based on data type
+  if (kpi.scoringIsFactories) {
+    tableHtml += '<th>Factory</th><th class="pts-col">Score</th>';
+  } else if (kpi.scoringIsComponents) {
+    tableHtml += '<th>Component</th><th class="pts-col">Score</th>';
+  } else {
+    tableHtml += '<th>Range</th><th class="pts-col">Points</th>';
+  }
+  tableHtml += '</tr></thead><tbody>';
+  kpi.scoring.forEach(([range, pts]) => {
+    const isActive = (range === kpi.currentRange);
+    tableHtml += `<tr${isActive ? ' class="active-range"' : ''}><td>${range}</td><td class="pts-col">${pts}</td></tr>`;
+  });
+  tableHtml += '</tbody></table>';
+
+  return `
+    <div class="slide" id="kpi-${kpi.id}-data" data-animate="kpi-data">
+      <div class="kpi-data-slide">
+        <div class="kpi-top-bar">
+          ${badge}
+          <span class="kpi-title">${kpi.name}</span>
+          <span class="kpi-lead">Lead: ${kpi.lead}</span>
+        </div>
+        <div class="kpi-body">
+          <div class="kpi-left">
+            ${chartHtml}
+            <div class="kpi-desc">
+              <strong>What it measures:</strong> ${kpi.description}<br>
+              <strong>Target:</strong> ${kpi.targetPct}
+            </div>
+          </div>
+          <div class="kpi-right">
+            <div class="kpi-score-display">
+              <div class="kpi-score-big" style="color:${scoreColor}">${scoreText}<span class="kpi-score-max"> / ${kpi.maxPts}</span></div>
+              <div class="kpi-score-label">January 2026 Score</div>
+              ${pctBadges}
+            </div>
+            ${tableHtml}
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// Build HTML for a KPI learning/plan slide (score circles + two cards)
+function buildKpiLearningSlide(kpi) {
+  if (!kpi.hasLearning) return '';     // skip if no learning data
+
+  const badge = `<span class="kpi-cat-badge" style="background:${kpi.catColor}22;color:${kpi.catColor};border:1px solid ${kpi.catColor}44">${kpi.category}</span>`;
+
+  // Scale label: show old scale if different from new (e.g., "9 / 15" vs "13 / 20")
+  const prevLabel = kpi.maxPts2025 !== kpi.maxPts ? `${kpi.endYear2025} / ${kpi.maxPts2025}` : `${kpi.endYear2025}`;
+  const nextLabel = `${kpi.target2026} / ${kpi.maxPts}`;
+
+  // Bullet list for key learnings
+  const learningItems = kpi.keyLearning.map(item => `<li>${item}</li>`).join('');
+
+  // Bullet list for improvement plan
+  const planItems = kpi.improvementPlan.map(item => `<li>${item}</li>`).join('');
+
+  return `
+    <div class="slide" id="kpi-${kpi.id}-learning" data-animate="kpi-learning">
+      <div class="kpi-learning-slide">
+        <div class="kpi-learn-top">
+          ${badge}
+          <span class="kpi-title">${kpi.name}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:32px;">
+          <div class="kpi-circle prev">
+            <div class="num">${kpi.endYear2025}</div>
+            <div class="lbl">End 2025</div>
+            <div class="lbl" style="font-size:10px;color:#666">(of ${kpi.maxPts2025} pts)</div>
+          </div>
+          <div class="kpi-learn-arrow">→</div>
+          <div class="kpi-circle next">
+            <div class="num">${kpi.target2026}</div>
+            <div class="lbl">Target 2026</div>
+            <div class="lbl" style="font-size:10px;color:#666">(of ${kpi.maxPts} pts)</div>
+          </div>
+        </div>
+        <div class="kpi-cards">
+          <div class="kpi-card learning">
+            <h4>📋 Key Learning 2025</h4>
+            <ul>${learningItems}</ul>
+          </div>
+          <div class="kpi-card plan">
+            <h4>🎯 Improvement Plan 2026</h4>
+            <ul>${planItems}</ul>
+          </div>
+        </div>
       </div>
     </div>`;
 }
@@ -1196,17 +1975,47 @@ gapData.forEach(([cat, cur, tgt, gap]) => {
 });
 
 // =============================================
+// INJECT KPI DETAIL SLIDES INTO THE DOM
+// =============================================
+
+// We insert KPI slides after slide5 (framework detail) and before slide6 (January 2026).
+// Each category gets: 1 header slide, then data + learning slides for each KPI.
+const slide5El = document.getElementById('slide5');   // the framework detail slide
+let insertAfter = slide5El;                           // tracks where to insert next
+
+// Helper: insert a slide HTML string after a given element
+function insertSlideAfter(refEl, html) {
+  refEl.insertAdjacentHTML('afterend', html);         // add HTML right after the reference element
+  return refEl.nextElementSibling;                    // return the newly created element
+}
+
+// Loop through each category and its KPIs
+categoryHeaders.forEach(cat => {
+  // 1) Insert category header slide
+  insertAfter = insertSlideAfter(insertAfter, buildCategoryHeaderSlide(cat));
+
+  // 2) Insert data + learning slides for each KPI in this category
+  const catKpis = kpiData.filter(k => k.category === cat.name);
+  catKpis.forEach(kpi => {
+    // Data slide (always)
+    insertAfter = insertSlideAfter(insertAfter, buildKpiDataSlide(kpi));
+    // Learning slide (only if this KPI has learning data)
+    if (kpi.hasLearning) {
+      insertAfter = insertSlideAfter(insertAfter, buildKpiLearningSlide(kpi));
+    }
+  });
+});
+
+// =============================================
 // SLIDE NAVIGATION
 // =============================================
 
 let currentSlide = 1;       // start on slide 1
-const totalSlides = 8;
 
-// Get all slide elements
-const slides = [];
-for (let i = 1; i <= totalSlides; i++) {
-  slides.push(document.getElementById('slide' + i));
-}
+// Collect ALL slides in DOM order (existing + newly injected KPI slides)
+const slides = Array.from(document.querySelectorAll('.slide'));
+const totalSlides = slides.length;
+
 const counterEl = document.getElementById('slide-counter');
 
 // Go to a specific slide number (1-based)
@@ -1257,16 +2066,24 @@ function animateSlide(n) {
   if (animated[n]) return;     // only animate once
   animated[n] = true;
 
-  switch (n) {
-    case 1: animateSlide1(); break;
-    case 2: animateSlide2(); break;
-    case 3: animateSlide3(); break;
-    case 4: animateSlide4(); break;
-    case 5: animateSlide5(); break;
-    case 6: animateSlide6(); break;
-    case 7: animateSlide7(); break;
-    case 8: animateSlide8(); break;
-  }
+  // Get the actual slide element for this position
+  const slideEl = slides[n - 1];
+  const slideId = slideEl.id;
+
+  // Dispatch animation based on slide ID or data-animate attribute
+  // Original hardcoded slides use their fixed IDs
+  if (slideId === 'slide1') animateSlide1();
+  else if (slideId === 'slide2') animateSlide2();
+  else if (slideId === 'slide3') animateSlide3();
+  else if (slideId === 'slide4') animateSlide4();
+  else if (slideId === 'slide5') animateSlide5();
+  else if (slideId === 'slide6') animateSlide6();
+  else if (slideId === 'slide7') animateSlide7();
+  else if (slideId === 'slide8') animateSlide8();
+  // Dynamically generated KPI slides use data-animate attribute
+  else if (slideEl.dataset.animate === 'kpi-data') animateKpiDataSlide(slideEl);
+  else if (slideEl.dataset.animate === 'kpi-learning') animateKpiLearningSlide(slideEl);
+  else if (slideEl.dataset.animate === 'kpi-category') animateKpiCategorySlide(slideEl);
 }
 
 // ----- SLIDE 1: Title -----
@@ -1501,9 +2318,87 @@ function animateSlide8() {
   setTimeout(() => { sub.style.animation = 'fadeIn 0.5s ease forwards'; }, 3800);
 }
 
+// ----- KPI CATEGORY HEADER SLIDE -----
+function animateKpiCategorySlide(el) {
+  // Animate the category name (large colored text)
+  const name = el.querySelector('.kpi-cat-name');
+  setTimeout(() => { name.style.animation = 'fadeInUp 0.6s ease forwards'; }, 200);
+
+  // Animate the points subtitle
+  const pts = el.querySelector('.kpi-cat-pts');
+  setTimeout(() => { pts.style.animation = 'fadeIn 0.4s ease forwards'; }, 600);
+
+  // Stagger-reveal each KPI list item
+  const items = el.querySelectorAll('.kpi-cat-list li');
+  items.forEach((item, i) => {
+    setTimeout(() => { item.style.animation = 'popIn 0.3s ease forwards'; }, 800 + i * 150);
+  });
+}
+
+// ----- KPI DATA SLIDE -----
+function animateKpiDataSlide(el) {
+  // 1) Fade in the top bar (category badge + title + lead)
+  const topBar = el.querySelector('.kpi-top-bar');
+  setTimeout(() => { topBar.style.animation = 'fadeInUp 0.5s ease forwards'; }, 100);
+
+  // 2) Slide in the left column (chart + description)
+  const left = el.querySelector('.kpi-left');
+  setTimeout(() => { left.style.animation = 'slideInLeft 0.5s ease forwards'; }, 400);
+
+  // 3) Slide in the right column (score + scoring table)
+  const right = el.querySelector('.kpi-right');
+  setTimeout(() => { right.style.animation = 'slideInRight 0.5s ease forwards'; }, 600);
+
+  // 4) Pop in the score display
+  const scoreDisplay = el.querySelector('.kpi-score-display');
+  if (scoreDisplay) {
+    setTimeout(() => { scoreDisplay.style.animation = 'popIn 0.4s ease forwards'; }, 900);
+  }
+}
+
+// ----- KPI LEARNING / PLAN SLIDE -----
+function animateKpiLearningSlide(el) {
+  // 1) Fade in the top bar (badge + title)
+  const topBar = el.querySelector('.kpi-learn-top');
+  setTimeout(() => { topBar.style.animation = 'fadeInUp 0.5s ease forwards'; }, 100);
+
+  // 2) Pop in the 2025 score circle
+  const prevCircle = el.querySelector('.kpi-circle.prev');
+  if (prevCircle) {
+    setTimeout(() => { prevCircle.style.animation = 'countUp 0.5s ease forwards'; }, 400);
+  }
+
+  // 3) Fade in the arrow between circles
+  const arrow = el.querySelector('.kpi-learn-arrow');
+  if (arrow) {
+    setTimeout(() => { arrow.style.animation = 'fadeIn 0.3s ease forwards'; }, 700);
+  }
+
+  // 4) Pop in the 2026 target circle
+  const nextCircle = el.querySelector('.kpi-circle.next');
+  if (nextCircle) {
+    setTimeout(() => { nextCircle.style.animation = 'countUp 0.5s ease forwards'; }, 900);
+  }
+
+  // 5) Slide in the learning card from the left
+  const learningCard = el.querySelector('.kpi-card.learning');
+  if (learningCard) {
+    setTimeout(() => { learningCard.style.animation = 'slideInLeft 0.5s ease forwards'; }, 1200);
+  }
+
+  // 6) Slide in the plan card from the right
+  const planCard = el.querySelector('.kpi-card.plan');
+  if (planCard) {
+    setTimeout(() => { planCard.style.animation = 'slideInRight 0.5s ease forwards'; }, 1400);
+  }
+}
+
 // =============================================
 // INITIAL SETUP
 // =============================================
+
+// Update the slide counter to show actual total
+counterEl.textContent = '1 / ' + totalSlides;
 
 // Animate slide 1 on page load
 animateSlide(1);
