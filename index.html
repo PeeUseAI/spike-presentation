@@ -11,8 +11,8 @@ html, body {
   width: 100%; height: 100%;
   overflow: hidden;           /* no scrollbars — we control everything */
   font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  background: #0a0a0a;       /* near-black background */
-  color: #ffffff;
+  background: #ffffff;        /* white background */
+  color: #1a1a1a;
   cursor: pointer;            /* hint that clicking advances */
   user-select: none;          /* prevent accidental text selection */
 }
@@ -43,7 +43,7 @@ html, body {
   left: 50%;
   transform: translateX(-50%);
   font-size: 16px;
-  color: #555;
+  color: #999;
   z-index: 100;
   letter-spacing: 2px;
 }
@@ -54,19 +54,19 @@ html, body {
   bottom: 24px;
   right: 40px;
   font-size: 14px;
-  color: #444;
+  color: #999;
   z-index: 100;
 }
 
 /* ===== COLOR PALETTE ===== */
 :root {
   --accent: #1a73e8;         /* SPIKE-style blue */
-  --green: #34a853;
-  --yellow: #fbbc04;
-  --red: #ea4335;
-  --bg-card: #1a1a1a;
-  --bg-bar: #2a2a2a;
-  --text-dim: #888;
+  --green: #2e7d32;
+  --yellow: #e6a800;
+  --red: #d32f2f;
+  --bg-card: #f5f5f5;
+  --bg-bar: #e0e0e0;
+  --text-dim: #777;
 }
 
 /* ===== ANIMATIONS ===== */
@@ -115,7 +115,7 @@ html, body {
 
 /* ===== SLIDE 1: TITLE ===== */
 #slide1 {
-  background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 70%);
+  background: radial-gradient(ellipse at center, #eef2f7 0%, #ffffff 70%);
 }
 .three-stripes {
   display: flex;
@@ -126,7 +126,7 @@ html, body {
 .three-stripes .stripe {
   width: 8px;
   height: 50px;
-  background: #fff;
+  background: #1a1a1a;
   border-radius: 2px;
   transform: skewX(-12deg);
 }
@@ -182,7 +182,7 @@ html, body {
 .rank-change {
   display: inline-block;
   background: var(--green);
-  color: #fff;
+  color: #ffffff;
   border-radius: 12px;
   padding: 2px 10px;
   font-size: 18px;
@@ -219,7 +219,7 @@ html, body {
   text-align: right;
   padding-right: 16px;
   font-size: 18px;
-  color: #ccc;
+  color: #555;
   white-space: nowrap;
 }
 .bar-track {
@@ -244,7 +244,7 @@ html, body {
   transform: translateY(-50%);
   font-size: 16px;
   font-weight: 600;
-  color: #ccc;
+  color: #555;
   white-space: nowrap;
 }
 /* Color classes for bar fills */
@@ -271,7 +271,7 @@ html, body {
 }
 .callout {
   background: var(--bg-card);
-  border: 1px solid #333;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 12px 20px;
   text-align: center;
@@ -367,8 +367,14 @@ html, body {
 #slide5 {                       /* framework detail (was slide 4) */
   padding: 24px 50px;
   justify-content: flex-start;
-  padding-top: 40px;
+  padding-top: 24px;
 }
+#slide5 .slide-header { margin-bottom: 12px; }
+#slide5 .fw-rows { gap: 2px; overflow-y: auto; max-height: calc(100vh - 220px); }
+#slide5 .fw-item { padding: 5px 10px; font-size: 13px; }
+#slide5 .fw-desc { font-size: 11px; }
+#slide5 .fw-cat-label { font-size: 11px; padding: 2px 0; }
+#slide5 .fw-row.cat-row { margin-top: 3px; }
 
 /* Column header row */
 .fw-header-row {
@@ -425,16 +431,16 @@ html, body {
   text-transform: uppercase;
   padding: 3px 0;
 }
-.fw-cat-agile       { color: #4fc3f7; }
-.fw-cat-competitive  { color: #fdd835; }
-.fw-cat-esg          { color: #81c784; }
-.fw-cat-quality      { color: #ce93d8; }
-.fw-cat-competency   { color: #ffb74d; }
+.fw-cat-agile       { color: #0277bd; }
+.fw-cat-competitive  { color: #c49000; }
+.fw-cat-esg          { color: #2e7d32; }
+.fw-cat-quality      { color: #8e24aa; }
+.fw-cat-competency   { color: #e65100; }
 
 /* KPI item card */
 .fw-item {
   background: var(--bg-card);
-  border: 1px solid #333;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 8px 12px;
   font-size: 15px;
@@ -457,7 +463,7 @@ html, body {
 }
 .fw-desc {
   font-size: 12px;
-  color: #aaa;
+  color: #777;
   margin-top: 2px;
   line-height: 1.2;
 }
@@ -477,9 +483,9 @@ html, body {
 }
 .fw-item.highlight-removed {
   border-color: var(--red);
-  background: rgba(234,67,53,0.08);
+  background: rgba(211,47,47,0.06);
   text-decoration: line-through;
-  color: #888;
+  color: #999;
 }
 
 .fw-note {
@@ -514,8 +520,8 @@ html, body {
   top: -2px;
   height: calc(100% + 4px);
   width: 2px;
-  background: #fff;
-  border-right: 2px dashed rgba(255,255,255,0.7);
+  background: #333;
+  border-right: 2px dashed rgba(0,0,0,0.4);
   z-index: 2;
 }
 .bar-target-label {
@@ -523,7 +529,7 @@ html, body {
   top: -16px;
   transform: translateX(-50%);
   font-size: 10px;
-  color: #aaa;
+  color: #777;
   white-space: nowrap;
 }
 .bar-pct {
@@ -609,7 +615,7 @@ html, body {
   display: flex; align-items: center; justify-content: center;
   font-size: 24px; font-weight: 700;
 }
-.rank-from { background: var(--bg-card); border: 2px solid #555; }
+.rank-from { background: var(--bg-card); border: 2px solid #bbb; }
 .rank-to   { background: rgba(52,168,83,0.2); border: 2px solid var(--green); color: var(--green); }
 
 .gap-table {
@@ -622,12 +628,12 @@ html, body {
   font-size: 16px;
   color: var(--text-dim);
   padding: 6px 12px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #ddd;
 }
 .gap-table td {
   padding: 8px 12px;
   font-size: 17px;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid #eee;
 }
 .gap-table .plus {
   color: var(--green);
@@ -638,7 +644,7 @@ html, body {
 
 /* ===== SLIDE 7: SUMMARY / TIMELINE ===== */
 #slide8 {
-  background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 70%);
+  background: radial-gradient(ellipse at center, #eef2f7 0%, #ffffff 70%);
 }
 .timeline {
   display: flex;
@@ -679,7 +685,7 @@ html, body {
 .timeline-line {
   width: 120px;
   height: 3px;
-  background: #333;
+  background: #ddd;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -732,7 +738,7 @@ html, body {
 }
 .kpi-cat-list li {
   background: var(--bg-card);
-  border: 1px solid #333;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 10px 20px;
   font-size: 18px;
@@ -796,7 +802,7 @@ html, body {
 /* SVG chart container */
 .kpi-chart-card {
   background: var(--bg-card);
-  border: 1px solid #333;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 16px;
 }
@@ -806,14 +812,14 @@ html, body {
 }
 .kpi-desc {
   font-size: 16px;
-  color: #bbb;
+  color: #555;
   line-height: 1.5;
 }
-.kpi-desc strong { color: #fff; }
+.kpi-desc strong { color: #1a1a1a; }
 /* Score display */
 .kpi-score-display {
   background: var(--bg-card);
-  border: 1px solid #333;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 20px;
   text-align: center;
@@ -840,7 +846,7 @@ html, body {
   margin-top: 8px;
 }
 .kpi-pct-badge {
-  background: rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.04);
   border-radius: 8px;
   padding: 6px 14px;
   text-align: center;
@@ -861,12 +867,12 @@ html, body {
   text-align: left;
   color: var(--text-dim);
   padding: 4px 8px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #ddd;
   font-weight: 600;
 }
 .kpi-scoring-table td {
   padding: 4px 8px;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid #eee;
 }
 .kpi-scoring-table tr.active-range {
   background: rgba(26,115,232,0.15);
@@ -929,7 +935,7 @@ html, body {
 .kpi-card {
   flex: 1;
   background: var(--bg-card);
-  border: 1px solid #333;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 20px 24px;
   opacity: 0;
@@ -950,7 +956,7 @@ html, body {
 }
 .kpi-card li {
   font-size: 16px;
-  color: #ccc;
+  color: #444;
   line-height: 1.6;
   padding-left: 16px;
   position: relative;
@@ -976,12 +982,12 @@ html, body {
   white-space: nowrap;
 }
 .kpi-data-table th {
-  background: #222;
+  background: #e8e8e8;
   color: var(--text-dim);
   padding: 6px 8px;
   text-align: right;
   font-weight: 600;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #ccc;
   position: sticky;
   top: 0;
 }
@@ -989,19 +995,19 @@ html, body {
   text-align: left;
   position: sticky;
   left: 0;
-  background: #222;
+  background: #e8e8e8;
   z-index: 2;
 }
 .kpi-data-table td {
   padding: 5px 8px;
   text-align: right;
-  border-bottom: 1px solid #1a1a1a;
-  color: #ccc;
+  border-bottom: 1px solid #eee;
+  color: #444;
 }
 .kpi-data-table td:first-child {
   text-align: left;
   font-weight: 600;
-  color: #aaa;
+  color: #555;
   position: sticky;
   left: 0;
   background: var(--bg-card);
@@ -1042,7 +1048,7 @@ html, body {
 .kpi-success-card {
   flex: 1;
   background: var(--bg-card);
-  border: 1px solid #333;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 20px 24px;
   opacity: 0;
@@ -1060,7 +1066,7 @@ html, body {
 }
 .kpi-success-card li {
   font-size: 16px;
-  color: #ccc;
+  color: #444;
   line-height: 1.6;
   padding-left: 16px;
   position: relative;
@@ -1082,7 +1088,7 @@ html, body {
 }
 .kpi-pillar-card {
   background: var(--bg-card);
-  border: 1px solid #333;
+  border: 1px solid #e0e0e0;
   border-radius: 10px;
   padding: 16px 20px;
   opacity: 0;
@@ -1095,7 +1101,7 @@ html, body {
 }
 .kpi-pillar-card li {
   font-size: 14px;
-  color: #ccc;
+  color: #444;
   line-height: 1.5;
   margin-bottom: 4px;
   padding-left: 12px;
@@ -1119,7 +1125,7 @@ html, body {
 .kpi-hl-card {
   flex: 1;
   background: var(--bg-card);
-  border: 1px solid #333;
+  border: 1px solid #e0e0e0;
   border-radius: 10px;
   padding: 16px 20px;
   opacity: 0;
@@ -1129,7 +1135,7 @@ html, body {
 .kpi-hl-card.lowlight h4 { color: var(--red); }
 .kpi-hl-card li {
   font-size: 14px;
-  color: #ccc;
+  color: #444;
   line-height: 1.5;
   margin-bottom: 4px;
   padding-left: 12px;
@@ -1154,12 +1160,12 @@ html, body {
 
 /* ===== EVALUATING NOTE (for criteria-only KPIs) ===== */
 .kpi-evaluating-note {
-  background: rgba(251,188,4,0.12);
-  border: 1px solid rgba(251,188,4,0.3);
+  background: rgba(230,168,0,0.08);
+  border: 1px solid rgba(230,168,0,0.3);
   border-radius: 8px;
   padding: 10px 16px;
   font-size: 15px;
-  color: #fdd835;
+  color: #b38600;
   text-align: center;
   margin-top: 4px;
 }
@@ -1179,6 +1185,12 @@ html, body {
 
 <!-- ========== SLIDE 1: TITLE ========== -->
 <div class="slide active" id="slide1">
+  <!-- Logo row -->
+  <div style="display:flex;align-items:center;gap:24px;margin-bottom:32px;opacity:0" id="logo-row">
+    <img src="data:image/png;base64,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" alt="Thongthai" style="height:50px">
+    <span style="font-size:24px;color:#ccc;font-weight:300">&times;</span>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAAANCAMAAADVJm2BAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAD5UExURQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAABAAAAwAAAwAAAwMDAwAAAwAAAwAAAAAAAAAAAAMDAwICAgICAgICAgAAAAICAwICAwICAwICAwICAwICAwEBAQEBAQEBAQEBAQEBAQEBAQEBBAEBAQEBAwICAgICAgICAgICAgEBBAEBBAICAwICAwICAwICAwICAwMDBAICAwICAwMDBAMDBAMDBAICAwMDBAMDBAMDBAMDBB4tu4EAAABSdFJOUwABBAkODxITFRoeHyAhJCUmJywtLzAxNDc6Oz1AQ0NIS0xPT1FUVVZYYGhtdpGSnJ6ipamsrba6vL29v8TO0NHU19js7e/x9fX29/f4+vz8/f7RbWJJAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABFUlEQVQoU52Rh06DMQyEzSwpqz9QNpRNgbI3pey9ufd/GM5DvyohFYlIie8cf46SyO8BTB4DYehSqD/G/7GVWi1MC+wS2Fm0/rPAe39+2jLw1uPYKXDADiKFV2BLoRnEEHkJ5VgYYp2hIJsRbXdwyPQFcF88ozLsEWgUG3RJS8ZLVgL0KTEhD8bqDmfFpWHAGM0IsXpzybNKNfMa1i0XmcDCpU/sqRpm5lvP5DWZXtLcWgvsA9uqRjVzZdyT3Po2NecqVXeOlb02nXjJF0O1GrW6TE1rC7kG6tkuVWA4zI642pMslLlockPkTrGmDwjhWO6S9IaC7Hsc4JltvOe5f3fGFD/YMZmj61JM9L1v2EekQ6l2+QEcQm9x3zw6lgAAAABJRU5ErkJggg==" alt="adidas" style="height:18px">
+  </div>
   <!-- CSS-only three stripes (Adidas-inspired) -->
   <div class="three-stripes" id="stripes">
     <div class="stripe"></div>
@@ -1408,15 +1420,15 @@ const weightData = [
 
 // Category header data: [name, color, total points, sub-KPI names]
 const categoryHeaders = [
-  { name: 'Agile',      color: '#4fc3f7', pts: 20, badge: 'fw-cat-agile',
-    kpis: ['MDP (7 pts)', 'SDP (3 pts)', 'Responsiveness (5 pts)', 'EFD (5 pts)'] },
-  { name: 'Competitive', color: '#fdd835', pts: 15, badge: 'fw-cat-competitive',
+  { name: 'Agile',      color: '#0277bd', pts: 20, badge: 'fw-cat-agile',
+    kpis: ['MDP (7 pts)', 'SDP (3 pts)', 'Responsiveness (5 pts)', 'Elevated Focus Delivery (5 pts)'] },
+  { name: 'Competitive', color: '#c49000', pts: 15, badge: 'fw-cat-competitive',
     kpis: ['FOB Target Achievement (5 pts)', 'Holistic Cost Contribution (5 pts)', 'Duty Benefit Optimization (5 pts)'] },
-  { name: 'ESG',        color: '#81c784', pts: 20, badge: 'fw-cat-esg',
+  { name: 'ESG',        color: '#2e7d32', pts: 20, badge: 'fw-cat-esg',
     kpis: ['Social Compliance (10 pts)', 'Environmental (7 pts)', 'Product Traceability (3 pts)'] },
-  { name: 'Quality',    color: '#ce93d8', pts: 15, badge: 'fw-cat-quality',
+  { name: 'Quality',    color: '#8e24aa', pts: 15, badge: 'fw-cat-quality',
     kpis: ['Q-KPI (15 pts)'] },
-  { name: 'Competency', color: '#ffb74d', pts: 30, badge: 'fw-cat-competency',
+  { name: 'Competency', color: '#e65100', pts: 30, badge: 'fw-cat-competency',
     kpis: ['Product & Dev Competency (20 pts)', 'Engineering Solutions (10 pts)'] },
 ];
 
@@ -1426,9 +1438,9 @@ const kpiData = [
   // ===== AGILE =====
   {
     id: 'mdp',
-    name: 'MDP — Material Delivery Performance',
+    name: 'MDP — Delivery on Customer Requested Date',
     category: 'Agile',
-    catColor: '#4fc3f7',
+    catColor: '#0277bd',
     lead: 'Apisak',
     maxPts: 7,
     currentScore: 7,
@@ -1462,18 +1474,20 @@ const kpiData = [
     keyLearning: [
       'Backlog management issues occurred in the first half of the year due to capacity challenges carried over from 2024, resulting in a large backlog.',
       'Material management was not sufficiently proactive, causing delays in production.',
+      'Short Lead time orders management.',
     ],
     improvementPlan: [
       'Actively track the status of all POs — both materials and production — to ensure every PO is closed as committed.',
       'Review material status weekly with all relevant teams and plan at least 3 buckets ahead.',
       'Monitor risks proactively and escalate issues early to prevent delays.',
+      'Streamlining process to finish order confirmation for SLT faster and information flow faster to all parties.',
     ],
   },
   {
     id: 'sdp',
     name: 'SDP — Shipping Delivery Performance',
     category: 'Agile',
-    catColor: '#4fc3f7',
+    catColor: '#0277bd',
     lead: 'Apisak',
     maxPts: 3,
     currentScore: 3,
@@ -1506,14 +1520,14 @@ const kpiData = [
     ],
     improvementPlan: [
       'Refocus on SDP to ensure better balance. If SDP is delayed, further follow-up is required to determine whether MDP is also delayed and how the issue can be resolved.',
-      'Adjust the order confirmation process to be less restrictive, ensuring a minimum production lead time of 21 days.',
+      'Adjust the order confirmation process to be more realistic regarding the fabric delivery and sewing plan.',
     ],
   },
   {
     id: 'responsiveness',
     name: 'Responsiveness',
     category: 'Agile',
-    catColor: '#4fc3f7',
+    catColor: '#0277bd',
     lead: 'Apisak',
     maxPts: 5,
     currentScore: 4,
@@ -1546,7 +1560,7 @@ const kpiData = [
     id: 'efd',
     name: 'EFD — Elevated Focus Delivery',
     category: 'Agile',
-    catColor: '#4fc3f7',
+    catColor: '#0277bd',
     lead: 'Atipat / Kanyakorn',
     maxPts: 5,
     currentScore: 5,
@@ -1580,12 +1594,11 @@ const kpiData = [
     maxPts2025: 5,
     target2026: 5,
     keyLearning: [
-      'Some orders were still delayed due to lack of proper follow-up.',
-      'Awareness of the importance of Priority Products was not sufficient across all teams.',
+      'Issue with Order Creation that didn\'t flag Priority and no one rechecked.',
+      'Lack of awareness and attention to priority products and all other Order classification.',
     ],
     improvementPlan: [
-      'Clearly identify Priority Product POs in all reports and all tracking activities.',
-      'Establish clear guidelines for all teams: Priority Products and SPOMA must not be delayed, and reinforce this principle consistently.',
+      'Review on KPI of these orders weekly and seek for improvement.',
     ],
   },
   // ===== COMPETITIVE =====
@@ -1593,7 +1606,7 @@ const kpiData = [
     id: 'competitive',
     name: 'FOB / Landed Cost Achievement',
     category: 'Competitive',
-    catColor: '#fdd835',
+    catColor: '#c49000',
     lead: 'Costing Team',
     maxPts: 15,
     currentScore: null,              // not yet scored — still evaluating
@@ -1632,7 +1645,20 @@ const kpiData = [
           ['≥ 2 and < 2.5 markets', '3'],
           ['≥ 2.5 and < 3 markets', '4'],
           ['≥ 3 markets', '5'],
-        ]
+        ],
+        explanation: {
+          title: 'How Duty Benefit Optimization Works',
+          text: 'This KPI measures how well the supplier utilizes Free Trade Agreements (FTAs) to achieve the lowest possible import duty rates for adidas products. A "market" counts when a destination country receives products at a reduced duty rate through an applicable trade agreement (e.g., FTA, GSP, or preferential tariff). The more markets where duty savings are achieved, the higher the score.',
+          example: {
+            title: 'Example Calculation',
+            steps: [
+              'Thong Thai ships to the EU using Thailand-EU FTA → duty reduced from 12% to 0% (1st market with duty benefit)',
+              'Also ships to Japan using RCEP agreement → duty reduced from 9% to 0% (2nd market)',
+              'Also ships to South Korea using ASEAN-Korea FTA → duty reduced from 13% to 0% (3rd market)',
+              'Total = 3 markets with lowest duty position → Score: ≥ 3 markets = 5 SPIKE points (maximum)',
+            ],
+          },
+        },
       },
     ],
     currentRange: 'Not yet scored',
@@ -1644,7 +1670,7 @@ const kpiData = [
     id: 'social-compliance',
     name: 'Social Compliance (SI-KPI)',
     category: 'ESG',
-    catColor: '#81c784',
+    catColor: '#2e7d32',
     lead: 'Natchamai',
     maxPts: 10,
     currentScore: 0,
@@ -1741,7 +1767,7 @@ const kpiData = [
     id: 'environmental',
     name: 'Environmental (EKPI)',
     category: 'ESG',
-    catColor: '#81c784',
+    catColor: '#2e7d32',
     lead: 'Anuchit',
     maxPts: 7,
     currentScore: 3.85,
@@ -1792,7 +1818,7 @@ const kpiData = [
     id: 'traceability',
     name: 'Product Traceability',
     category: 'ESG',
-    catColor: '#81c784',
+    catColor: '#2e7d32',
     lead: 'Pradthana',
     maxPts: 3,
     currentScore: 2,
@@ -1840,7 +1866,7 @@ const kpiData = [
     id: 'quality',
     name: 'Quality (Q-KPI)',
     category: 'Quality',
-    catColor: '#ce93d8',
+    catColor: '#8e24aa',
     lead: 'Rapeepat',
     maxPts: 15,
     currentScore: 0,
@@ -1891,6 +1917,24 @@ const kpiData = [
       'Compliance: CTQ & OCPT integration. Lab testing capacity expansion. Culture & QA manufacturing audit enhancement.',
     ],
     extraSlides: [
+      {
+        title: 'Quality — Q-KPI Score Scale',
+        type: 'visual',
+        image: 'qkpi-scale.png',
+        caption: 'Q-KPI scoring ranges from 1Q (0-30%) to 5Q (90-100%)',
+      },
+      {
+        title: 'Quality — 2025 Q-KPI Dashboard: COO-TH (TTT)',
+        type: 'visual',
+        image: 'qkpi-ttt.png',
+        caption: 'AD4TTT — Total Score: 59.0 (2Q) | Digital: 5, Pivot88: 5 | Consumer Exp: 20 | Foundation: 34.0',
+      },
+      {
+        title: 'Quality — 2025 Q-KPI Dashboard: COO-MM (TTM)',
+        type: 'visual',
+        image: 'qkpi-ttm.png',
+        caption: 'AD4TTM — Total Score: 76.0 (3Q) | Consumer Exp: 39 (WH Claims: 25) | Foundation: 32.0',
+      },
       {
         title: 'Quality — 2024 vs 2025 QKPI Comparison',
         type: 'comparison',
@@ -1972,7 +2016,7 @@ const kpiData = [
             'Internal X-CTQ and quality process audits across all facilities (Q1-Q4)',
             'Reinforce E2E Quality inspection SOP & internal certification for QCs/QAs (Q1-Q2)',
           ]},
-          { name: 'Compliance (Conformity)', color: '#ce93d8', items: [
+          { name: 'Compliance (Conformity)', color: '#8e24aa', items: [
             'Integrate CTQ & OCPT facilities and resources from Dev. to production (Q2-Q3)',
             'Enhance Lab testing capacity & capabilities across TTT Group (Q1-Q2)',
             'Culture & QA manufacturing audit enhancement: non-conformity at source (Q1-Q4)',
@@ -1986,7 +2030,7 @@ const kpiData = [
     id: 'product-dev',
     name: 'Product & Dev Competency',
     category: 'Competency',
-    catColor: '#ffb74d',
+    catColor: '#e65100',
     lead: 'Kanyakorn',
     maxPts: 20,
     currentScore: 10,
@@ -2002,12 +2046,12 @@ const kpiData = [
     // 7 sub-KPI tracking table from PPTX slide 36
     subKpis: [
       { name: 'Category Knowledge and Expertise', target: 'Exceed expectation', jan: 'Meet expectation' },
-      { name: 'Product Expertise', target: '', jan: 'Meet expectation' },
-      { name: 'Development Sample Performance', target: '', jan: 'Meet expectation' },
-      { name: 'Buy Ready Excellence', target: '', jan: 'Meet expectation' },
-      { name: 'Adaptability and Iteration Capability', target: '', jan: 'Meet expectation' },
-      { name: 'Adherence to adidas Policy and Calendar', target: '', jan: 'Meet expectation' },
-      { name: 'Product Mix', target: '', jan: 'Meet expectation' },
+      { name: 'Product Expertise', target: 'Exceed expectation', jan: 'Meet expectation' },
+      { name: 'Development Sample Performance', target: 'Exceed expectation', jan: 'Meet expectation' },
+      { name: 'Buy Ready Excellence', target: 'Exceed expectation', jan: 'Meet expectation' },
+      { name: 'Adaptability and Iteration Capability', target: 'Exceed expectation', jan: 'Meet expectation' },
+      { name: 'Adherence to adidas Policy and Calendar', target: 'Exceed expectation', jan: 'Meet expectation' },
+      { name: 'Product Mix', target: 'Exceed expectation', jan: 'Meet expectation' },
     ],
     hasLearning: true,
     endYear2025: 9,
@@ -2027,12 +2071,20 @@ const kpiData = [
       'Digital Enablement — Deploy digital tracking and workflow tools for sustainable Buy Ready on-time performance.',
       'adidas Standards Implementation — Fully implement standard workflows for CTQ, FB LIC co-creation, and Fit4Purpose Tech Pack.',
     ],
+    extraSlides: [
+      {
+        title: 'Product & Dev Competency — SPIKE Point Scale (0–20)',
+        type: 'visual',
+        image: 'spike-scale.png',
+        caption: 'Scoring: Poor (0) → Below Expectation (5) → Met Expectation (10) → Exceed Expectation (15) → Excellent (20). Target: All touch points to Exceed Expectation.',
+      },
+    ],
   },
   {
     id: 'engineering',
     name: 'Engineering Solutions',
     category: 'Competency',
-    catColor: '#ffb74d',
+    catColor: '#e65100',
     lead: 'Araya',
     maxPts: 10,
     currentScore: null,
@@ -2049,30 +2101,31 @@ const kpiData = [
     extraSlides: [
       {
         title: 'Engineering Solutions — KPI Framework',
-        type: 'framework',
-        areas: [
-          { name: 'Fundamentals (4 pts)', subtitle: 'Continuous Improvement / Self Governance', color: '#ffb74d', items: [
-            'Lean: Demonstrates maturity in implementation of lean principles',
-            'Automation: Deskilling applications/equipment to drive product excellence at development center and factory level',
-            'Digital: Data Driven Production Management & E2E Planning through Production Data Capture and Availability',
-            'Commitment: Ensure adequate team setup to drive valued initiatives',
-          ]},
-          { name: 'Concepts (6 pts)', subtitle: 'High Performance Concepts (HPC)', color: '#ffb74d', items: [
-            'HPC Delivery: Deliver brand innovation concepts for athletes/events',
-            'HPC Ingredients: Provide and Deliver Innovation Solutions integrated in the HPC',
-            'Commitment: Dedicated expertise allocated to HPC with innovative mindset',
-          ]},
-          { name: 'Capabilities', subtitle: 'Innovation & Commercial-ready', color: 'var(--text-dim)', items: [
-            'Ingredients: Textile Innovation, Foam, Polymer, Process & Method of Make',
-            'Digital Asset: Assisted product engineering for factory in scope',
-            'Commercial-ready Technology: Adopt and land mature technology across products',
-          ]},
-          { name: 'Excellence', subtitle: 'Product Centric', color: 'var(--text-dim)', items: [
-            'Method of Make: Best-in-class practices elevating Product Execution Consistency & Deskilling',
-            'Benchmarking: Feature Complexity, Output Performance, Commercial Readiness for Critical Processes',
-            'Solution Ownership: Deploy resources to new facilities & proactively scout/validate manufacturing technologies',
-          ]},
-        ],
+        type: 'framework-table',
+        tableData: {
+          headers: ['Level', 'Points', 'Sub-Area', 'Description'],
+          rows: [
+            ['Fundamentals', '4 pts', 'Lean', 'Demonstrates maturity in implementation of lean principles'],
+            ['', '', 'Automation', 'Deskilling applications/equipment to drive product excellence at development center and factory level'],
+            ['', '', 'Digital', 'Data Driven Production Management & E2E Planning through Production Data Capture and Availability'],
+            ['', '', 'Commitment', 'Ensure adequate team setup to drive valued initiatives'],
+            ['Concepts (HPC)', '6 pts', 'HPC Delivery', 'Deliver brand innovation concepts for athletes/events'],
+            ['', '', 'HPC Ingredients', 'Provide and Deliver Innovation Solutions integrated in the HPC'],
+            ['', '', 'Commitment', 'Dedicated expertise allocated to HPC with innovative mindset'],
+            ['Capabilities', 'Future', 'Ingredients', 'Textile Innovation, Foam, Polymer, Process & Method of Make'],
+            ['', '', 'Digital Asset', 'Assisted product engineering for factory in scope'],
+            ['', '', 'Commercial Tech', 'Adopt and land mature technology across products'],
+            ['Excellence', 'Future', 'Method of Make', 'Best-in-class practices elevating Product Execution Consistency & Deskilling'],
+            ['', '', 'Benchmarking', 'Feature Complexity, Output Performance, Commercial Readiness for Critical Processes'],
+            ['', '', 'Solution Ownership', 'Deploy resources to new facilities & proactively scout/validate manufacturing technologies'],
+          ],
+          levelDescriptions: [
+            { level: 'Fundamentals', focus: 'Continuous Improvement / Self Governance', scored: true },
+            { level: 'Concepts', focus: 'High Performance Concepts (HPC)', scored: true },
+            { level: 'Capabilities', focus: 'Innovation & Commercial-ready', scored: false },
+            { level: 'Excellence', focus: 'Product Centric', scored: false },
+          ],
+        },
       },
     ],
   },
@@ -2084,11 +2137,11 @@ const fwGroups = [
     catLeft: 'Agile — 25%', catRight: 'Agile — 20% (was 25%)', catCls: 'fw-cat-agile',
     left: [
       { name: 'Availability',   pts: 10, cls: '',                desc: 'MDP (7) + SDP (3)' },
-      { name: 'Responsiveness', pts: 15, cls: 'highlight-changed', desc: 'Resp (5) + Origin Opt (5) + EFD (5)' },
+      { name: 'Responsiveness', pts: 15, cls: 'highlight-changed', desc: 'Resp (5) + Origin Opt (5) + Elevated Focus Delivery (5)' },
     ],
     right: [
       { name: 'Availability',   pts: 10, cls: '',                desc: 'Same — MDP (7) + SDP (3)' },
-      { name: 'Responsiveness', pts: 10, cls: 'highlight-changed', desc: '15→10; Origin Opt moved to Cost; now Resp(5)+EFD(5)' },
+      { name: 'Responsiveness', pts: 10, cls: 'highlight-changed', desc: '15→10; Origin Opt moved to Cost; now Resp(5)+Elevated Focus Delivery(5)' },
     ]
   },
   {
@@ -2201,7 +2254,8 @@ function buildBarRow2026(label, max, target, jan, note) {
 
 // Build an SVG mini line chart showing monthly data with a target line
 // data = array of monthly values (Jan=index 0), targetVal = dashed target line, color = line color
-function buildSvgChart(data, targetVal, maxY, color) {
+// projData = optional array of 12 projected values (null for actual-data months)
+function buildSvgChart(data, targetVal, maxY, color, projData) {
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const w = 500;                            // SVG viewBox width
   const h = 180;                            // SVG viewBox height
@@ -2219,13 +2273,13 @@ function buildSvgChart(data, targetVal, maxY, color) {
   // Background grid lines (horizontal at 25%, 50%, 75%, 100%)
   for (let p = 0; p <= 100; p += 25) {
     const y = yPos(maxY * p / 100);
-    svg += `<line x1="${pad}" y1="${y}" x2="${w - pad}" y2="${y}" stroke="#333" stroke-width="0.5"/>`;
-    svg += `<text x="${pad - 6}" y="${y + 4}" fill="#666" font-size="9" text-anchor="end">${Math.round(maxY * p / 100)}%</text>`;
+    svg += `<line x1="${pad}" y1="${y}" x2="${w - pad}" y2="${y}" stroke="#ddd" stroke-width="0.5"/>`;
+    svg += `<text x="${pad - 6}" y="${y + 4}" fill="#888" font-size="9" text-anchor="end">${Math.round(maxY * p / 100)}%</text>`;
   }
 
   // Month labels along bottom
   months.forEach((m, i) => {
-    svg += `<text x="${xPos(i)}" y="${h - 8}" fill="#666" font-size="8" text-anchor="middle">${m}</text>`;
+    svg += `<text x="${xPos(i)}" y="${h - 8}" fill="#888" font-size="8" text-anchor="middle">${m}</text>`;
   });
 
   // Target dashed line
@@ -2246,14 +2300,48 @@ function buildSvgChart(data, targetVal, maxY, color) {
     data.forEach((val, i) => {
       const cx = xPos(i);
       const cy = yPos(val);
-      svg += `<circle cx="${cx}" cy="${cy}" r="5" fill="${color}" stroke="#1a1a1a" stroke-width="2"/>`;
-      svg += `<text x="${cx}" y="${cy - 10}" fill="#fff" font-size="10" font-weight="bold" text-anchor="middle">${val}%</text>`;
+      svg += `<circle cx="${cx}" cy="${cy}" r="5" fill="${color}" stroke="#fff" stroke-width="2"/>`;
+      svg += `<text x="${cx}" y="${cy - 10}" fill="#1a1a1a" font-size="10" font-weight="bold" text-anchor="middle">${val}%</text>`;
     });
   }
 
-  // "No data yet" placeholders for empty months
+  // Projection line and dots (dashed, lighter color)
+  if (projData && projData.length > data.length) {
+    // Build projection points starting from last actual data point
+    let projPoints = [];
+    if (data.length > 0) {
+      projPoints.push(`${xPos(data.length - 1)},${yPos(data[data.length - 1])}`);
+    }
+    for (let i = data.length; i < projData.length; i++) {
+      if (projData[i] != null) {
+        projPoints.push(`${xPos(i)},${yPos(projData[i])}`);
+      }
+    }
+    // Draw dashed line connecting projection points
+    if (projPoints.length > 1) {
+      svg += `<polyline points="${projPoints.join(' ')}" fill="none" stroke="${color}" stroke-width="2" stroke-dasharray="6,4" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>`;
+    }
+    // Draw hollow circles and labels for projected months
+    for (let i = data.length; i < projData.length; i++) {
+      if (projData[i] != null) {
+        const cx = xPos(i);
+        const cy = yPos(projData[i]);
+        svg += `<circle cx="${cx}" cy="${cy}" r="4" fill="none" stroke="${color}" stroke-width="2" opacity="0.45"/>`;
+        svg += `<text x="${cx}" y="${cy - 10}" fill="${color}" font-size="9" text-anchor="middle" opacity="0.5">${projData[i]}%</text>`;
+      }
+    }
+    // Legend
+    svg += `<line x1="${pad}" y1="${h - 2}" x2="${pad + 25}" y2="${h - 2}" stroke="${color}" stroke-width="2.5"/>`;
+    svg += `<text x="${pad + 29}" y="${h}" fill="#777" font-size="7">Actual</text>`;
+    svg += `<line x1="${pad + 70}" y1="${h - 2}" x2="${pad + 95}" y2="${h - 2}" stroke="${color}" stroke-width="2" stroke-dasharray="4,3" opacity="0.45"/>`;
+    svg += `<text x="${pad + 99}" y="${h}" fill="#777" font-size="7">Estimated</text>`;
+  }
+
+  // "No data yet" placeholders for months with no actual or projected data
   for (let i = data.length; i < 12; i++) {
-    svg += `<circle cx="${xPos(i)}" cy="${yPos(0)}" r="3" fill="#333" opacity="0.3"/>`;
+    if (!projData || projData[i] == null) {
+      svg += `<circle cx="${xPos(i)}" cy="${yPos(0)}" r="3" fill="#ddd" opacity="0.5"/>`;
+    }
   }
 
   svg += '</svg>';
@@ -2320,7 +2408,21 @@ function buildKpiDataSlide(kpi) {
   if (kpi.rollingPct != null) {
     const chartData = [kpi.janPct || kpi.rollingPct];
     const targetNum = parseFloat(kpi.targetPct) || 90;
-    chartHtml = `<div class="kpi-chart-card">${buildSvgChart(chartData, targetNum, 100, kpi.catColor)}</div>`;
+
+    // Extract projection data from monthlyData rows (look for "Proj" or use rollRow)
+    let projData = null;
+    if (kpi.monthlyData) {
+      const projRow = kpi.monthlyData.rows.find(r => r[0].includes('Proj'));
+      const sourceRow = projRow || (kpi.monthlyData.rollRow ? kpi.monthlyData.rollRow : null);
+      if (sourceRow) {
+        projData = sourceRow.slice(1, 13).map(v => {
+          const num = parseFloat(v);
+          return isNaN(num) ? null : num;
+        });
+      }
+    }
+
+    chartHtml = `<div class="kpi-chart-card">${buildSvgChart(chartData, targetNum, 100, kpi.catColor, projData)}</div>`;
   }
 
   // Monthly data table (if present — MDP, SDP, Responsiveness, EFD, Traceability)
@@ -2364,6 +2466,21 @@ function buildKpiDataSlide(kpi) {
         tableHtml += '</tr>';
       });
       tableHtml += '</tbody></table>';
+      // Explanation card (e.g., Duty Benefit Optimization)
+      if (comp.explanation) {
+        tableHtml += `<div style="background:rgba(26,115,232,0.06);border:1px solid rgba(26,115,232,0.2);border-radius:8px;padding:10px 14px;margin-top:8px;">`;
+        tableHtml += `<div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:4px">${comp.explanation.title}</div>`;
+        tableHtml += `<div style="font-size:12px;color:#666;line-height:1.5;margin-bottom:6px">${comp.explanation.text}</div>`;
+        if (comp.explanation.example) {
+          tableHtml += `<div style="font-size:12px;font-weight:600;color:#444;margin-bottom:3px">${comp.explanation.example.title}:</div>`;
+          tableHtml += `<ul style="font-size:11px;color:#666;line-height:1.5;padding-left:16px;margin:0">`;
+          comp.explanation.example.steps.forEach(step => {
+            tableHtml += `<li style="margin-bottom:2px">${step}</li>`;
+          });
+          tableHtml += `</ul>`;
+        }
+        tableHtml += `</div>`;
+      }
     });
   }
   // Standard scoring table (if scoring array has entries)
@@ -2484,13 +2601,13 @@ function buildKpiLearningSlide(kpi) {
           <div class="kpi-circle prev">
             <div class="num">${kpi.endYear2025}</div>
             <div class="lbl">End 2025</div>
-            <div class="lbl" style="font-size:10px;color:#666">(of ${kpi.maxPts2025} pts)</div>
+            <div class="lbl" style="font-size:10px;color:#999">(of ${kpi.maxPts2025} pts)</div>
           </div>
           <div class="kpi-learn-arrow">→</div>
           <div class="kpi-circle next">
             <div class="num">${kpi.target2026}</div>
             <div class="lbl">Target 2026</div>
-            <div class="lbl" style="font-size:10px;color:#666">(of ${kpi.maxPts} pts)</div>
+            <div class="lbl" style="font-size:10px;color:#999">(of ${kpi.maxPts} pts)</div>
           </div>
         </div>
         <div class="kpi-cards">
@@ -2512,7 +2629,18 @@ function buildKpiExtraSlide(kpi, extra) {
   const badge = `<span class="kpi-cat-badge" style="background:${kpi.catColor}22;color:${kpi.catColor};border:1px solid ${kpi.catColor}44">${kpi.category}</span>`;
   let bodyHtml = '';
 
-  if (extra.type === 'key-success') {
+  if (extra.type === 'visual') {
+    // Image-based slide (Q-KPI dashboards, SPIKE scale, etc.)
+    bodyHtml = `
+      <div style="text-align:center;margin:12px 0">
+        <img src="${extra.image}" alt="${extra.title}" style="max-width:100%;max-height:55vh;border-radius:8px;border:1px solid #e0e0e0;box-shadow:0 2px 12px rgba(0,0,0,0.1)">
+      </div>`;
+    if (extra.caption) {
+      bodyHtml += `<div style="text-align:center;font-size:13px;color:#777;margin-top:8px;line-height:1.5">${extra.caption}</div>`;
+    }
+  }
+
+  else if (extra.type === 'key-success') {
     // Achievements list + optional support needed
     const achieveItems = extra.items.map(i => `<li>${i}</li>`).join('');
     let supportHtml = '';
@@ -2583,6 +2711,41 @@ function buildKpiExtraSlide(kpi, extra) {
     bodyHtml += '</div>';
   }
 
+  else if (extra.type === 'framework-table') {
+    // Engineering Solutions detailed table with all levels
+    const td = extra.tableData;
+    // Level descriptions header
+    bodyHtml = '<div style="display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap">';
+    td.levelDescriptions.forEach(ld => {
+      const scoredStyle = ld.scored
+        ? 'background:rgba(230,81,0,0.08);border:1px solid rgba(230,81,0,0.25);color:#e65100'
+        : 'background:rgba(0,0,0,0.03);border:1px solid #e0e0e0;color:#888';
+      bodyHtml += `<div style="flex:1;min-width:140px;${scoredStyle};border-radius:8px;padding:8px 12px;text-align:center">
+        <div style="font-size:14px;font-weight:700">${ld.level}</div>
+        <div style="font-size:11px;opacity:0.8">${ld.focus}</div>
+        ${ld.scored ? '<div style="font-size:10px;margin-top:2px;opacity:0.7">Scored in 2026</div>' : '<div style="font-size:10px;margin-top:2px;opacity:0.5">Future capability</div>'}
+      </div>`;
+    });
+    bodyHtml += '</div>';
+    // Detailed table
+    bodyHtml += '<div class="kpi-data-table-wrap"><table class="kpi-data-table"><thead><tr>';
+    td.headers.forEach(h => { bodyHtml += `<th>${h}</th>`; });
+    bodyHtml += '</tr></thead><tbody>';
+    td.rows.forEach(row => {
+      const isLevel = row[0] !== '';
+      bodyHtml += `<tr${isLevel ? ' style="border-top:2px solid #ccc"' : ''}>`;
+      row.forEach((cell, i) => {
+        let style = '';
+        if (i === 0 && cell) style = ' style="font-weight:700;color:#e65100"';
+        if (i === 1 && cell) style = ' style="text-align:center;font-weight:700;color:var(--accent)"';
+        if (i === 2) style = ' style="font-weight:600"';
+        bodyHtml += `<td${style}>${cell}</td>`;
+      });
+      bodyHtml += '</tr>';
+    });
+    bodyHtml += '</tbody></table></div>';
+  }
+
   else if (extra.type === 'factory-results') {
     // Factory results table (e.g. Social Compliance 2025 S-KPI results)
     bodyHtml = buildDataTable(extra.factoryData.headers, extra.factoryData.rows);
@@ -2593,12 +2756,12 @@ function buildKpiExtraSlide(kpi, extra) {
 
   else if (extra.type === 'target-results') {
     // Target table + January results table (Social Compliance 2026)
-    bodyHtml = '<h4 style="color:#fff;font-size:18px;margin-bottom:8px">2026 SI-KPI Target by Factory</h4>';
+    bodyHtml = '<h4 style="color:#1a1a1a;font-size:18px;margin-bottom:8px">2026 SI-KPI Target by Factory</h4>';
     bodyHtml += buildDataTable(extra.targetTable.headers, extra.targetTable.rows);
     if (extra.targetTable.summary) {
       bodyHtml += `<div style="text-align:center;font-size:15px;color:var(--accent);margin-top:8px;font-weight:600">${extra.targetTable.summary}</div>`;
     }
-    bodyHtml += '<h4 style="color:#fff;font-size:18px;margin:20px 0 8px 0">January 2026 Results</h4>';
+    bodyHtml += '<h4 style="color:#1a1a1a;font-size:18px;margin:20px 0 8px 0">January 2026 Results</h4>';
     bodyHtml += buildDataTable(extra.janResults.headers, extra.janResults.rows);
     if (extra.janResults.summary) {
       bodyHtml += `<div style="text-align:center;font-size:14px;color:var(--yellow);margin-top:8px;font-style:italic">${extra.janResults.summary}</div>`;
@@ -2887,25 +3050,31 @@ function animateSlide(n) {
 
 // ----- SLIDE 1: Title -----
 function animateSlide1() {
+  const logoRow = document.getElementById('logo-row');
   const stripes = document.getElementById('stripes');
   const title   = document.getElementById('title-text');
   const sub     = document.getElementById('subtitle-text');
 
-  // Animate stripes first
+  // Animate logos first
+  setTimeout(() => {
+    logoRow.style.animation = 'fadeIn 0.6s ease forwards';
+  }, 100);
+
+  // Animate stripes
   setTimeout(() => {
     stripes.style.opacity = '1';
     stripes.style.animation = 'fadeInUp 0.6s ease forwards';
-  }, 200);
+  }, 300);
 
   // Then title
   setTimeout(() => {
     title.style.animation = 'fadeInUp 0.8s ease forwards';
-  }, 600);
+  }, 700);
 
   // Then subtitle
   setTimeout(() => {
     sub.style.animation = 'fadeIn 0.8s ease forwards';
-  }, 1200);
+  }, 1300);
 }
 
 // ----- SLIDE 2: 2024 chart -----
