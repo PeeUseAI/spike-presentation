@@ -963,6 +963,195 @@ html, body {
   color: var(--text-dim);
 }
 
+/* ===== KPI DATA TABLE (monthly data, factory data) ===== */
+.kpi-data-table-wrap {
+  width: 100%;
+  overflow-x: auto;                /* horizontal scroll for wide tables */
+  margin-top: 8px;
+}
+.kpi-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.kpi-data-table th {
+  background: #222;
+  color: var(--text-dim);
+  padding: 4px 6px;
+  text-align: right;
+  font-weight: 600;
+  border-bottom: 1px solid #444;
+  position: sticky;
+  top: 0;
+}
+.kpi-data-table th:first-child {
+  text-align: left;
+  position: sticky;
+  left: 0;
+  background: #222;
+  z-index: 2;
+}
+.kpi-data-table td {
+  padding: 3px 6px;
+  text-align: right;
+  border-bottom: 1px solid #1a1a1a;
+  color: #ccc;
+}
+.kpi-data-table td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: #aaa;
+  position: sticky;
+  left: 0;
+  background: var(--bg-card);
+  z-index: 1;
+}
+.kpi-data-table tr.highlight-row td {
+  color: var(--accent);
+  font-weight: 700;
+  border-top: 1px solid var(--accent);
+}
+.kpi-data-table .table-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+  margin-top: 12px;
+}
+
+/* ===== KPI EXTRA SLIDE TYPES ===== */
+/* Key Success slide */
+.kpi-extra-slide {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.kpi-extra-title {
+  font-size: 28px;
+  font-weight: 700;
+  opacity: 0;
+}
+.kpi-success-grid {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+.kpi-success-card {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px 24px;
+  opacity: 0;
+}
+.kpi-success-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.kpi-success-card.achievements h4 { color: var(--green); }
+.kpi-success-card.support h4 { color: var(--accent); }
+.kpi-success-card ul {
+  list-style: none;
+  padding: 0;
+}
+.kpi-success-card li {
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.6;
+  padding-left: 16px;
+  position: relative;
+  margin-bottom: 6px;
+}
+.kpi-success-card li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--text-dim);
+}
+
+/* Strategy / Framework slide — multi-column card grid */
+.kpi-pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+.kpi-pillar-card {
+  background: var(--bg-card);
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 16px 20px;
+  opacity: 0;
+}
+.kpi-pillar-card h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+.kpi-pillar-card li {
+  font-size: 12px;
+  color: #ccc;
+  line-height: 1.5;
+  margin-bottom: 4px;
+  padding-left: 12px;
+  position: relative;
+  list-style: none;
+}
+.kpi-pillar-card li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--text-dim);
+  font-size: 10px;
+}
+
+/* Comparison / highlight-lowlight slide */
+.kpi-hl-grid {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+.kpi-hl-card {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 16px 20px;
+  opacity: 0;
+}
+.kpi-hl-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.kpi-hl-card.highlight h4 { color: var(--green); }
+.kpi-hl-card.lowlight h4 { color: var(--red); }
+.kpi-hl-card li {
+  font-size: 12px;
+  color: #ccc;
+  line-height: 1.5;
+  margin-bottom: 4px;
+  padding-left: 12px;
+  position: relative;
+  list-style: none;
+}
+.kpi-hl-card li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--text-dim);
+}
+
+/* Dual scoring table label */
+.kpi-scoring-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-dim);
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+
 /* ===== RESPONSIVE (smaller screens) ===== */
 @media (max-width: 1024px) {
   .slide { padding: 30px 30px; }
@@ -1218,39 +1407,52 @@ const categoryHeaders = [
 ];
 
 // All KPI detail data — each object drives one data slide (and optionally one learning slide)
+// Full content sourced from "Mornitoring SPIKE 2026 TTT (Jan).pptx"
 const kpiData = [
   // ===== AGILE =====
   {
-    id: 'mdp',                                           // unique slug for slide IDs
-    name: 'MDP — Material Delivery Performance',         // full display name
-    category: 'Agile',                                   // parent category
-    catColor: '#4fc3f7',                                 // category accent color
-    lead: 'Apisak',                                      // lead person
-    maxPts: 7,                                           // maximum points possible
-    currentScore: 7,                                     // January 2026 score
-    rollingPct: 97.8,                                    // rolling year-to-date %
-    janPct: 98.6,                                        // January %
-    targetPct: '91% (APP/FTW) / 94% (A&G)',             // target threshold description
-    description: 'PODD (FGR) on-time delivery vs Customer Request Date. Measures how reliably materials arrive by the date the customer originally requested.',
-    // Scoring criteria: [range label, points awarded]
+    id: 'mdp',
+    name: 'MDP — Material Delivery Performance',
+    category: 'Agile',
+    catColor: '#4fc3f7',
+    lead: 'Apisak',
+    maxPts: 7,
+    currentScore: 7,
+    rollingPct: 97.8,
+    janPct: 98.6,
+    targetPct: '91% (APP/FTW) / 94% (A&G)',
+    description: 'PODD (FGR) on-time vs. Customer Request Date for bulk orders. 2026 Targets: 91% (APP/FTW), 94% (A&G).',
     scoring: [
-      ['< 70%', 0], ['70–79%', 1], ['80–84%', 2], ['85–87%', 3],
-      ['88–90%', 4], ['91–93%', 5], ['94–96%', 6], ['≥ 97%', 7],
+      ['< 86%', 0], ['≥ 86%', 1], ['≥ 88%', 2], ['≥ 90%', 3],
+      ['≥ 91%', 4], ['≥ 92%', 5], ['≥ 93%', 6], ['≥ 94%', 7],
     ],
-    currentRange: '≥ 97%',                               // which scoring range we're in
-    hasLearning: true,                                   // show a learning slide?
-    endYear2025: 4,                                      // end-of-year 2025 score
-    maxPts2025: 10,                                      // 2025 scale max
-    target2026: 7,                                       // 2026 target score
-    keyLearning: [                                       // bullet points for learning card
-      'Backlog from 2024 caused delays in early months',
-      'Insufficient material management and planning',
-      'Reactive approach to PO tracking',
+    currentRange: '≥ 94%',
+    // Full monthly data table from PPTX slide 6
+    monthlyData: {
+      headers: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Total'],
+      rows: [
+        ['On-time Qty', '1,219,780', '1,783,410', '1,933,540', '1,682,723', '964,700', '159,542', '46,207', '20,694', '2,101', '613', '-', '-', '7,813,310'],
+        ['Order Qty', '1,236,829', '1,797,837', '1,987,895', '1,696,311', '967,995', '159,542', '46,207', '20,694', '2,101', '613', '-', '-', '7,916,024'],
+        ['%MDP', '98.6%', '99.2%', '97.3%', '99.2%', '99.7%', '100%', '100%', '100%', '100%', '100%', '-', '-', '98.7%'],
+        ['Open FC', '-', '-', '138,938', '267,642', '709,732', '547,849', '490,653', '1,221,739', '7,757', '9', '-', '-', '3,384,319'],
+        ['Proj. %', '', '', '95%', '95%', '96%', '96%', '96%', '94%', '94%', '94%', '94%', '94%', ''],
+        ['MDP w/ Proj.', '98.6%', '99.2%', '97.2%', '98.8%', '98.0%', '97.3%', '96.9%', '94.4%', '95.3%', '99.9%', '100%', '100%', '97.8%'],
+      ],
+      highlightRow: 'Rolling MDP',
+      rollRow: ['Rolling MDP', '98.6%', '99.0%', '98.2%', '98.4%', '98.3%', '98.2%', '98.2%', '97.8%', '97.8%', '97.8%', '97.8%', '97.8%', '97.8%'],
+    },
+    hasLearning: true,
+    endYear2025: 4,
+    maxPts2025: 7,
+    target2026: 7,
+    keyLearning: [
+      'Backlog management issues occurred in the first half of the year due to capacity challenges carried over from 2024, resulting in a large backlog.',
+      'Material management was not sufficiently proactive, causing delays in production.',
     ],
-    improvementPlan: [                                   // bullet points for plan card
-      'Actively track PO status in real-time',
-      'Weekly material reviews 3 buckets ahead',
-      'Set up early-warning alerts for at-risk POs',
+    improvementPlan: [
+      'Actively track the status of all POs — both materials and production — to ensure every PO is closed as committed.',
+      'Review material status weekly with all relevant teams and plan at least 3 buckets ahead.',
+      'Monitor risks proactively and escalate issues early to prevent delays.',
     ],
   },
   {
@@ -1264,24 +1466,33 @@ const kpiData = [
     rollingPct: 99.6,
     janPct: 99.0,
     targetPct: '97%',
-    description: 'Shipped on-time vs Confirmed Ship Date. Measures how reliably finished goods ship by the confirmed date.',
+    description: 'PODD (FGR) on-time vs. PO Statistical Delivery Date for bulk orders. 2026 Target: 97%.',
     scoring: [
-      ['< 90%', 0], ['90–94%', 1], ['95–96%', 2], ['≥ 97%', 3],
+      ['< 97%', 0], ['≥ 97%', 1], ['≥ 98%', 2], ['≥ 99%', 3],
     ],
-    currentRange: '≥ 97%',
+    currentRange: '≥ 99%',
+    monthlyData: {
+      headers: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Total'],
+      rows: [
+        ['On-time Qty', '1,224,350', '1,787,018', '1,987,808', '1,696,311', '967,995', '159,542', '46,207', '20,694', '2,101', '613', '-', '-', '7,892,639'],
+        ['Order Qty', '1,236,829', '1,797,837', '1,987,895', '1,696,311', '967,995', '159,542', '46,207', '20,694', '2,101', '613', '-', '-', '7,916,024'],
+        ['%SDP', '99.0%', '99.4%', '100%', '100%', '100%', '100%', '100%', '100%', '100%', '100%', '-', '-', '99.7%'],
+        ['SDP w/ Proj.', '99.0%', '99.4%', '100%', '100%', '99.7%', '100%', '100%', '99.1%', '99.2%', '100%', '100%', '100%', '99.6%'],
+      ],
+      highlightRow: 'Rolling SDP',
+      rollRow: ['Rolling SDP', '99.0%', '99.2%', '99.5%', '99.7%', '99.7%', '99.7%', '99.7%', '99.6%', '99.6%', '99.6%', '99.6%', '99.6%', '99.6%'],
+    },
     hasLearning: true,
     endYear2025: 0,
     maxPts2025: 3,
     target2026: 3,
     keyLearning: [
-      'Too focused on MDP, neglected SDP monitoring',
-      'Orders confirmed with less than 21 days lead time',
-      'Lack of daily shipping schedule follow-up',
+      'Focused too heavily on MDP, resulting in insufficient attention to SDP.',
+      'Confirming remaining orders with production lead time of less than 21 days caused limited manufacturing time. If any issues occurred during production, there was not enough buffer to recover.',
     ],
     improvementPlan: [
-      'Refocus team attention on SDP alongside MDP',
-      'Ensure minimum 21-day production lead time',
-      'Daily shipping status reviews in morning meetings',
+      'Refocus on SDP to ensure better balance. If SDP is delayed, further follow-up is required to determine whether MDP is also delayed and how the issue can be resolved.',
+      'Adjust the order confirmation process to be less restrictive, ensuring a minimum production lead time of 21 days.',
     ],
   },
   {
@@ -1293,14 +1504,29 @@ const kpiData = [
     maxPts: 5,
     currentScore: 4,
     rollingPct: 27.2,
-    janPct: 27.2,
+    janPct: 34.0,
     targetPct: '≥ 30%',
-    description: 'Percentage of shipped volume from Responsiveness Programs: Rapid Creation, In Season, Planned Responsiveness, NOS/SLT, Customization, CHASE & Components.',
+    description: 'Shipped Volumes from Responsiveness Programs as % of Total Shipped Volume. Programs: Rapid Creation, In Season Creation, Planned Responsiveness/React, NOS/SLT, Customization, CHASE & Components.',
     scoring: [
-      ['< 5%', 0], ['5–10%', 1], ['10–15%', 2], ['15–20%', 3], ['20–30%', 4], ['≥ 30%', 5],
+      ['0% (Core)', 'N/A'], ['< 1%', 0], ['≥ 1%', 1], ['≥ 5%', 2],
+      ['≥ 15%', 3], ['≥ 20%', 4], ['≥ 30%', 5],
     ],
-    currentRange: '20–30%',
-    hasLearning: false,                                  // no learning slide for responsiveness
+    currentRange: '≥ 20%',
+    monthlyData: {
+      headers: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Total'],
+      rows: [
+        ['Resp. Order Qty', '256,765', '117,583', '287,834', '225,964', '159,663', '19,033', '9,140', '-', '-', '-', '-', '-', '1,075,982'],
+        ['MI', '163,977', '112,293', '354,238', '104,955', '112,313', '23,787', '2,937', '302', '-', '613', '-', '-', '875,415'],
+        ['Customize', '-', '-', '50,000', '100,000', '134,696', '136,097', '115,744', '82,229', '-', '-', '-', '-', '618,766'],
+        ['NOS/SLT', '', '', '88,930', '66,621', '159,655', '132,340', '44,406', '10,697', '-', '-', '-', '-', '502,649'],
+        ['Total Resp.', '420,742', '229,876', '781,002', '497,540', '566,785', '311,257', '172,227', '93,228', '-', '613', '-', '-', '3,073,270'],
+        ['Total Qty (order+FC)', '1,236,829', '1,797,837', '2,126,833', '1,963,953', '1,677,727', '707,391', '536,860', '1,242,433', '9,858', '622', '-', '-', '11,300,343'],
+        ['%Resp. w/ Proj.', '34.0%', '12.8%', '36.7%', '25.3%', '33.8%', '44.0%', '32.1%', '7.5%', '0.0%', '98.6%', '100%', '100%', '27.2%'],
+      ],
+      highlightRow: 'Rolling Resp.',
+      rollRow: ['Rolling Resp.', '34.0%', '21.4%', '27.7%', '27.1%', '28.4%', '29.5%', '29.7%', '27.2%', '27.2%', '27.2%', '27.2%', '27.2%', '27.2%'],
+    },
+    hasLearning: false,
   },
   {
     id: 'efd',
@@ -1312,25 +1538,40 @@ const kpiData = [
     currentScore: 5,
     rollingPct: 99.3,
     janPct: 99.3,
-    targetPct: '95% (MDP) / 99% (Samples)',
-    description: 'On-time delivery for Priority Products (MDP EFD) and sample submissions (Sample MDP). Ensures elevated focus items get top priority.',
+    targetPct: 'MDP: 95% / Samples: 99%',
+    description: 'MDP: PODD on-time vs. Customer Request Date for priority product/ranges (Priority Products, Customization). Target: 95%.\nSamples: GPS system — GTM (GS), Presell/SMS (SO), Monthly Special (NS). Target: 99%.',
+    // Two separate scoring tables — MDP (3 pts) and Sample MDP (2 pts)
     scoring: [
-      ['< 85%', 0], ['85–90%', 1], ['90–92%', 2], ['93–94%', 3], ['95–97%', 4], ['≥ 98%', 5],
+      ['< 95%', 0], ['≥ 95%', 1], ['≥ 97%', 2], ['≥ 99%', 3],
     ],
-    currentRange: '≥ 98%',
+    scoringLabel: 'MDP EFD Scoring (3 pts)',
+    scoringSample: [
+      ['< 99%', 0], ['≥ 99%', 1], ['≥ 99.5%', 2],
+    ],
+    scoringSampleLabel: 'Sample MDP Scoring (2 pts)',
+    currentRange: '≥ 99%',
+    monthlyData: {
+      headers: ['KPI', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      rows: [
+        ['MDP EFD %', '99.3%', '', '', '', '', '', '', '', '', '', '', ''],
+        ['MDP Score', '3', '', '', '', '', '', '', '', '', '', '', ''],
+        ['Sample MDP %', '100%', '', '', '', '', '', '', '', '', '', '', ''],
+        ['Sample Score', '2', '', '', '', '', '', '', '', '', '', '', ''],
+      ],
+      highlightRow: 'Total Score',
+      rollRow: ['Total Score', '5', '', '', '', '', '', '', '', '', '', '', ''],
+    },
     hasLearning: true,
     endYear2025: 3,
     maxPts2025: 5,
     target2026: 5,
     keyLearning: [
-      'Lack of proper follow-up on elevated focus items',
-      'Insufficient Priority Product awareness across teams',
-      'Late identification of at-risk priority shipments',
+      'Some orders were still delayed due to lack of proper follow-up.',
+      'Awareness of the importance of Priority Products was not sufficient across all teams.',
     ],
     improvementPlan: [
-      'Clearly identify Priority Products in all reports',
-      'Enforce no-delay policy for SPOMA priority items',
-      'Weekly priority product status review with all teams',
+      'Clearly identify Priority Product POs in all reports and all tracking activities.',
+      'Establish clear guidelines for all teams: Priority Products and SPOMA must not be delayed, and reinforce this principle consistently.',
     ],
   },
   // ===== ESG =====
@@ -1342,13 +1583,13 @@ const kpiData = [
     lead: 'Natchamai',
     maxPts: 10,
     currentScore: 0,
-    rollingPct: null,                                    // no rolling % — audited Q4 only
+    rollingPct: null,
     janPct: null,
-    targetPct: '≥ 95% (Best in Class)',
-    description: 'Social & Labor KPI score based on annual audit. Covers health & safety, worker rights, working hours, and management systems. Audited in Q4.',
+    targetPct: '8.5 / 10 pts',
+    description: 'Social Impact KPI (SI-KPI) — transitioned from S-KPI. SI-KPI will only be audited in Q4. At 2026 SPIKE mid-year reporting cut-off, SI-KPI SPIKE result will be reported as N/A.',
     scoring: [
-      ['< 30% (High Risk)', 0], ['30–60% (Low Perf)', 0], ['60–80% (Basic)', '1–5'],
-      ['80–95% (High Perf)', '6–9'], ['≥ 95% (Best in Class)', 10],
+      ['< 60%', 0], ['≥ 60%', 1], ['≥ 64%', 2], ['≥ 68%', 3], ['≥ 72%', 4],
+      ['≥ 76%', 5], ['≥ 80%', 6], ['≥ 84%', 7], ['≥ 88%', 8], ['≥ 92%', 9], ['≥ 95%', 10],
     ],
     currentRange: 'Audited Q4',
     hasLearning: true,
@@ -1356,19 +1597,33 @@ const kpiData = [
     maxPts2025: 10,
     target2026: 8.5,
     keyLearning: [
-      'Zero Lost Time Injury maintained throughout 2025',
-      'Strong safety compliance programs in place',
-      'TTT achieved 5S certificate (all other factories 4S)',
+      'Strong management commitment and effective compliance programs enabled TTT Group to achieve SPIKE score of 9.25.',
+      'Zero Lost Time Injury and Incident Rate demonstrated effective safety management and preventive risk control.',
     ],
     improvementPlan: [
-      'Maintain zero injuries track record',
-      'Strengthen worker participation via Welfare Committee',
-      'Prepare early for Q4 audit with mock assessments',
+      'Maintain zero Lost Time Injury and Incident Rate through proactive risk identification, preventive measures, and continuous safety awareness programs.',
+      'Strengthen worker participation and social dialogue through Welfare Committee engagement, grievance system effectiveness, and structured capacity-building programs aligned with SI-KPI 2026 requirements.',
+    ],
+    extraSlides: [
+      {
+        title: 'Social Compliance — 2025 Key Success',
+        type: 'key-success',
+        items: [
+          'Thong Thai achieved 5S and Improvement Certificate',
+          'All other factories achieved 4S, showing strong group performance',
+          'Maintained zero Lost Time Injury and Incident Rate',
+        ],
+        support: [
+          'Alignment on expectations',
+          'Continuous feedback during the year',
+          'Timely communication on new initiatives',
+        ],
+      },
     ],
   },
   {
     id: 'environmental',
-    name: 'Environmental',
+    name: 'Environmental (EKPI)',
     category: 'ESG',
     catColor: '#81c784',
     lead: 'Anuchit',
@@ -1377,26 +1632,44 @@ const kpiData = [
     rollingPct: null,
     janPct: null,
     targetPct: '4.2 / 7 pts',
-    description: 'Covers 3 topics: Decarbonization (3 pts), Nature (3 pts), Environmental Assessment (1 pt). Scored as average across 4 factories: TTT, VAS, Titan, TM2.',
-    scoring: [
-      ['TTT', 5.1], ['VAS', 3.3], ['Titan', 5.2], ['TM2', 1.8],
-    ],
+    description: 'Environmental performance covers 3 topics: Decarbonization (3 pts), Nature (3 pts), EA — Environmental Assessment (1 pt). Eligible facilities listed in annually compiled Environmental program coverage.',
+    // Factory breakdown table instead of simple scoring ranges
+    scoring: [],
+    scoringIsFactories: true,
+    factoryData: {
+      headers: ['EKPI Jan 2026', 'Full Score', 'TTT', 'VAS', 'Titan', 'TM2'],
+      rows: [
+        ['Decarbonization', '3', '2.4', '0', '2.4', 'N/A'],
+        ['Nature', '3 (6 for TM)', '1.7', '2.3', '1.8', '0.8'],
+        ['Env. Assessment', '1', '1', '1', '1', '1'],
+        ['Total', '7', '5.1', '3.3', '5.2', '1.8'],
+      ],
+      summary: 'SPIKE Score = Average of all factories = 3.85',
+    },
     currentRange: 'Avg = 3.85',
-    scoringIsFactories: true,                            // flag: scoring table shows factories, not ranges
     hasLearning: true,
     endYear2025: 4,
     maxPts2025: 5,
     target2026: 4.2,
     keyLearning: [
-      'SBTi: Successfully reduced Scope 1, 2, 3 emissions',
-      'TM2 scores lowest at 1.8 — needs focused improvement',
-      'Nature pillar requires better waste segregation data',
+      'The most challenging part of SBTi implementation is not data collection, but achieving real GHG reductions across Scope 1, 2, and 3 in line with our Near-Term Target (2024–2033).',
+      'In 2025, TTT Group successfully reduced emissions in all three scopes through strong leadership commitment, cross-functional collaboration, integrated planning, and active awareness and participation from all employees.',
+      'This demonstrates that decarbonization requires strategic execution and collective action — not reporting alone.',
     ],
     improvementPlan: [
-      'Solar rooftop expansion and I-REC procurement',
-      'Waste segregation improvements across all factories',
-      'RO reject water reuse project implementation',
-      'Focus on TM2 to bring score up to group average',
+      'Decarbonization — Renewable Energy: Install additional solar rooftop systems or purchase I-RECs. Analyze energy consumption and implement energy reduction measures within the factory.',
+      'Nature — Waste Recycling Rate%: Implement a waste segregation campaign within the factory to separate recyclable waste.',
+      'Nature — Water Availability Recycling Rate%: Reuse RO reject water for toilet flushing.',
+    ],
+    extraSlides: [
+      {
+        title: 'Environmental — 2025 Key Success',
+        type: 'key-success',
+        items: [
+          'Thailand Factories achieved 5E rating',
+          'The SBTi of TTT Group has achieved the Exceed level',
+        ],
+      },
     ],
   },
   {
@@ -1410,25 +1683,40 @@ const kpiData = [
     rollingPct: null,
     janPct: null,
     targetPct: '3 / 3 pts',
-    description: 'Measures supply chain data: Completeness (SMTT PO Mapping), Timeliness (data submission), and Accuracy (audit results). Current: Completeness=1, Timeliness=1, Accuracy=N/A.',
-    scoring: [
-      ['Completeness', 1], ['Timeliness', 1], ['Accuracy', 'N/A'],
+    description: 'Three KPI areas:\n1. Data Completeness: Full traceability info for all sustainable PO lines in SMTT SP\n2. Data Timeliness: Traceability and SCM info submitted on time in SMTT SP\n3. Data Accuracy: Facility transaction data input accuracy in SMTT SP',
+    scoring: [],
+    scoringIsComponents: true,
+    // Three separate component scoring tables from PPTX slide 25
+    componentScoring: [
+      { label: 'Data Completeness', headers: ['Criteria', 'Points'], rows: [['Article mapping < 98% -or- PO line < 90%', '0'], ['Article mapping ≥ 98% -and- PO line ≥ 90%', '1']] },
+      { label: 'Data Timeliness', headers: ['Criteria', 'Points'], rows: [['Mapping on-time < 91% -or- SCM Delay', '0'], ['Mapping on-time ≥ 91% -and- SCM On-time', '1']] },
+      { label: 'Data Accuracy', headers: ['Criteria', 'Points'], rows: [['Audit pass < 80%', '0'], ['Audit pass ≥ 80%', '1']] },
     ],
+    monthlyData: {
+      headers: ['KPI', 'YTD', 'Nov 25', 'Dec 25', 'Jan 26', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+      rows: [
+        ['SMTT PO Mapping%', '100%', '100%', '100%', '100%', '', '', '', '', '', '', '', '', ''],
+        ['Completeness Score', '1', '1', '1', '1', '', '', '', '', '', '', '', '', ''],
+        ['SMTT Ontime%', '100%', '100%', '100%', '100%', '', '', '', '', '', '', '', '', ''],
+        ['Timeliness Score', '1', '1', '1', '1', '', '', '', '', '', '', '', '', ''],
+        ['Audit Pass%', 'N/A', 'N/A', 'N/A', 'N/A', '', '', '', '', '', '', '', '', ''],
+        ['Accuracy Score', 'N/A', 'N/A', 'N/A', 'N/A', '', '', '', '', '', '', '', '', ''],
+      ],
+    },
     currentRange: '2 / 3',
-    scoringIsComponents: true,                           // flag: scoring table shows components, not ranges
     hasLearning: true,
     endYear2025: 5,
     maxPts2025: 5,
     target2026: 3,
     keyLearning: [
-      'Data completeness achieved 100% through consistent SMTT PO mapping',
-      'Timeliness maintained at 100% submission rate',
-      'Accuracy score pending — audit not yet conducted',
+      'Map all sustainable PO lines and verify traceability requirements. Collaborate with T2 suppliers to validate Scope Certifications.',
+      'Integrate traceability data submission into the PO confirmation process.',
+      'Ensure traceability and SCM information is submitted on time in SMTT.',
     ],
     improvementPlan: [
-      'Weekly SMTT monitoring to maintain data quality',
-      'Prepare for accuracy audit in advance',
-      'Cross-train team on traceability requirements',
+      'Monitor submission status weekly via SMTT and escalate any delays promptly.',
+      'Ensure facility transaction data entered in SMTT is accurate.',
+      'Conduct monthly data validation audits. Cross-check facility names, locations, and certification validity.',
     ],
   },
   // ===== QUALITY =====
@@ -1442,29 +1730,115 @@ const kpiData = [
     currentScore: 0,
     rollingPct: null,
     janPct: null,
-    targetPct: '8.5 / 15 pts (4Q = 80%)',
-    description: 'Quality Key Performance Index. Scored by quartile: <60% = 0 pts, ≥80% = 8 pts, ≥92% = 15 pts. 2025 actual: TTT=59(2Q), VAS=59(2Q), TITAN=59(2Q), TTM=76(3Q). AD4 SPIKE = 3.0.',
+    targetPct: '8.5 / 15 pts — Target: 4Q (≥ 80%)',
+    description: 'All active facilities measured and scored in Q-KPI or Q-KPI Light program. Performance measured by Quality team. AD4 SPIKE = average of COO-TH and COO-MM scores.',
+    // Full 16-level scoring from PPTX
     scoring: [
-      ['< 60% (1Q)', 0], ['60–79% (2Q)', '0–4'], ['80–91% (3Q)', '5–8'],
-      ['80–91% (4Q)', '8–14'], ['≥ 92% (4Q+)', 15],
+      ['< 60%', 0], ['≥ 60%', 1], ['≥ 64%', 2], ['≥ 67%', 3], ['≥ 70%', 4],
+      ['≥ 73%', 5], ['≥ 76%', 6], ['≥ 78%', 7], ['≥ 80%', 8], ['≥ 82%', 9],
+      ['≥ 84%', 10], ['≥ 86%', 11], ['≥ 88%', 12], ['≥ 90%', 13], ['≥ 91%', 14], ['≥ 92%', 15],
     ],
     currentRange: 'Not yet scored',
+    // 2025 QKPI factory breakdown from PPTX slide 28
+    factoryData: {
+      headers: ['2025 QKPI', 'TTT', 'VAS', 'TITAN', 'TTM'],
+      rows: [
+        ['Digital-Pivot88 (10)', '5', '5', '5', '5'],
+        ['CE - Defective Return (10)', '4', '4', '4', '7'],
+        ['- WH Claim (30)', '7', '7', '7', '25'],
+        ['- AQL Validation (10)', '9', '9', '9', '7'],
+        ['QA Manufacturing (10)', '8', '8', '8', '6'],
+        ['- Testing (10)', '10', '10', '10', '10'],
+        ['- Yearly Focus (10)', '8', '8', '8', '8'],
+        ['- Culture (10)', '8', '8', '8', '8'],
+        ['Total (Q Ranking)', '59 (2Q)', '59 (2Q)', '59 (2Q)', '76 (3Q)'],
+        ['SPIKE Score', '0', '0', '0', '6'],
+      ],
+      summary: 'AD4 SPIKE score = (0 + 6) / 2 = 3.0 — End Year 2025',
+    },
     hasLearning: true,
     endYear2025: 3.0,
     maxPts2025: 15,
     target2026: 8.5,
     keyLearning: [
-      'TTM improved significantly from 40 to 76 (3Q level)',
-      'Testing component achieved maximum score of 10',
-      'WHC score decreased 16 points due to VAS CMA failures in Q1-Q2',
-      'WH Claim reduced: 65,650 pcs → 18,798 pcs (-71%)',
+      'Overall QKPI for AD4014 (COO-MM) increased from 40 in 2024 to 76 in 2025, especially WHC and DR performance pillars.',
+      'Got max 10 scores in QKPI-Testing for both COO-Thailand and Myanmar.',
+      'Digital-Pivot QKPI scores increased from 2024 to 2025 for both COOs.',
+      'CE (Defective Return/WH Claim) QKPI for COO Thailand decreased — WHC decreased 16 scores, mainly from VAS during Q1-Q2 2025 caused by CMA Functional testing failure for aChina POs. After improvement, Q3-Q4 2025 no more CMA-WHC.',
+      'WH Claim total reduced: 65,650 pcs / $301K (2024) → 18,798 pcs / $32.7K (2025), a 71% reduction.',
     ],
     improvementPlan: [
-      'Target all factories at 4Q level (≥ 80%)',
-      'QMS: CTQ/OCPT integration, ISO 9001:2015 alignment',
-      'People: Digital AI quality upskilling program',
-      'Process: Lab testing capacity expansion',
-      'Compliance: RQC reinforcement across all COOs',
+      'Target all factories at 4Q level (≥ 80%). 2026 plan: TTT=80, VAS=80, TITAN=80, TTM=82. AD4 SPIKE = (8+9)/2 = 8.5.',
+      'QMS: Standardize ISO 9001:2015 across all factories. Establish digital QMS through CTQ & QAR Portal.',
+      'People: Digital AI quality soft-skill training for middle management. Reinforcement of RQC "Right Quality Culture" especially for Football BU.',
+      'Process: CTQ Risk assessment E2E system. Internal X-CTQ and quality process audits. Enhancement of Quality statistical control charts.',
+      'Compliance: CTQ & OCPT integration. Lab testing capacity expansion. Culture & QA manufacturing audit enhancement.',
+    ],
+    extraSlides: [
+      {
+        title: 'Quality — 2025 WH Claim Analysis',
+        type: 'content',
+        sections: [
+          { heading: '2025 WH Claim by Market Claim', items: [
+            'AD4001 (COO-TH): CMA failure — 11,491 pcs (75%)',
+            'AD4001: Soiling — 84 pcs (0.5%)',
+            'AD4014 (COO-MM): Labeling & Workmanship — 3,731 pcs (24.5%)',
+            'AD4014 details: Wrong color & security tags, back panels seam uneven issue',
+          ]},
+          { heading: 'WH Claim 2024 vs 2025 Comparison', items: [
+            'TTM: 62,089 pcs / $294K (2024) → 3,869 pcs / $5K (2025)',
+            'VAS: 3,561 pcs / $6.8K (2024) → 13,033 pcs / $23.8K (2025)',
+            'TTT: 0 pcs (2024) → 1,896 pcs / $3.9K (2025)',
+            'Grand Total: 65,650 pcs / $301K (2024) → 18,798 pcs / $32.7K (2025)',
+          ]},
+        ],
+      },
+      {
+        title: 'Quality — 2026 QKPI Plan by Facility',
+        type: 'factory-plan',
+        factoryData: {
+          headers: ['2026 QKPI Plan', 'TTT', 'VAS', 'TITAN', 'TTM'],
+          rows: [
+            ['Excellence (75)', '56', '56', '56', '59'],
+            ['- Consumer Returns (15)', '10', '10', '10', '11'],
+            ['- WH Claim (30)', '24', '24', '24', '25'],
+            ['- Non-Conformity QAR (30)', '22', '22', '22', '23'],
+            ['Enablers (25)', '24', '24', '24', '23'],
+            ['- Critical To Quality (10)', '9', '9', '9', '8'],
+            ['- Testing Lab (10)', '10', '10', '10', '10'],
+            ['- OCPT Audit (5)', '5', '5', '5', '5'],
+            ['Total (Q Ranking)', '80 (4Q)', '80 (4Q)', '80 (4Q)', '82 (4Q)'],
+            ['SPIKE point', '8', '8', '8', '9'],
+          ],
+          summary: 'AD4 SPIKE point plan = (8 + 9) / 2 = 8.5',
+        },
+      },
+      {
+        title: 'Quality — 2026 Strategy',
+        type: 'strategy',
+        pillars: [
+          { name: 'QMS (Enhancement)', color: 'var(--accent)', items: [
+            'Standardize and align ISO 9001:2015 QMS across all factory facilities (Q1-Q3)',
+            'Establish Key Football Quality message/slogan to build quality mindset (Q1)',
+            'Establishing digital QMS through CTQ & QAR Portal/App and dashboard (Q1-Q2)',
+          ]},
+          { name: 'People (Upskilling)', color: 'var(--green)', items: [
+            'Digital AI quality soft-skill & knowledge improvement for middle management (Q1-Q2)',
+            'Corrective & Preventive Actions advance training by 3rd party (Q1-Q2)',
+            'Reinforcement RQC "Right Quality Culture" especially Football BU (Q1)',
+          ]},
+          { name: 'Process (Reinforcement)', color: 'var(--yellow)', items: [
+            'CTQ Risk assessment internal E2E system enhancement (Q1-Q3)',
+            'Internal X-CTQ and quality process audits across all facilities (Q1-Q4)',
+            'Reinforce E2E Quality inspection SOP & internal certification for QCs/QAs (Q1-Q2)',
+          ]},
+          { name: 'Compliance (Conformity)', color: '#ce93d8', items: [
+            'Integrate CTQ & OCPT facilities and resources from Dev. to production (Q2-Q3)',
+            'Enhance Lab testing capacity & capabilities across TTT Group (Q1-Q2)',
+            'Culture & QA manufacturing audit enhancement: non-conformity at source (Q1-Q4)',
+          ]},
+        ],
+      },
     ],
   },
   // ===== COMPETENCY =====
@@ -1479,27 +1853,39 @@ const kpiData = [
     rollingPct: null,
     janPct: null,
     targetPct: '13 / 20 pts',
-    description: '7 sub-KPIs: Category Knowledge, Product Expertise, Dev Sample Performance, Buy Ready Excellence, Adaptability, Adherence to Policy, Product Mix. All at "Meet expectation" level in January.',
+    description: 'Measures the overall Product & Development competency level of the supplier group\'s Development Capability. 7 sub-KPIs assessed monthly.',
     scoring: [
       ['Below expectation', '0–6'], ['Meet expectation', '7–13'],
       ['Exceed expectation', '14–17'], ['Outstanding', '18–20'],
     ],
     currentRange: 'Meet expectation',
+    // 7 sub-KPI tracking table from PPTX slide 36
+    subKpis: [
+      { name: 'Category Knowledge and Expertise', target: 'Exceed expectation', jan: 'Meet expectation' },
+      { name: 'Product Expertise', target: '', jan: 'Meet expectation' },
+      { name: 'Development Sample Performance', target: '', jan: 'Meet expectation' },
+      { name: 'Buy Ready Excellence', target: '', jan: 'Meet expectation' },
+      { name: 'Adaptability and Iteration Capability', target: '', jan: 'Meet expectation' },
+      { name: 'Adherence to adidas Policy and Calendar', target: '', jan: 'Meet expectation' },
+      { name: 'Product Mix', target: '', jan: 'Meet expectation' },
+    ],
     hasLearning: true,
     endYear2025: 9,
     maxPts2025: 15,
     target2026: 13,
     keyLearning: [
-      'Cross-category alignment improved team collaboration',
-      'Football License readiness achieved (Base 26-28)',
-      'Complex bonding capabilities developed (Stella, FB GK)',
-      '99% Buy Ready on-time, 98% Proto / 99% Commercial on-time',
+      'Cross-Category Alignment (CC Onsite Trip) — Gained deep alignment on development expectations and quality standards across Football, Golf, Tennis, and GTS teams.',
+      'Football License Readiness — Successfully assessed and launched Base styles 26, 27 and 28 as a new license entrant.',
+      'Complex Product Capability — Demonstrated strong expertise in complex bonding constructions including Stella and FB Goalkeeper products.',
+      'Buy Ready Excellence — Achieved 99% Buy Ready On-Time in 2025.',
+      'Operational Performance — 98% Proto development sample on-time delivery, 99% Commercial sample on-time delivery.',
     ],
     improvementPlan: [
-      'Strategic capacity planning for seasonal peaks',
-      'Expand to Outdoor and Kids Bra categories (FB LIC Base29)',
-      'Digital enablement: automation of sample tracking',
-      'CTQ / Fit4Purpose implementation across all categories',
+      'Strategic Development Capacity Planning — Proactively align with CC range projections for early resource planning.',
+      'FB License Base29 Engagement — Proactively engage in creation and coordination with FB LIC for Base 29.',
+      'Organizational Agility — Expand and upskill team to support emerging categories (Outdoor, Kids Bra, etc.).',
+      'Digital Enablement — Deploy digital tracking and workflow tools for sustainable Buy Ready on-time performance.',
+      'adidas Standards Implementation — Fully implement standard workflows for CTQ, FB LIC co-creation, and Fit4Purpose Tech Pack.',
     ],
   },
   {
@@ -1509,17 +1895,46 @@ const kpiData = [
     catColor: '#ffb74d',
     lead: 'Araya',
     maxPts: 10,
-    currentScore: null,                                  // not yet scored
+    currentScore: null,
     rollingPct: null,
     janPct: null,
     targetPct: '6 / 10 pts',
-    description: 'NEW KPI in 2026 (replaces ME from Competitive). 4 areas: Fundamentals (4 pts — Lean, Automation, Digital, Commitment), Concepts (6 pts — HPC Delivery, Ingredients, Commitment).',
+    description: 'Measures the overall product & development competency level of the supplier group\'s Development Capability. Replaces ME from Competitive in 2026.',
     scoring: [
       ['Fundamentals', 4], ['Concepts', 6],
     ],
     currentRange: 'Not yet scored',
     scoringIsComponents: true,
-    hasLearning: false,                                  // new KPI, no 2025 comparison
+    hasLearning: false,
+    extraSlides: [
+      {
+        title: 'Engineering Solutions — KPI Framework',
+        type: 'framework',
+        areas: [
+          { name: 'Fundamentals (4 pts)', subtitle: 'Continuous Improvement / Self Governance', color: '#ffb74d', items: [
+            'Lean: Demonstrates maturity in implementation of lean principles',
+            'Automation: Deskilling applications/equipment to drive product excellence at development center and factory level',
+            'Digital: Data Driven Production Management & E2E Planning through Production Data Capture and Availability',
+            'Commitment: Ensure adequate team setup to drive valued initiatives',
+          ]},
+          { name: 'Concepts (6 pts)', subtitle: 'High Performance Concepts (HPC)', color: '#ffb74d', items: [
+            'HPC Delivery: Deliver brand innovation concepts for athletes/events',
+            'HPC Ingredients: Provide and Deliver Innovation Solutions integrated in the HPC',
+            'Commitment: Dedicated expertise allocated to HPC with innovative mindset',
+          ]},
+          { name: 'Capabilities', subtitle: 'Innovation & Commercial-ready', color: 'var(--text-dim)', items: [
+            'Ingredients: Textile Innovation, Foam, Polymer, Process & Method of Make',
+            'Digital Asset: Assisted product engineering for factory in scope',
+            'Commercial-ready Technology: Adopt and land mature technology across products',
+          ]},
+          { name: 'Excellence', subtitle: 'Product Centric', color: 'var(--text-dim)', items: [
+            'Method of Make: Best-in-class practices elevating Product Execution Consistency & Deskilling',
+            'Benchmarking: Feature Complexity, Output Performance, Commercial Readiness for Critical Processes',
+            'Solution Ownership: Deploy resources to new facilities & proactively scout/validate manufacturing technologies',
+          ]},
+        ],
+      },
+    ],
   },
 ];
 
@@ -1719,6 +2134,26 @@ function buildCategoryHeaderSlide(cat) {
 }
 
 // Build HTML for a KPI data slide (chart + scoring table + score display)
+// Helper: build a generic data table from headers + rows arrays
+function buildDataTable(headers, rows, highlightRowLabel, rollRow) {
+  let html = '<div class="kpi-data-table-wrap"><table class="kpi-data-table"><thead><tr>';
+  headers.forEach(h => { html += `<th>${h}</th>`; });
+  html += '</tr></thead><tbody>';
+  rows.forEach(row => {
+    html += '<tr>';
+    row.forEach(cell => { html += `<td>${cell}</td>`; });
+    html += '</tr>';
+  });
+  // Optional highlighted rolling/total row at the bottom
+  if (rollRow) {
+    html += '<tr class="highlight-row">';
+    rollRow.forEach(cell => { html += `<td>${cell}</td>`; });
+    html += '</tr>';
+  }
+  html += '</tbody></table></div>';
+  return html;
+}
+
 function buildKpiDataSlide(kpi) {
   // Category badge with colored background
   const badge = `<span class="kpi-cat-badge" style="background:${kpi.catColor}22;color:${kpi.catColor};border:1px solid ${kpi.catColor}44">${kpi.category}</span>`;
@@ -1743,27 +2178,85 @@ function buildKpiDataSlide(kpi) {
   // SVG chart (only for KPIs with percentage-based rolling data)
   let chartHtml = '';
   if (kpi.rollingPct != null) {
-    const chartData = [kpi.janPct || kpi.rollingPct];  // at minimum, January value
-    const targetNum = parseFloat(kpi.targetPct) || 90;  // extract numeric target for the line
+    const chartData = [kpi.janPct || kpi.rollingPct];
+    const targetNum = parseFloat(kpi.targetPct) || 90;
     chartHtml = `<div class="kpi-chart-card">${buildSvgChart(chartData, targetNum, 100, kpi.catColor)}</div>`;
   }
 
-  // Scoring criteria table
-  let tableHtml = '<table class="kpi-scoring-table"><thead><tr>';
-  // Choose column headers based on data type
-  if (kpi.scoringIsFactories) {
-    tableHtml += '<th>Factory</th><th class="pts-col">Score</th>';
-  } else if (kpi.scoringIsComponents) {
-    tableHtml += '<th>Component</th><th class="pts-col">Score</th>';
-  } else {
-    tableHtml += '<th>Range</th><th class="pts-col">Points</th>';
+  // Monthly data table (if present — MDP, SDP, Responsiveness, EFD, Traceability)
+  let monthlyHtml = '';
+  if (kpi.monthlyData) {
+    monthlyHtml = buildDataTable(kpi.monthlyData.headers, kpi.monthlyData.rows, kpi.monthlyData.highlightRow, kpi.monthlyData.rollRow);
   }
-  tableHtml += '</tr></thead><tbody>';
-  kpi.scoring.forEach(([range, pts]) => {
-    const isActive = (range === kpi.currentRange);
-    tableHtml += `<tr${isActive ? ' class="active-range"' : ''}><td>${range}</td><td class="pts-col">${pts}</td></tr>`;
-  });
-  tableHtml += '</tbody></table>';
+
+  // Factory data table (if present — Environmental, Quality)
+  let factoryHtml = '';
+  if (kpi.factoryData) {
+    factoryHtml = buildDataTable(kpi.factoryData.headers, kpi.factoryData.rows);
+    if (kpi.factoryData.summary) {
+      factoryHtml += `<div style="text-align:center;font-size:13px;color:var(--accent);margin-top:6px;font-weight:600">${kpi.factoryData.summary}</div>`;
+    }
+  }
+
+  // Sub-KPI tracking table (Product & Dev Competency)
+  let subKpiHtml = '';
+  if (kpi.subKpis) {
+    subKpiHtml = '<div class="kpi-data-table-wrap"><table class="kpi-data-table"><thead><tr><th>Sub-KPI</th><th>Target</th><th>Jan 2026</th></tr></thead><tbody>';
+    kpi.subKpis.forEach(sk => {
+      subKpiHtml += `<tr><td>${sk.name}</td><td>${sk.target}</td><td>${sk.jan}</td></tr>`;
+    });
+    subKpiHtml += '</tbody></table></div>';
+  }
+
+  // Scoring criteria table(s)
+  let tableHtml = '';
+
+  // Component-based scoring with separate tables (Traceability)
+  if (kpi.componentScoring) {
+    kpi.componentScoring.forEach(comp => {
+      tableHtml += `<div class="kpi-scoring-label">${comp.label}</div>`;
+      tableHtml += '<table class="kpi-scoring-table"><thead><tr>';
+      comp.headers.forEach(h => { tableHtml += `<th>${h}</th>`; });
+      tableHtml += '</tr></thead><tbody>';
+      comp.rows.forEach(row => {
+        tableHtml += '<tr>';
+        row.forEach((cell, i) => { tableHtml += `<td${i === row.length - 1 ? ' class="pts-col"' : ''}>${cell}</td>`; });
+        tableHtml += '</tr>';
+      });
+      tableHtml += '</tbody></table>';
+    });
+  }
+  // Standard scoring table (if scoring array has entries)
+  else if (kpi.scoring && kpi.scoring.length > 0) {
+    if (kpi.scoringLabel) tableHtml += `<div class="kpi-scoring-label">${kpi.scoringLabel}</div>`;
+    tableHtml += '<table class="kpi-scoring-table"><thead><tr>';
+    if (kpi.scoringIsFactories) {
+      tableHtml += '<th>Factory</th><th class="pts-col">Score</th>';
+    } else if (kpi.scoringIsComponents) {
+      tableHtml += '<th>Component</th><th class="pts-col">Score</th>';
+    } else {
+      tableHtml += '<th>Range</th><th class="pts-col">Points</th>';
+    }
+    tableHtml += '</tr></thead><tbody>';
+    kpi.scoring.forEach(([range, pts]) => {
+      const isActive = (range === kpi.currentRange);
+      tableHtml += `<tr${isActive ? ' class="active-range"' : ''}><td>${range}</td><td class="pts-col">${pts}</td></tr>`;
+    });
+    tableHtml += '</tbody></table>';
+  }
+
+  // Second scoring table for EFD (Sample MDP)
+  if (kpi.scoringSample) {
+    tableHtml += `<div class="kpi-scoring-label">${kpi.scoringSampleLabel || 'Sample Scoring'}</div>`;
+    tableHtml += '<table class="kpi-scoring-table"><thead><tr><th>Range</th><th class="pts-col">Points</th></tr></thead><tbody>';
+    kpi.scoringSample.forEach(([range, pts]) => {
+      tableHtml += `<tr><td>${range}</td><td class="pts-col">${pts}</td></tr>`;
+    });
+    tableHtml += '</tbody></table>';
+  }
+
+  // Description — handle newlines as <br> tags
+  const descHtml = kpi.description.replace(/\n/g, '<br>');
 
   return `
     <div class="slide" id="kpi-${kpi.id}-data" data-animate="kpi-data">
@@ -1776,8 +2269,11 @@ function buildKpiDataSlide(kpi) {
         <div class="kpi-body">
           <div class="kpi-left">
             ${chartHtml}
+            ${monthlyHtml}
+            ${factoryHtml}
+            ${subKpiHtml}
             <div class="kpi-desc">
-              <strong>What it measures:</strong> ${kpi.description}<br>
+              <strong>What it measures:</strong> ${descHtml}<br>
               <strong>Target:</strong> ${kpi.targetPct}
             </div>
           </div>
@@ -1840,6 +2336,94 @@ function buildKpiLearningSlide(kpi) {
             <ul>${planItems}</ul>
           </div>
         </div>
+      </div>
+    </div>`;
+}
+
+// Build HTML for an extra content slide (Key Success, WH Claim, Strategy, Framework, etc.)
+function buildKpiExtraSlide(kpi, extra) {
+  const badge = `<span class="kpi-cat-badge" style="background:${kpi.catColor}22;color:${kpi.catColor};border:1px solid ${kpi.catColor}44">${kpi.category}</span>`;
+  let bodyHtml = '';
+
+  if (extra.type === 'key-success') {
+    // Achievements list + optional support needed
+    const achieveItems = extra.items.map(i => `<li>${i}</li>`).join('');
+    let supportHtml = '';
+    if (extra.support && extra.support.length > 0) {
+      const supportItems = extra.support.map(i => `<li>${i}</li>`).join('');
+      supportHtml = `
+        <div class="kpi-success-card support">
+          <h4>Support Needed from LO Team</h4>
+          <ul>${supportItems}</ul>
+        </div>`;
+    }
+    bodyHtml = `
+      <div class="kpi-success-grid">
+        <div class="kpi-success-card achievements">
+          <h4>2025 Key Achievements</h4>
+          <ul>${achieveItems}</ul>
+        </div>
+        ${supportHtml}
+      </div>`;
+  }
+
+  else if (extra.type === 'content') {
+    // Sections with heading + bullet items
+    bodyHtml = extra.sections.map(s => {
+      const items = s.items.map(i => `<li>${i}</li>`).join('');
+      return `
+        <div class="kpi-hl-card highlight" style="flex:none;width:100%">
+          <h4>${s.heading}</h4>
+          <ul>${items}</ul>
+        </div>`;
+    }).join('');
+  }
+
+  else if (extra.type === 'factory-plan') {
+    // Factory data table for 2026 plan
+    bodyHtml = buildDataTable(extra.factoryData.headers, extra.factoryData.rows);
+    if (extra.factoryData.summary) {
+      bodyHtml += `<div style="text-align:center;font-size:15px;color:var(--accent);margin-top:10px;font-weight:700">${extra.factoryData.summary}</div>`;
+    }
+  }
+
+  else if (extra.type === 'strategy') {
+    // 2x2 grid of strategy pillars
+    bodyHtml = '<div class="kpi-pillar-grid">';
+    extra.pillars.forEach(p => {
+      const items = p.items.map(i => `<li>${i}</li>`).join('');
+      bodyHtml += `
+        <div class="kpi-pillar-card">
+          <h4 style="color:${p.color}">${p.name}</h4>
+          <ul>${items}</ul>
+        </div>`;
+    });
+    bodyHtml += '</div>';
+  }
+
+  else if (extra.type === 'framework') {
+    // Engineering Solutions framework — multi-area layout
+    bodyHtml = '<div class="kpi-pillar-grid">';
+    extra.areas.forEach(a => {
+      const items = a.items.map(i => `<li>${i}</li>`).join('');
+      bodyHtml += `
+        <div class="kpi-pillar-card">
+          <h4 style="color:${a.color}">${a.name}</h4>
+          <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">${a.subtitle}</div>
+          <ul>${items}</ul>
+        </div>`;
+    });
+    bodyHtml += '</div>';
+  }
+
+  return `
+    <div class="slide" data-animate="kpi-extra">
+      <div class="kpi-extra-slide">
+        <div style="display:flex;align-items:center;gap:12px">
+          ${badge}
+          <div class="kpi-extra-title">${extra.title}</div>
+        </div>
+        ${bodyHtml}
       </div>
     </div>`;
 }
@@ -2003,6 +2587,12 @@ categoryHeaders.forEach(cat => {
     if (kpi.hasLearning) {
       insertAfter = insertSlideAfter(insertAfter, buildKpiLearningSlide(kpi));
     }
+    // Extra slides (Key Success, WH Claim, Strategy, Framework, etc.)
+    if (kpi.extraSlides) {
+      kpi.extraSlides.forEach(extra => {
+        insertAfter = insertSlideAfter(insertAfter, buildKpiExtraSlide(kpi, extra));
+      });
+    }
   });
 });
 
@@ -2084,6 +2674,7 @@ function animateSlide(n) {
   else if (slideEl.dataset.animate === 'kpi-data') animateKpiDataSlide(slideEl);
   else if (slideEl.dataset.animate === 'kpi-learning') animateKpiLearningSlide(slideEl);
   else if (slideEl.dataset.animate === 'kpi-category') animateKpiCategorySlide(slideEl);
+  else if (slideEl.dataset.animate === 'kpi-extra') animateKpiExtraSlide(slideEl);
 }
 
 // ----- SLIDE 1: Title -----
@@ -2391,6 +2982,21 @@ function animateKpiLearningSlide(el) {
   if (planCard) {
     setTimeout(() => { planCard.style.animation = 'slideInRight 0.5s ease forwards'; }, 1400);
   }
+}
+
+// ----- KPI EXTRA SLIDE (Key Success, WH Claim, Strategy, Framework) -----
+function animateKpiExtraSlide(el) {
+  // 1) Fade in the title bar
+  const title = el.querySelector('.kpi-extra-title');
+  if (title) {
+    setTimeout(() => { title.style.animation = 'fadeInUp 0.5s ease forwards'; }, 100);
+  }
+
+  // 2) Stagger-reveal cards/grids
+  const cards = el.querySelectorAll('.kpi-success-card, .kpi-pillar-card, .kpi-hl-card');
+  cards.forEach((card, i) => {
+    setTimeout(() => { card.style.animation = 'fadeInUp 0.4s ease forwards'; }, 400 + i * 200);
+  });
 }
 
 // =============================================
