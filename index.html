@@ -282,8 +282,89 @@ html, body {
 .callout .change.up { color: var(--green); }
 .callout .change.down { color: var(--red); }
 
-/* ===== SLIDE 4: FRAMEWORK CHANGES ===== */
-#slide4 {
+/* ===== SLIDE 4: WEIGHT OVERVIEW ===== */
+.weight-chart {
+  width: 100%;
+  max-width: 750px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.weight-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+}
+.weight-label {
+  width: 140px;
+  min-width: 140px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: right;
+}
+.weight-track {
+  flex: 1;
+  height: 44px;
+  background: var(--bg-bar);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.weight-bar {
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+.weight-pct {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+.weight-change-badge {
+  min-width: 70px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 8px;
+  opacity: 0;
+}
+.weight-change-badge.up {
+  color: var(--green);
+  background: rgba(52,168,83,0.15);
+}
+.weight-change-badge.down {
+  color: var(--red);
+  background: rgba(234,67,53,0.15);
+}
+.weight-change-badge.same {
+  color: var(--text-dim);
+  background: rgba(136,136,136,0.1);
+}
+.weight-note {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-dim);
+  opacity: 0;
+}
+.weight-note strong { color: var(--accent); }
+
+/* bar colors per category */
+.weight-bar-agile       { background: linear-gradient(90deg, #0288d1, #4fc3f7); }
+.weight-bar-competitive { background: linear-gradient(90deg, #f9a825, #fdd835); }
+.weight-bar-esg         { background: linear-gradient(90deg, #388e3c, #81c784); }
+.weight-bar-quality     { background: linear-gradient(90deg, #8e24aa, #ce93d8); }
+.weight-bar-competency  { background: linear-gradient(90deg, #ef6c00, #ffb74d); }
+
+/* ===== SLIDE 5: FRAMEWORK CHANGES ===== */
+#slide5 {                       /* framework detail (was slide 4) */
   padding: 24px 50px;
   justify-content: flex-start;
   padding-top: 40px;
@@ -465,7 +546,7 @@ html, body {
 }
 
 /* ===== SLIDE 6: ROAD TO #1 ===== */
-#slide6 {
+#slide7 {
   padding: 40px 80px;
 }
 .gauge-section {
@@ -556,7 +637,7 @@ html, body {
 .gap-table tr { opacity: 0; }
 
 /* ===== SLIDE 7: SUMMARY / TIMELINE ===== */
-#slide7 {
+#slide8 {
   background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 70%);
 }
 .timeline {
@@ -684,10 +765,23 @@ html, body {
   </div>
 </div>
 
-<!-- ========== SLIDE 4: 2026 FRAMEWORK CHANGES ========== -->
+<!-- ========== SLIDE 4: WEIGHT OVERVIEW ========== -->
 <div class="slide" id="slide4">
   <div class="slide-header">
-    <h2 id="s4-title">What Changed in the 2026 Framework?</h2>
+    <h2 id="s4-title">2026 Framework — What Changed?</h2>
+  </div>
+  <div class="weight-chart" id="weight-chart">
+    <!-- Weight rows injected by JS -->
+  </div>
+  <div class="weight-note" id="weight-note">
+    Total remains <strong>100 points</strong> — weights shifted toward Competency
+  </div>
+</div>
+
+<!-- ========== SLIDE 5: 2026 FRAMEWORK CHANGES ========== -->
+<div class="slide" id="slide5">
+  <div class="slide-header">
+    <h2 id="s5-title">What Changed in the 2026 Framework?</h2>
   </div>
   <!-- Column headers -->
   <div class="fw-header-row">
@@ -707,12 +801,12 @@ html, body {
 </div>
 
 <!-- ========== SLIDE 5: JANUARY 2026 ========== -->
-<div class="slide" id="slide5">
+<div class="slide" id="slide6">
   <div class="slide-header">
-    <h2 id="s5-title">January 2026</h2>
+    <h2 id="s6-title">January 2026</h2>
     <div>
-      <span class="score-badge" id="s5-score">58.9</span>
-      <span class="rank-badge" id="s5-rank">Rank #8</span>
+      <span class="score-badge" id="s6-score">58.9</span>
+      <span class="rank-badge" id="s6-rank">Rank #8</span>
     </div>
   </div>
   <div class="bar-chart" id="chart2026">
@@ -721,26 +815,26 @@ html, body {
 </div>
 
 <!-- ========== SLIDE 6: ROAD TO #1 ========== -->
-<div class="slide" id="slide6">
+<div class="slide" id="slide7">
   <div class="slide-header">
-    <h2 id="s6-title">The Road to #1</h2>
+    <h2 id="s7-title">The Road to #1</h2>
   </div>
   <div class="gauge-section">
-    <div class="score-circle current" id="s6-current">
+    <div class="score-circle current" id="s7-current">
       <div class="number">58.9</div>
       <div class="label-text">Current</div>
     </div>
-    <div class="score-arrow" id="s6-arrow">→</div>
-    <div class="score-circle target" id="s6-target">
+    <div class="score-arrow" id="s7-arrow">→</div>
+    <div class="score-circle target" id="s7-target">
       <div class="number">75.2</div>
       <div class="label-text">Target</div>
     </div>
-    <div class="gap-info" id="s6-gap">
+    <div class="gap-info" id="s7-gap">
       <div class="points">+16.3</div>
       <div class="label-text">points needed</div>
     </div>
   </div>
-  <div class="rank-goal" id="s6-rankgoal">
+  <div class="rank-goal" id="s7-rankgoal">
     <div class="rank-circle rank-from">#8</div>
     <span style="font-size:28px;color:var(--accent)">→</span>
     <div class="rank-circle rank-to">#1</div>
@@ -761,7 +855,7 @@ html, body {
 </div>
 
 <!-- ========== SLIDE 7: SUMMARY ========== -->
-<div class="slide" id="slide7">
+<div class="slide" id="slide8">
   <div class="timeline" id="timeline">
     <div class="timeline-node">
       <div class="year">2024</div>
@@ -786,7 +880,7 @@ html, body {
 </div>
 
 <!-- ========== SLIDE COUNTER ========== -->
-<div id="slide-counter">1 / 7</div>
+<div id="slide-counter">1 / 8</div>
 <div id="nav-hint">Click or press → to advance &nbsp;|&nbsp; ← to go back</div>
 
 <!-- ========== JAVASCRIPT ========== -->
@@ -843,7 +937,17 @@ const gapData = [
   ['Sourcing Sustainability',  5.85,  7.2,  +1.35],
 ];
 
-// Slide 4 data: grouped by category so left and right rows always align
+// Slide 4 data: category weight changes (2025 → 2026)
+// [category name, 2025 weight %, 2026 weight %, CSS color class]
+const weightData = [
+  { name: 'Agile',       from: 25, to: 20, barCls: 'weight-bar-agile',       labelCls: 'fw-cat-agile' },
+  { name: 'Competitive', from: 25, to: 15, barCls: 'weight-bar-competitive', labelCls: 'fw-cat-competitive' },
+  { name: 'ESG',         from: 20, to: 20, barCls: 'weight-bar-esg',         labelCls: 'fw-cat-esg' },
+  { name: 'Quality',     from: 15, to: 15, barCls: 'weight-bar-quality',     labelCls: 'fw-cat-quality' },
+  { name: 'Competency',  from: 15, to: 30, barCls: 'weight-bar-competency',  labelCls: 'fw-cat-competency' },
+];
+
+// Slide 5 data: grouped by category so left and right rows always align
 const fwGroups = [
   {
     catLeft: 'Agile — 25%', catRight: 'Agile — 20% (was 25%)', catCls: 'fw-cat-agile',
@@ -1008,7 +1112,31 @@ callouts.forEach(c => {
     </div>`;
 });
 
-// Slide 4: render paired framework rows
+// Slide 4: weight overview chart
+const weightChartEl = document.getElementById('weight-chart');
+weightData.forEach(w => {
+  // Calculate bar width as percentage (30% = full width)
+  const fromPct = (w.from / 30) * 100;       // 2025 bar width
+  const toPct = (w.to / 30) * 100;           // 2026 bar width (used later in animation)
+  const diff = w.to - w.from;                // change amount
+  // Determine badge text and color class
+  let badgeText, badgeCls;
+  if (diff > 0)      { badgeText = '+' + diff + '%'; badgeCls = 'up'; }
+  else if (diff < 0) { badgeText = diff + '%';       badgeCls = 'down'; }
+  else               { badgeText = 'No change';      badgeCls = 'same'; }
+  weightChartEl.innerHTML += `
+    <div class="weight-row">
+      <div class="weight-label ${w.labelCls}">${w.name}</div>
+      <div class="weight-track">
+        <div class="weight-bar ${w.barCls}" data-from="${fromPct}" data-to="${toPct}" style="width:0%">
+          <span class="weight-pct">${w.from}%</span>
+        </div>
+      </div>
+      <div class="weight-change-badge ${badgeCls}" data-text="${badgeText}">${badgeText}</div>
+    </div>`;
+});
+
+// Slide 5: render paired framework rows
 // Helper: build HTML for one item card, or an empty placeholder
 function fwItemHtml(item) {
   if (!item) return '<div class="fw-empty"></div>';
@@ -1071,7 +1199,7 @@ gapData.forEach(([cat, cur, tgt, gap]) => {
 // =============================================
 
 let currentSlide = 1;       // start on slide 1
-const totalSlides = 7;
+const totalSlides = 8;
 
 // Get all slide elements
 const slides = [];
@@ -1136,6 +1264,7 @@ function animateSlide(n) {
     case 5: animateSlide5(); break;
     case 6: animateSlide6(); break;
     case 7: animateSlide7(); break;
+    case 8: animateSlide8(); break;
   }
 }
 
@@ -1217,9 +1346,57 @@ function animateSlide3() {
   });
 }
 
-// ----- SLIDE 4: Framework changes -----
+// ----- SLIDE 4: Weight overview -----
 function animateSlide4() {
   const title = document.getElementById('s4-title');
+  setTimeout(() => { title.style.animation = 'fadeInUp 0.5s ease forwards'; }, 100);
+
+  // Show each weight row one by one, with bars at 2025 width
+  const rows = document.querySelectorAll('#weight-chart .weight-row');
+  rows.forEach((row, i) => {
+    setTimeout(() => {
+      row.style.animation = 'fadeInUp 0.4s ease forwards';
+      // Set bar to 2025 width
+      const bar = row.querySelector('.weight-bar');
+      if (bar) bar.style.width = bar.dataset.from + '%';
+    }, 400 + i * 200);
+  });
+
+  // After all rows are visible, animate bars to 2026 widths
+  const transitionDelay = 400 + rows.length * 200 + 800;
+  setTimeout(() => {
+    rows.forEach(row => {
+      const bar = row.querySelector('.weight-bar');
+      if (bar) {
+        // Update the percentage text to show 2026 value
+        const pctEl = bar.querySelector('.weight-pct');
+        // Convert bar width back to actual percentage (30% scale)
+        const toPercent = Math.round(parseFloat(bar.dataset.to) / 100 * 30);
+        if (pctEl) pctEl.textContent = toPercent + '%';
+        bar.style.width = bar.dataset.to + '%';
+      }
+    });
+  }, transitionDelay);
+
+  // Pop in the change badges after bars finish moving
+  const badgeDelay = transitionDelay + 1400;
+  rows.forEach((row, i) => {
+    const badge = row.querySelector('.weight-change-badge');
+    if (badge) {
+      setTimeout(() => {
+        badge.style.animation = 'popIn 0.3s ease forwards';
+      }, badgeDelay + i * 150);
+    }
+  });
+
+  // Show the bottom note
+  const note = document.getElementById('weight-note');
+  setTimeout(() => { note.style.animation = 'fadeIn 0.5s ease forwards'; }, badgeDelay + rows.length * 150 + 200);
+}
+
+// ----- SLIDE 5: Framework changes -----
+function animateSlide5() {
+  const title = document.getElementById('s5-title');
   setTimeout(() => { title.style.animation = 'fadeInUp 0.5s ease forwards'; }, 100);
 
   // Column headers
@@ -1249,11 +1426,11 @@ function animateSlide4() {
   setTimeout(() => { note.style.animation = 'fadeIn 0.5s ease forwards'; }, badgeDelay + 500);
 }
 
-// ----- SLIDE 5: January 2026 -----
-function animateSlide5() {
-  const title = document.getElementById('s5-title');
-  const score = document.getElementById('s5-score');
-  const rank  = document.getElementById('s5-rank');
+// ----- SLIDE 6: January 2026 -----
+function animateSlide6() {
+  const title = document.getElementById('s6-title');
+  const score = document.getElementById('s6-score');
+  const rank  = document.getElementById('s6-rank');
 
   setTimeout(() => { title.style.animation = 'fadeInUp 0.5s ease forwards'; }, 100);
   setTimeout(() => { score.style.animation = 'countUp 0.5s ease forwards'; }, 400);
@@ -1269,25 +1446,25 @@ function animateSlide5() {
   });
 }
 
-// ----- SLIDE 6: Road to #1 -----
-function animateSlide6() {
-  const title = document.getElementById('s6-title');
+// ----- SLIDE 7: Road to #1 -----
+function animateSlide7() {
+  const title = document.getElementById('s7-title');
   setTimeout(() => { title.style.animation = 'fadeInUp 0.5s ease forwards'; }, 100);
 
   setTimeout(() => {
-    document.getElementById('s6-current').style.animation = 'countUp 0.6s ease forwards';
+    document.getElementById('s7-current').style.animation = 'countUp 0.6s ease forwards';
   }, 400);
   setTimeout(() => {
-    document.getElementById('s6-arrow').style.animation = 'fadeIn 0.4s ease forwards';
+    document.getElementById('s7-arrow').style.animation = 'fadeIn 0.4s ease forwards';
   }, 800);
   setTimeout(() => {
-    document.getElementById('s6-target').style.animation = 'countUp 0.6s ease forwards';
+    document.getElementById('s7-target').style.animation = 'countUp 0.6s ease forwards';
   }, 1000);
   setTimeout(() => {
-    document.getElementById('s6-gap').style.animation = 'popIn 0.5s ease forwards';
+    document.getElementById('s7-gap').style.animation = 'popIn 0.5s ease forwards';
   }, 1400);
   setTimeout(() => {
-    document.getElementById('s6-rankgoal').style.animation = 'fadeInUp 0.5s ease forwards';
+    document.getElementById('s7-rankgoal').style.animation = 'fadeInUp 0.5s ease forwards';
   }, 1800);
 
   // Table rows
@@ -1299,8 +1476,8 @@ function animateSlide6() {
   });
 }
 
-// ----- SLIDE 7: Summary timeline -----
-function animateSlide7() {
+// ----- SLIDE 8: Summary timeline -----
+function animateSlide8() {
   const nodes = document.querySelectorAll('.timeline-node');
   const fill1 = document.getElementById('tl-fill1');
   const fill2 = document.getElementById('tl-fill2');
