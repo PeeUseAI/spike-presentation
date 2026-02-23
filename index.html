@@ -2800,7 +2800,7 @@ function buildKpiLearningSlide(kpi) {
             <h4>✅ Success 2025</h4>
             <ul>${learningItems}</ul>
           </div>
-          <div class="kpi-card" style="flex:1;overflow-y:auto;background:#fff8e1;border-color:#ffe082">
+          <div class="kpi-card challenge" style="flex:1;overflow-y:auto;background:#fff8e1;border-color:#ffe082">
             <h4 style="color:#e65100">⚠️ Challenge 2025</h4>
             <ul>${challengeItems}</ul>
           </div>
@@ -3686,7 +3686,13 @@ function animateKpiLearningSlide(el) {
     setTimeout(() => { learningCard.style.animation = 'slideInLeft 0.5s ease forwards'; }, 1200);
   }
 
-  // 6) Slide in the plan card from the right
+  // 6) Slide in the challenge card from below (if present)
+  const challengeCard = el.querySelector('.kpi-card.challenge');
+  if (challengeCard) {
+    setTimeout(() => { challengeCard.style.animation = 'fadeIn 0.5s ease forwards'; }, 1300);
+  }
+
+  // 7) Slide in the plan card from the right
   const planCard = el.querySelector('.kpi-card.plan');
   if (planCard) {
     setTimeout(() => { planCard.style.animation = 'slideInRight 0.5s ease forwards'; }, 1400);
