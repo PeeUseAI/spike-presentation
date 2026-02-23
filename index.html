@@ -2041,18 +2041,22 @@ const kpiData = [
     maxPts2025: 15,
     target2026: 13,
     keyLearning: [
-      'Cross-Category Alignment (CC Onsite Trip) — Gained deep alignment on development expectations and quality standards across Football, Golf, Tennis, and GTS teams.',
-      'Football License Readiness — Successfully assessed and launched Base styles 26, 27 and 28 as a new license entrant.',
-      'Complex Product Capability — Demonstrated strong expertise in complex bonding constructions including Stella and FB Goalkeeper products.',
-      'Buy Ready Excellence — Achieved 99% Buy Ready On-Time in 2025.',
-      'Operational Performance — 98% Proto development sample on-time delivery, 99% Commercial sample on-time delivery.',
+      'Football License — New Entrant: Successfully assessed and launched Base Styles 26, 27 as a new license entrant. Base 28 is progressing with positive recognition. Demonstrated compliance standards and advanced embellishment development (Sublimation & Deboss).',
+      'Locker Room Platform Expansion: Supporting adidas across diverse sportswear categories — category/product type flexibility, expansion into new ranges and graphic executions, and capability to support dual-source production and customization ranges.',
+      'Development Sample Delivery Performance: 98%+ Proto Development Sample On-Time Delivery, 99%+ Commercial Sample On-Time Delivery — consistent, reliable execution supporting speed-to-market.',
+    ],
+    challengeItems: [
+      'T2 Stability & Transition: Delayed responsiveness and sample turnaround from selected T2 partners. Business exit of one T2 required re-development of multiple colorways with three replacement suppliers.',
+      'Fabric Technical Risk: Engineered fabric met fabric-stage tolerance (slanting) but was not acceptable at garment stage, leading to full range re-development due to change of new fabric item.',
+      'Development Alignment Gaps: Ownership transitions during development created temporary communication inefficiencies and slower decision cycles.',
+      'Business Impact: Increased development workload, additional validation cycles, timeline pressure during key milestones, and temporary stakeholder dissatisfaction during transition period.',
     ],
     improvementPlan: [
-      'Strategic Development Capacity Planning — Proactively align with CC range projections for early resource planning.',
-      'FB License Base29 Engagement — Proactively engage in creation and coordination with FB LIC for Base 29.',
-      'Organizational Agility — Expand and upskill team to support emerging categories (Outdoor, Kids Bra, etc.).',
-      'Digital Enablement — Deploy digital tracking and workflow tools for sustainable Buy Ready on-time performance.',
-      'adidas Standards Implementation — Fully implement standard workflows for CTQ, FB LIC co-creation, and Fit4Purpose Tech Pack.',
+      'Strategic Development Capacity Planning — Proactively align with CC range projections to ensure early resource planning and readiness for upcoming developments.',
+      'FB License Base29 Engagement — Proactively engage in creation and coordination with FB LIC for Base 29, ensuring early development execution.',
+      'Organizational Agility & Alignment with adidas New Ways of Working — Strengthen team capability to support emerging business needs and new standards, including FB LIC co-creation and Fit4Purpose Tech Pack requirements.',
+      'Digital Enablement — Implement digital tracking and workflow management tools to enhance transparency, improve cross-functional collaboration, and drive sustainable Buy Ready on-time performance.',
+      'Strengthened T1–T2 Alignment — Define key and strategic T2 partners by Business Unit and establish closer collaboration to ensure faster response, clearer ownership, and improved development efficiency.',
     ],
     extraSlides: [],
   },
@@ -2704,6 +2708,12 @@ function buildKpiLearningSlide(kpi) {
   // Bullet list for key learnings
   const learningItems = kpi.keyLearning.map(item => `<li>${item}</li>`).join('');
 
+  // Bullet list for challenge items (if present)
+  let challengeItems = '';
+  if (kpi.challengeItems) {
+    challengeItems = kpi.challengeItems.map(item => `<li>${item}</li>`).join('');
+  }
+
   // Bullet list for improvement plan (supports flat array or sectioned object)
   let planItems = '';
   if (Array.isArray(kpi.improvementPlan)) {
@@ -2713,6 +2723,46 @@ function buildKpiLearningSlide(kpi) {
       planItems += `<li style="list-style:none;font-weight:700;margin-top:6px;color:var(--accent)">${sec.header}</li>`;
       planItems += sec.items.map(item => `<li>${item}</li>`).join('');
     });
+  }
+
+  // 3-column layout when challengeItems exist (Success | Challenge | Improvement Plan)
+  if (kpi.challengeItems) {
+    return `
+    <div class="slide" id="kpi-${kpi.id}-learning" data-animate="kpi-learning">
+      <div class="kpi-learning-slide">
+        <div class="kpi-learn-top">
+          ${badge}
+          <span class="kpi-title">${kpi.name}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:24px;">
+          <div class="kpi-circle prev">
+            <div class="num">${kpi.endYear2025}</div>
+            <div class="lbl">End 2025</div>
+            <div class="lbl" style="font-size:10px;color:#999">(of ${kpi.maxPts2025} pts)</div>
+          </div>
+          <div class="kpi-learn-arrow">→</div>
+          <div class="kpi-circle next">
+            <div class="num">${kpi.target2026}</div>
+            <div class="lbl">Target 2026</div>
+            <div class="lbl" style="font-size:10px;color:#999">(of ${kpi.maxPts} pts)</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;flex:1;min-height:0">
+          <div class="kpi-card learning" style="flex:1;overflow-y:auto">
+            <h4>✅ Success 2025</h4>
+            <ul>${learningItems}</ul>
+          </div>
+          <div class="kpi-card" style="flex:1;overflow-y:auto;background:#fff8e1;border-color:#ffe082">
+            <h4 style="color:#e65100">⚠️ Challenge 2025</h4>
+            <ul>${challengeItems}</ul>
+          </div>
+          <div class="kpi-card plan" style="flex:1;overflow-y:auto">
+            <h4>🎯 Improvement Plan 2026</h4>
+            <ul>${planItems}</ul>
+          </div>
+        </div>
+      </div>
+    </div>`;
   }
 
   return `
