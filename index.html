@@ -1764,6 +1764,82 @@ const kpiData = [
           },
         ],
       },
+      {
+        title: 'Duty Benefit Optimization — Target: 3 pts',
+        type: 'custom',
+        html: `
+          <div style="display:flex;gap:20px;flex:1;min-height:0;overflow-y:auto">
+            <div style="flex:1;display:flex;flex-direction:column;gap:12px">
+              <div style="background:var(--bg-card);border:1px solid #e0e0e0;border-radius:10px;padding:16px 20px">
+                <h4 style="font-size:16px;font-weight:700;color:#c49000;margin-bottom:10px">Our Position — 2 COOs</h4>
+                <div style="display:flex;gap:16px;margin-bottom:12px">
+                  <div style="flex:1;background:#e8f5e9;border-radius:8px;padding:12px;text-align:center">
+                    <div style="font-size:13px;font-weight:700;color:#2e7d32">🇲🇲 Myanmar</div>
+                    <div style="font-size:12px;color:#444;margin-top:4px">Lowest duty for <strong>China</strong> & <strong>EU</strong></div>
+                  </div>
+                  <div style="flex:1;background:#e3f2fd;border-radius:8px;padding:12px;text-align:center">
+                    <div style="font-size:13px;font-weight:700;color:#1565c0">🇹🇭 Thailand</div>
+                    <div style="font-size:12px;color:#444;margin-top:4px">Lowest duty for <strong>China</strong></div>
+                  </div>
+                </div>
+                <table style="width:100%;border-collapse:collapse;font-size:13px;border:1px solid #ccc;border-radius:6px;overflow:hidden">
+                  <thead><tr style="background:#4472c4;color:#fff">
+                    <th style="padding:6px 10px;text-align:left">Market</th>
+                    <th style="padding:6px 10px;text-align:center">Thailand</th>
+                    <th style="padding:6px 10px;text-align:center">Myanmar</th>
+                    <th style="padding:6px 10px;text-align:center">Advantage?</th>
+                  </tr></thead>
+                  <tbody>
+                    <tr style="background:#e8f5e9"><td style="padding:5px 10px;font-weight:600">EU</td><td style="padding:5px 10px;text-align:center">—</td><td style="padding:5px 10px;text-align:center;color:#2e7d32;font-weight:700">✓ Lowest</td><td style="padding:5px 10px;text-align:center;color:#2e7d32;font-weight:600">Yes</td></tr>
+                    <tr style="background:#e8f5e9"><td style="padding:5px 10px;font-weight:600">China</td><td style="padding:5px 10px;text-align:center;color:#2e7d32;font-weight:700">✓ Lowest</td><td style="padding:5px 10px;text-align:center;color:#2e7d32;font-weight:700">✓ Lowest</td><td style="padding:5px 10px;text-align:center;color:#2e7d32;font-weight:600">Yes</td></tr>
+                    <tr style="background:#ffebee"><td style="padding:5px 10px;font-weight:600">USA (NAM)</td><td style="padding:5px 10px;text-align:center;color:#999">✗</td><td style="padding:5px 10px;text-align:center;color:#999">✗</td><td style="padding:5px 10px;text-align:center;color:#c62828;font-weight:600">No</td></tr>
+                    <tr style="background:#ffebee"><td style="padding:5px 10px;font-weight:600">Mexico (LAM)</td><td style="padding:5px 10px;text-align:center;color:#999">✗</td><td style="padding:5px 10px;text-align:center;color:#999">✗</td><td style="padding:5px 10px;text-align:center;color:#c62828;font-weight:600">No</td></tr>
+                    <tr style="background:#ffebee"><td style="padding:5px 10px;font-weight:600">UAE (EM)</td><td style="padding:5px 10px;text-align:center;color:#999">✗</td><td style="padding:5px 10px;text-align:center;color:#999">✗</td><td style="padding:5px 10px;text-align:center;color:#c62828;font-weight:600">No</td></tr>
+                  </tbody>
+                </table>
+                <div style="margin-top:10px;font-size:13px;color:#555;line-height:1.5">
+                  <strong>Maximum achievable: ~2 markets</strong> (EU + China) → mapped to <strong style="color:#c49000">2 SPIKE points</strong>.<br>
+                  For MX, US, UAE we have no duty advantage compared to other suppliers.<br>
+                  Target 2026: <strong>3 pts</strong> — requires mapping all product types across both COOs to maximize the duty-benefit ratio per market.
+                </div>
+              </div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:12px">
+              <div style="background:var(--bg-card);border:1px solid #e0e0e0;border-radius:10px;padding:16px 20px">
+                <h4 style="font-size:16px;font-weight:700;color:#555;margin-bottom:8px">How It's Calculated</h4>
+                <div style="font-size:13px;color:#444;line-height:1.6">
+                  <strong>Step 1:</strong> For each product group × market, check if our COO offers the <strong>lowest landed duty</strong> compared to all other suppliers.<br><br>
+                  <strong>Step 2:</strong> Sum the duty-benefit ratios across all 5 markets:<br>
+                  <div style="background:#f5f5f5;padding:8px 12px;border-radius:6px;margin:6px 0;font-family:monospace;font-size:12px">
+                    Score = (EU ratio) + (CN ratio) + (US ratio) + (MX ratio) + (UAE ratio)
+                  </div>
+                  <strong>Example:</strong> If EU = 1.0 and CN = 0.9 → Total = 1.9 → <strong>2 pts</strong>
+                </div>
+              </div>
+              <div style="background:var(--bg-card);border:1px solid #e0e0e0;border-radius:10px;padding:16px 20px">
+                <h4 style="font-size:16px;font-weight:700;color:#555;margin-bottom:8px">Scoring Scale</h4>
+                <table style="width:100%;border-collapse:collapse;font-size:13px;border:1px solid #ccc;border-radius:6px;overflow:hidden">
+                  <thead><tr style="background:#c49000;color:#fff">
+                    <th style="padding:5px 10px;text-align:left">Duty Optimization Score</th>
+                    <th style="padding:5px 10px;text-align:center">SPIKE Points</th>
+                  </tr></thead>
+                  <tbody>
+                    <tr><td style="padding:4px 10px">≤ 1</td><td style="padding:4px 10px;text-align:center">1</td></tr>
+                    <tr style="background:#fff8e1"><td style="padding:4px 10px;font-weight:600">> 1 and < 2</td><td style="padding:4px 10px;text-align:center;font-weight:700;color:#c49000">2 ← Our likely max</td></tr>
+                    <tr><td style="padding:4px 10px">≥ 2 and < 2.5</td><td style="padding:4px 10px;text-align:center">3</td></tr>
+                    <tr><td style="padding:4px 10px">≥ 2.5 and < 3</td><td style="padding:4px 10px;text-align:center">4</td></tr>
+                    <tr><td style="padding:4px 10px">≥ 3</td><td style="padding:4px 10px;text-align:center">5</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div style="background:#fff8e1;border:1px solid #ffe082;border-radius:10px;padding:12px 16px">
+                <div style="font-size:13px;color:#555;line-height:1.5">
+                  <strong>Action required:</strong> Complete mapping of all product types across both COOs (Thailand & Myanmar) to calculate the exact duty optimization score per market.
+                </div>
+              </div>
+            </div>
+          </div>`,
+      },
     ],
   },
   // ===== ESG =====
