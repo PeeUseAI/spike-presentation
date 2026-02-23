@@ -1939,10 +1939,6 @@ const kpiData = [
     ],
     improvementPlan: [
       'Target all factories at 4Q level (≥ 80%). 2026 plan: TTT=82, VAS=82, TITAN=82, TTM=86. AD4 SPIKE = (9+11)/2 = 10.',
-      'QMS: Standardize ISO 9001:2015 across all factories. Establish digital QMS through CTQ & QAR Portal.',
-      'People: Digital AI quality soft-skill training for middle management. Reinforcement of RQC "Right Quality Culture" especially for Football BU.',
-      'Process: CTQ Risk assessment E2E system. Internal X-CTQ and quality process audits. Enhancement of Quality statistical control charts.',
-      'Compliance: CTQ & OCPT integration. Lab testing capacity expansion. Culture & QA manufacturing audit enhancement.',
     ],
     extraSlides: [
       {
@@ -2895,12 +2891,12 @@ function buildKpiExtraSlide(kpi, extra) {
     // Strategy pillars (2x2 grid)
     let pillarsHtml = '';
     if (extra.pillars) {
-      pillarsHtml = '<div class="kpi-pillar-grid" style="gap:10px">';
+      pillarsHtml = '<div class="kpi-pillar-grid" style="gap:12px;flex:1">';
       extra.pillars.forEach(p => {
-        const items = p.items.map(i => `<li style="font-size:13px;margin-bottom:3px">${i}</li>`).join('');
+        const items = p.items.map(i => `<li style="font-size:14px;margin-bottom:5px;line-height:1.45">${i}</li>`).join('');
         pillarsHtml += `
-          <div class="kpi-pillar-card" style="padding:10px 14px;opacity:1">
-            <h4 style="color:${p.color};font-size:15px;margin-bottom:5px">${p.name}</h4>
+          <div class="kpi-pillar-card" style="padding:14px 18px;opacity:1">
+            <h4 style="color:${p.color};font-size:16px;margin-bottom:6px">${p.name}</h4>
             <ul>${items}</ul>
           </div>`;
       });
