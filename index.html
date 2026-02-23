@@ -2040,6 +2040,12 @@ const kpiData = [
     endYear2025: 9,
     maxPts2025: 15,
     target2026: 13,
+    facilityResult: {
+      title: 'T1 SPIKE Facility Level Result — 2025 Full-Year (For T1)',
+      headers: ['', 'Category<br>Competency', 'Product<br>Competency', 'Discipline', 'Buy Ready<br>Excellence', 'Product Dev<br>Satisfaction', 'Total P&D<br>(max 15)'],
+      actual:  ['TTA (Apparel)', '2.0', '2.0', '1.0', '1.0', '3.0', '9.0'],
+      full:    ['Full Score',    '3.0', '3.0', '2.0', '2.0', '5.0', '15.0'],
+    },
     keyLearning: [
       'Football License — New Entrant: Successfully assessed and launched Base Styles 26, 27 as a new license entrant. Base 28 is progressing with positive recognition. Demonstrated compliance standards and advanced embellishment development (Sublimation & Deboss).',
       'Locker Room Platform Expansion: Supporting adidas across diverse sportswear categories — category/product type flexibility, expansion into new ranges and graphic executions, and capability to support dual-source production and customization ranges.',
@@ -2705,24 +2711,65 @@ function buildKpiLearningSlide(kpi) {
   const prevLabel = kpi.maxPts2025 !== kpi.maxPts ? `${kpi.endYear2025} / ${kpi.maxPts2025}` : `${kpi.endYear2025}`;
   const nextLabel = `${kpi.target2026} / ${kpi.maxPts}`;
 
+  // Helper: bold text before first colon/dash separator
+  function boldLeader(text) {
+    const m = text.match(/^([^:—]+)([:—])(.*)/);
+    if (m) return `<strong>${m[1]}${m[2]}</strong>${m[3]}`;
+    return text;
+  }
+
   // Bullet list for key learnings
-  const learningItems = kpi.keyLearning.map(item => `<li>${item}</li>`).join('');
+  const learningItems = kpi.challengeItems
+    ? kpi.keyLearning.map(item => `<li>${boldLeader(item)}</li>`).join('')
+    : kpi.keyLearning.map(item => `<li>${item}</li>`).join('');
 
   // Bullet list for challenge items (if present)
   let challengeItems = '';
   if (kpi.challengeItems) {
-    challengeItems = kpi.challengeItems.map(item => `<li>${item}</li>`).join('');
+    challengeItems = kpi.challengeItems.map(item => `<li>${boldLeader(item)}</li>`).join('');
   }
 
   // Bullet list for improvement plan (supports flat array or sectioned object)
   let planItems = '';
   if (Array.isArray(kpi.improvementPlan)) {
-    planItems = kpi.improvementPlan.map(item => `<li>${item}</li>`).join('');
+    planItems = kpi.challengeItems
+      ? kpi.improvementPlan.map(item => `<li>${boldLeader(item)}</li>`).join('')
+      : kpi.improvementPlan.map(item => `<li>${item}</li>`).join('');
   } else if (kpi.improvementPlan && kpi.improvementPlan.sections) {
     kpi.improvementPlan.sections.forEach(sec => {
       planItems += `<li style="list-style:none;font-weight:700;margin-top:6px;color:var(--accent)">${sec.header}</li>`;
       planItems += sec.items.map(item => `<li>${item}</li>`).join('');
     });
+  }
+
+  // Facility result table (if present)
+  let facilityHtml = '';
+  if (kpi.facilityResult) {
+    const fr = kpi.facilityResult;
+    const hdrs = fr.headers.map(h => `<th style="font-size:11px;padding:4px 6px;background:#4472c4;color:#fff;text-align:center;font-weight:600">${h}</th>`).join('');
+    const actCells = fr.actual.map((c, i) => {
+      const style = i === fr.actual.length - 1
+        ? 'background:#e2efda;font-weight:700;color:#2e7d32'
+        : i === 0 ? 'font-weight:600;text-align:left' : 'text-align:center';
+      return `<td style="font-size:12px;padding:4px 6px;${style}">${c}</td>`;
+    }).join('');
+    const fullCells = fr.full.map((c, i) => {
+      const style = i === fr.full.length - 1
+        ? 'background:#e2efda;font-weight:700;color:#2e7d32'
+        : i === 0 ? 'font-weight:600;text-align:left;color:#888' : 'text-align:center;color:#888';
+      return `<td style="font-size:12px;padding:4px 6px;${style}">${c}</td>`;
+    }).join('');
+    facilityHtml = `
+      <div style="margin-bottom:8px">
+        <div style="font-size:12px;font-weight:700;color:#333;margin-bottom:4px">${fr.title}</div>
+        <table style="width:100%;border-collapse:collapse;border:1px solid #ccc;border-radius:6px;overflow:hidden">
+          <thead><tr>${hdrs}</tr></thead>
+          <tbody>
+            <tr style="background:#fff">${actCells}</tr>
+            <tr style="background:#f5f5f5">${fullCells}</tr>
+          </tbody>
+        </table>
+      </div>`;
   }
 
   // 3-column layout when challengeItems exist (Success | Challenge | Improvement Plan)
@@ -2746,6 +2793,7 @@ function buildKpiLearningSlide(kpi) {
             <div class="lbl">Target 2026</div>
             <div class="lbl" style="font-size:10px;color:#999">(of ${kpi.maxPts} pts)</div>
           </div>
+          <div style="flex:1">${facilityHtml}</div>
         </div>
         <div style="display:flex;gap:12px;flex:1;min-height:0">
           <div class="kpi-card learning" style="flex:1;overflow-y:auto">
