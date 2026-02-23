@@ -1727,7 +1727,39 @@ const kpiData = [
     ],
     currentRange: 'Not yet scored',
     evaluatingNote: 'This KPI is still being evaluated. Only the measurement criteria are shown.',
-    hasLearning: false,              // no learning — still evaluating
+    hasLearning: true,
+    learningTitle: 'FOB Target Achievement',
+    endYear2025: 5,
+    maxPts2025: 10,
+    target2026: 1,
+    targetMaxPts: 5,
+    keyLearning: [
+      'Exclude Lock Room article with "Special Usage — Customization" from the SPIKE costing KPI end year\u2019s FW26 onwards.',
+      'Football License: Thongthai is in group B. The challenge is a product design and a bit of an opportunity to purpose option to reduce the price.',
+      'Most carry over style remain at the initial target FOB.',
+    ],
+    improvementPlan: [
+      'Base FOB Deviation \u2265 10%: We are analyzing from P1, P2 comment, which one of the FOBs will increase or decrease and look for options in product engineering with each milestone.',
+      'Base FOB Deviation < 10%: We are trying to look for options in the CTV project with each milestone.',
+      'Carry Over style: Inform BU costing reconsider adjust target FOB.',
+    ],
+    fobReport: {
+      headers: ['P2 CBD Report<br>(without GTS)', 'Season', 'Working #', 'Seasonal Total<br>Target FOB', 'Seasonal Total<br>Actual FOB', 'Seasonal<br>Variance', 'Seasonal<br>Variance %', 'Seasonal<br>Score'],
+      rows: [
+        ['Date: 21.2.26', 'SS27', '283', '33,360,628', '33,610,593', '249,964', '0.75%', '<span style="color:red;font-weight:700">0</span>'],
+      ],
+    },
+    extraSlides: [
+      {
+        title: 'Holistic Cost Contribution — Target: 2 pts',
+        type: 'content',
+        items: [
+          'Target 2026: 2 points (out of 5 pts).',
+          'Discretionary award by adidas Costing team based on holistic cost contribution assessment.',
+          'Action plan will come next month — this was rolled out to us on Friday.',
+        ],
+      },
+    ],
   },
   // ===== ESG =====
   {
@@ -2827,6 +2859,28 @@ function buildKpiLearningSlide(kpi) {
     });
   }
 
+  // FOB report table (if present — Competitive KPI)
+  let fobReportHtml = '';
+  if (kpi.fobReport) {
+    const fr = kpi.fobReport;
+    const hdrs = fr.headers.map(h => `<th style="font-size:11px;padding:6px 8px;text-align:center;font-weight:600">${h}</th>`).join('');
+    const rows = fr.rows.map(row => {
+      const cells = row.map((c, i) => {
+        const bg = i === 3 ? 'background:#fce4c0' : i === 4 ? 'background:#d4edda' : i === 5 ? 'background:#e2d4f0' : i >= 6 ? 'background:#b8e0f0' : '';
+        return `<td style="font-size:12px;padding:6px 8px;text-align:center;${bg}">${c}</td>`;
+      }).join('');
+      return `<tr>${cells}</tr>`;
+    }).join('');
+    fobReportHtml = `
+      <div style="margin-top:8px;background:var(--bg-card);border:1px solid #e0e0e0;border-radius:10px;padding:12px 16px">
+        <h4 style="font-size:14px;font-weight:700;color:#555;margin-bottom:6px">P2 CBD Report — FOB Target Achievement</h4>
+        <table style="width:100%;border-collapse:collapse;border:1px solid #ccc;border-radius:6px;overflow:hidden">
+          <thead><tr style="background:#888;color:#fff">${hdrs}</tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+  }
+
   // Facility result table (if present)
   let facilityHtml = '';
   if (kpi.facilityResult) {
@@ -2898,12 +2952,15 @@ function buildKpiLearningSlide(kpi) {
     </div>`;
   }
 
+  const displayTitle = kpi.learningTitle || kpi.name;
+  const displayTargetMax = kpi.targetMaxPts || kpi.maxPts;
+
   return `
     <div class="slide" id="kpi-${kpi.id}-learning" data-animate="kpi-learning">
       <div class="kpi-learning-slide">
         <div class="kpi-learn-top">
           ${badge}
-          <span class="kpi-title">${kpi.name}</span>
+          <span class="kpi-title">${displayTitle}</span>
         </div>
         <div style="display:flex;align-items:center;gap:32px;">
           <div class="kpi-circle prev">
@@ -2915,7 +2972,7 @@ function buildKpiLearningSlide(kpi) {
           <div class="kpi-circle next">
             <div class="num">${kpi.target2026}</div>
             <div class="lbl">Target 2026</div>
-            <div class="lbl" style="font-size:10px;color:#999">(of ${kpi.maxPts} pts)</div>
+            <div class="lbl" style="font-size:10px;color:#999">(of ${displayTargetMax} pts)</div>
           </div>
         </div>
         <div class="kpi-cards">
@@ -2928,6 +2985,7 @@ function buildKpiLearningSlide(kpi) {
             <ul>${planItems}</ul>
           </div>
         </div>
+        ${fobReportHtml}
       </div>
     </div>`;
 }
