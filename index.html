@@ -2026,6 +2026,7 @@ const kpiData = [
       ['Exceed expectation', '14–17'], ['Outstanding', '18–20'],
     ],
     currentRange: 'Meet expectation',
+    hideScoring: true,
     // 7 sub-KPI tracking table from PPTX slide 36
     subKpis: [
       { name: 'Category Knowledge and Expertise', target: 'Exceed expectation', jan: 'Meet expectation' },
@@ -2055,7 +2056,6 @@ const kpiData = [
       'T2 Stability & Transition: Delayed responsiveness and sample turnaround from selected T2 partners. Business exit of one T2 required re-development of multiple colorways with three replacement suppliers.',
       'Fabric Technical Risk: Engineered fabric met fabric-stage tolerance (slanting) but was not acceptable at garment stage, leading to full range re-development due to change of new fabric item.',
       'Development Alignment Gaps: Ownership transitions during development created temporary communication inefficiencies and slower decision cycles.',
-      'Business Impact: Increased development workload, additional validation cycles, timeline pressure during key milestones, and temporary stakeholder dissatisfaction during transition period.',
     ],
     improvementPlan: [
       'Strategic Development Capacity Planning — Proactively align with CC range projections to ensure early resource planning and readiness for upcoming developments.',
@@ -2064,7 +2064,57 @@ const kpiData = [
       'Digital Enablement — Implement digital tracking and workflow management tools to enhance transparency, improve cross-functional collaboration, and drive sustainable Buy Ready on-time performance.',
       'Strengthened T1–T2 Alignment — Define key and strategic T2 partners by Business Unit and establish closer collaboration to ensure faster response, clearer ownership, and improved development efficiency.',
     ],
-    extraSlides: [],
+    extraSlides: [
+      {
+        title: 'Product & Dev Competency — January 2026 Highlights',
+        type: 'custom',
+        html: `
+          <div style="display:flex;flex-direction:column;gap:16px;flex:1;min-height:0;overflow-y:auto">
+            <div>
+              <div style="font-size:15px;margin-bottom:8px"><span style="color:var(--green);font-size:18px">&#10003;</span> Drive <strong>operational efficiency</strong> and <strong>cost effectiveness</strong> by <strong>simplifying graphic execution</strong> — replacing complex multi-color screen printing with ready-to-apply heat transfer applications.</div>
+            </div>
+            <div style="display:flex;gap:16px;align-items:flex-start">
+              <div style="flex:0 0 auto">
+                <div style="font-weight:700;font-size:14px;margin-bottom:6px">SS27 Late add FB Culture wear</div>
+                <img src="pdev-slide1-picture-5.png" alt="FB Culture Wear" style="max-height:200px;border-radius:6px;border:1px solid #e0e0e0">
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+                <div style="font-weight:700;font-size:14px">Avg 2.5% FOB Reduction</div>
+                <table style="width:100%;border-collapse:collapse;font-size:12px;border:1px solid #ccc">
+                  <thead><tr style="background:#4472c4;color:#fff"><th style="padding:4px 8px">Season</th><th style="padding:4px 8px">Working Number</th><th style="padding:4px 8px">FOB<br>(Screen print)</th><th style="padding:4px 8px">FOB<br>(Heat transfer)</th><th style="padding:4px 8px">Marketing<br>Forecast</th></tr></thead>
+                  <tbody>
+                    <tr style="background:#fff"><td style="padding:4px 8px;text-align:center">SS27</td><td style="padding:4px 8px">S2706CHLF053</td><td style="padding:4px 8px;text-align:center">$9.44</td><td style="padding:4px 8px;text-align:center">$9.20</td><td style="padding:4px 8px;text-align:center">10,000</td></tr>
+                    <tr style="background:#f5f5f5"><td style="padding:4px 8px;text-align:center">SS27</td><td style="padding:4px 8px">S2706CHLF053Y</td><td style="padding:4px 8px;text-align:center">$8.13</td><td style="padding:4px 8px;text-align:center">$7.93</td><td style="padding:4px 8px;text-align:center">5,000</td></tr>
+                  </tbody>
+                </table>
+                <img src="pdev-slide1-picture-11.png" alt="Execution Comparison" style="max-width:100%;max-height:160px;border-radius:4px;border:1px solid #e0e0e0">
+              </div>
+            </div>
+            <div>
+              <div style="font-size:15px;margin-bottom:8px"><span style="color:var(--green);font-size:18px">&#10003;</span> Utilizing <strong>CLO3D</strong> to accelerate fit confirmation and appearance validation in the development process.</div>
+              <div style="display:flex;gap:12px;align-items:flex-start">
+                <img src="pdev-slide1-picture-21.png" alt="CLO3D FORTORE" style="max-height:200px;border-radius:6px;border:1px solid #e0e0e0">
+                <img src="pdev-slide1-picture-16.png" alt="adidas feedback" style="max-height:200px;border-radius:6px;border:1px solid #e0e0e0">
+              </div>
+            </div>
+          </div>`,
+      },
+      {
+        title: 'Product & Dev Competency — BR & Proto Sample KPI Jan 2026',
+        type: 'custom',
+        html: `
+          <div style="display:flex;flex-direction:column;gap:32px;flex:1;align-items:center;justify-content:center">
+            <div style="text-align:center">
+              <div style="font-size:20px;font-weight:700;color:#2e7d32;margin-bottom:12px">BR on time KPI — Jan 2026</div>
+              <img src="pdev-slide2-picture-6.png" alt="BR on time KPI" style="max-width:90%;max-height:30vh;border-radius:6px;border:1px solid #e0e0e0;box-shadow:0 2px 8px rgba(0,0,0,0.08)">
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:20px;font-weight:700;color:#2e7d32;margin-bottom:12px">Proto sample on time KPI — Jan 2026</div>
+              <img src="pdev-slide2-picture-4.png" alt="Proto sample KPI" style="max-width:90%;max-height:30vh;border-radius:6px;border:1px solid #e0e0e0;box-shadow:0 2px 8px rgba(0,0,0,0.08)">
+            </div>
+          </div>`,
+      },
+    ],
   },
   {
     id: 'engineering',
@@ -2664,6 +2714,7 @@ function buildKpiDataSlide(kpi) {
         <div class="kpi-body"${kpi.hideScoring ? ' style="justify-content:center"' : ''}>
           ${kpi.hideScoring ? `
           <div style="flex:1;max-width:800px;display:flex;flex-direction:column;gap:8px;opacity:0" class="kpi-left">
+            ${subKpiHtml}
             ${keyLearningHtml}
             ${factoryHtml}
             <div class="kpi-desc" style="font-size:14px">
@@ -3107,6 +3158,10 @@ function buildKpiExtraSlide(kpi, extra) {
           <ul>${llItems}</ul>
         </div>
       </div>`;
+  }
+
+  else if (extra.type === 'custom') {
+    bodyHtml = extra.html;
   }
 
   return `
