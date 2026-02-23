@@ -1440,7 +1440,7 @@ const data2025 = [
 const data2026 = [
   ['Availability',                  10, 10,    10,    null,            'Agile — 20%'],
   ['Responsiveness',                10,  9,     9,    null,            null],
-  ['FOB / Landed Cost Achievement', 15,  0,     0,    'Target TBD',   'Competitive — 15%'],
+  ['FOB / Landed Cost Achievement', 15,  6,     0,    null,            'Competitive — 15%'],
   ['Social Compliance',             10,  8.5,   0,    'Audited Q4',   'ESG — 20%'],
   ['Sourcing Sustainability',       10,  7.2,   5.85, null,            null],
   ['Quality',                       15,  10,    0,    'Not yet scored','Quality — 15%'],
@@ -1673,11 +1673,11 @@ const kpiData = [
     catColor: '#c49000',
     lead: 'Costing Team',
     maxPts: 15,
-    currentScore: null,              // not yet scored — still evaluating
+    currentScore: null,
     rollingPct: null,
     janPct: null,
-    targetPct: 'TBD — Still evaluating',
-    description: 'Measures supplier cost competitiveness across 3 areas: FOB Target Achievement, Holistic Cost Contribution, and Duty Benefit Optimization. Total 15 points.',
+    targetPct: '6 / 15 pts — FOB (1) + Holistic Cost (2) + Duty Benefit (3)',
+    description: 'Measures supplier cost competitiveness across 3 areas: FOB Target Achievement (5 pts), Holistic Cost Contribution (5 pts), and Duty Benefit Optimization (5 pts). Total 15 points.\nTarget breakdown: FOB Target = 1, Holistic Cost = 2, Duty Benefit = 3.',
     scoring: [],                     // empty — we use componentScoring instead
     scoringIsComponents: true,
     componentScoring: [
@@ -1726,7 +1726,7 @@ const kpiData = [
       },
     ],
     currentRange: 'Not yet scored',
-    evaluatingNote: 'This KPI is still being evaluated. Only the measurement criteria are shown.',
+    evaluatingNote: '2026 Target Score: FOB Target Achievement (1) + Holistic Cost Contribution (2) + Duty Benefit Optimization (3) = 6 / 15 pts.',
     hasLearning: true,
     learningTitle: 'FOB Target Achievement',
     endYear2025: 5,
