@@ -2875,17 +2875,17 @@ function buildKpiExtraSlide(kpi, extra) {
     if (extra.factoryData) {
       planTableHtml = buildDataTable(extra.factoryData.headers, extra.factoryData.rows);
       if (extra.factoryData.summary) {
-        planTableHtml += `<div style="text-align:center;font-size:11px;color:var(--accent);margin-top:3px;font-weight:700">${extra.factoryData.summary}</div>`;
+        planTableHtml += `<div style="text-align:center;font-size:13px;color:var(--accent);margin-top:6px;font-weight:700">${extra.factoryData.summary}</div>`;
       }
     }
     // Improvement plan bullets (from parent kpi)
     let improvePlanHtml = '';
     if (kpi.improvementPlan && kpi.improvementPlan.length > 0) {
-      const planItems = kpi.improvementPlan.map(item => `<li style="font-size:11px;margin-bottom:2px">${item}</li>`).join('');
+      const planItems = kpi.improvementPlan.map(item => `<li style="font-size:14px;margin-bottom:5px;line-height:1.4">${item}</li>`).join('');
       improvePlanHtml = `
-        <div style="background:var(--bg-card);border:1px solid #e0e0e0;border-radius:8px;padding:8px 12px;margin-top:6px">
-          <h4 style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:4px">Improvement Plan 2026</h4>
-          <ul style="padding-left:16px;margin:0">${planItems}</ul>
+        <div style="background:var(--bg-card);border:1px solid #e0e0e0;border-radius:10px;padding:14px 18px">
+          <h4 style="font-size:16px;font-weight:700;color:var(--green);margin-bottom:8px">Improvement Plan 2026</h4>
+          <ul style="padding-left:20px;margin:0">${planItems}</ul>
         </div>`;
     }
     // Strategy pillars (2x2 grid)
@@ -2904,12 +2904,12 @@ function buildKpiExtraSlide(kpi, extra) {
     }
     // Two-column layout: left = circles + plan table, right = improvement plan + strategy pillars
     bodyHtml = `
-      <div style="display:flex;gap:14px;flex:1;min-height:0">
-        <div style="flex:1;display:flex;flex-direction:column;gap:4px;overflow-y:auto">
+      <div style="display:flex;gap:18px;flex:1;min-height:0">
+        <div style="flex:1;display:flex;flex-direction:column;gap:8px;overflow-y:auto">
           ${circlesHtml}
           ${planTableHtml}
         </div>
-        <div style="flex:1;display:flex;flex-direction:column;gap:4px;overflow-y:auto">
+        <div style="flex:1;display:flex;flex-direction:column;gap:10px;overflow-y:auto">
           ${improvePlanHtml}
           ${pillarsHtml}
         </div>
