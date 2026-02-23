@@ -1905,20 +1905,20 @@ const kpiData = [
       ['≥ 84%', 10], ['≥ 86%', 11], ['≥ 88%', 12], ['≥ 90%', 13], ['≥ 91%', 14], ['≥ 92%', 15],
     ],
     currentRange: 'Not yet scored',
-    // 2025 QKPI factory breakdown from PPTX slide 28
+    // 2024 vs 2025 QKPI comparison by COO (from PPT image 24)
     factoryData: {
-      headers: ['2025 QKPI', 'AD4001<br>TTT', 'AD4001<br>VAS', 'AD4001<br>TITAN', 'AD4014<br>TTM'],
+      headers: ['QKPI Pillars', '2024<br>COO-TH', '2025<br>COO-TH', '2024<br>COO-MM', '2025<br>COO-MM'],
       rows: [
-        ['Digital-Pivot88 (10)', '5', '5', '5', '5'],
-        ['CE - Defective Return (10)', '4', '4', '4', '7'],
-        ['- WH Claim (30)', '7', '7', '7', '25'],
-        ['- AQL Validation (10)', '9', '9', '9', '7'],
-        ['QA Manufacturing (10)', '8', '8', '8', '6'],
-        ['- Testing (10)', '10', '10', '10', '10'],
-        ['- Yearly Focus (10)', '8', '8', '8', '8'],
-        ['- Culture (10)', '8', '8', '8', '8'],
-        ['Total (Q Ranking)', '59 (2Q)', '59 (2Q)', '59 (2Q)', '76 (3Q)'],
-        ['SPIKE Score', '0', '0', '0', '6'],
+        ['Digital–Pivot88 (10)', '3', '5', '3', '5'],
+        ['Defective Returns (10)', '10', '4', '0', '7'],
+        ['Warehouse Claims (30)', '23', '7', '5', '25'],
+        ['AQL Validation (10)', '9', '9', '5', '7'],
+        ['QA Manufacturing (10)', '6.7', '8', '5', '6'],
+        ['Testing: Lab & OCPT (10)', '9', '10', '10', '10'],
+        ['Yearly Focus Topic (10)', '7', '8', '7', '8'],
+        ['Culture (10)', '9', '8', '5', '8'],
+        ['Total QKPI Scores', '76', '59', '40', '76'],
+        ['Q-KPI Rating Result', '3Q', '2Q', '2Q', '3Q'],
       ],
       summary: 'AD4 SPIKE score = (0 + 6) / 2 = 3.0 — End Year 2025',
     },
@@ -1951,30 +1951,7 @@ const kpiData = [
         ],
         scaleImage: 'qkpi-scale.png',
       },
-      {
-        title: 'Quality — 2024 vs 2025 QKPI Comparison',
-        type: 'comparison',
-        factoryData: {
-          headers: ['Factory (COO)', '2024 QKPI', '2025 QKPI', 'Change'],
-          rows: [
-            ['TTT (COO-TH)', '59 (2Q)', '59 (2Q)', '0'],
-            ['VAS (COO-TH)', '59 (2Q)', '59 (2Q)', '0'],
-            ['TITAN (COO-TH)', '59 (2Q)', '59 (2Q)', '0'],
-            ['TTM (COO-MM)', '40 (2Q)', '76 (3Q)', '+36'],
-          ],
-        },
-        highlights: [
-          'TTM (COO-MM) improved significantly from 40 to 76 (+36 points), moving from 2Q to 3Q',
-          'WHC and Defective Return performance improved in TTM',
-          'Achieved maximum 10 scores in QKPI-Testing for both COO-Thailand and COO-Myanmar',
-          'Digital-Pivot QKPI scores increased from 2024 to 2025 for both COOs',
-        ],
-        lowlights: [
-          'COO-TH WHC score decreased by 16 points — mainly from VAS CMA functional testing failure for aChina POs during Q1-Q2 2025',
-          'After improvement actions, Q3-Q4 2025 had no more CMA-WHC issues',
-          'CE (Defective Return / WH Claim) QKPI for COO-Thailand decreased overall',
-        ],
-      },
+      // 2024 vs 2025 Comparison removed — data now in factoryData on data slide
       {
         title: 'CE QKPI — 2025 WH Claim Analysis',
         type: 'visual',
@@ -2925,15 +2902,15 @@ function buildKpiExtraSlide(kpi, extra) {
       });
       pillarsHtml += '</div>';
     }
-    // Two-column layout: left = circles + plan table + improvement, right = strategy pillars
+    // Two-column layout: left = circles + plan table, right = improvement plan + strategy pillars
     bodyHtml = `
       <div style="display:flex;gap:14px;flex:1;min-height:0">
         <div style="flex:1;display:flex;flex-direction:column;gap:4px;overflow-y:auto">
           ${circlesHtml}
           ${planTableHtml}
-          ${improvePlanHtml}
         </div>
         <div style="flex:1;display:flex;flex-direction:column;gap:4px;overflow-y:auto">
+          ${improvePlanHtml}
           ${pillarsHtml}
         </div>
       </div>`;
