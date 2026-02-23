@@ -1886,9 +1886,10 @@ const kpiData = [
     rollingPct: null,
     janPct: null,
     targetPct: '8.5 / 15 pts — Target: 4Q (≥ 80%)',
-    trendImage: 'qkpi-trend.png',
+    hideScoring: true,
+    showKeyLearningOnDataSlide: true,
     description: 'All active facilities measured and scored in Q-KPI or Q-KPI Light program. Performance measured by Quality team. AD4 SPIKE = average of COO-TH and COO-MM scores.',
-    // Full 16-level scoring from PPTX
+    // Full 16-level scoring from PPTX (hidden via hideScoring flag — kept for reference)
     scoring: [
       ['< 60%', 0], ['≥ 60%', 1], ['≥ 64%', 2], ['≥ 67%', 3], ['≥ 70%', 4],
       ['≥ 73%', 5], ['≥ 76%', 6], ['≥ 78%', 7], ['≥ 80%', 8], ['≥ 82%', 9],
@@ -1912,7 +1913,7 @@ const kpiData = [
       ],
       summary: 'AD4 SPIKE score = (0 + 6) / 2 = 3.0 — End Year 2025',
     },
-    hasLearning: true,
+    hasLearning: false,  // learning content moved: Key Learning → data slide, Improvement Plan → combined plan slide
     endYear2025: 3.0,
     maxPts2025: 15,
     target2026: 8.5,
@@ -1978,8 +1979,8 @@ const kpiData = [
         caption: 'Grand Total: 65,650 pcs / $301K (2024) → 18,798 pcs / $32.7K (2025) — 71% reduction. TTM improved significantly from 62,089 to 3,869 pcs.',
       },
       {
-        title: 'Quality — 2026 QKPI Plan by Facility',
-        type: 'factory-plan',
+        title: 'Quality — 2026 Plan & Strategy',
+        type: 'plan-strategy-combined',
         factoryData: {
           headers: ['2026 QKPI Plan', 'TTT', 'VAS', 'TITAN', 'TTM'],
           rows: [
@@ -1996,10 +1997,6 @@ const kpiData = [
           ],
           summary: 'AD4 SPIKE point plan = (8 + 9) / 2 = 8.5',
         },
-      },
-      {
-        title: 'Quality — 2026 Strategy',
-        type: 'strategy',
         pillars: [
           { name: 'QMS (Enhancement)', color: 'var(--accent)', items: [
             'Standardize and align ISO 9001:2015 QMS across all factory facilities (Q1-Q3)',
@@ -2424,6 +2421,17 @@ function buildKpiDataSlide(kpi) {
     trendImageHtml = `<div style="margin:4px 0;text-align:center"><img src="${kpi.trendImage}" alt="End Year 2025 Trend" style="max-width:100%;max-height:240px;border-radius:6px;border:1px solid #e0e0e0"></div>`;
   }
 
+  // Key Learning inline on data slide (Quality — replaces trend image)
+  let keyLearningHtml = '';
+  if (kpi.showKeyLearningOnDataSlide && kpi.keyLearning) {
+    const learningItems = kpi.keyLearning.map(item => `<li style="margin-bottom:4px">${item}</li>`).join('');
+    keyLearningHtml = `
+      <div style="background:var(--bg-card);border:1px solid #e0e0e0;border-radius:10px;padding:12px 16px;margin:6px 0">
+        <h4 style="font-size:14px;font-weight:700;color:var(--yellow);margin-bottom:6px">Key Learning 2025</h4>
+        <ul style="font-size:12px;padding-left:18px;margin:0">${learningItems}</ul>
+      </div>`;
+  }
+
   // Monthly data table (if present — MDP, SDP, Responsiveness, EFD, Traceability)
   let monthlyHtml = '';
   if (kpi.monthlyData) {
@@ -2503,8 +2511,8 @@ function buildKpiDataSlide(kpi) {
       }
     });
   }
-  // Standard scoring table (if scoring array has entries)
-  else if (kpi.scoring && kpi.scoring.length > 0) {
+  // Standard scoring table (if scoring array has entries and not hidden)
+  else if (kpi.scoring && kpi.scoring.length > 0 && !kpi.hideScoring) {
     if (kpi.scoringLabel) tableHtml += `<div class="kpi-scoring-label">${kpi.scoringLabel}</div>`;
     tableHtml += '<table class="kpi-scoring-table"><thead><tr>';
     if (kpi.scoringIsFactories) {
@@ -2661,6 +2669,7 @@ function buildKpiDataSlide(kpi) {
           <div class="kpi-left">
             ${chartHtml}
             ${trendImageHtml}
+            ${keyLearningHtml}
             ${monthlyHtml}
             ${factoryHtml}
             ${socialTargetHtml}
@@ -2834,6 +2843,72 @@ function buildKpiExtraSlide(kpi, extra) {
         </div>`;
     });
     bodyHtml += '</div>';
+  }
+
+  else if (extra.type === 'plan-strategy-combined') {
+    // Combined: score circles + plan table + improvement plan + strategy pillars
+    // Score circles (from parent kpi)
+    let circlesHtml = '';
+    if (kpi.endYear2025 != null && kpi.target2026 != null) {
+      circlesHtml = `
+        <div style="display:flex;align-items:center;gap:16px;justify-content:center;margin-bottom:8px">
+          <div style="width:70px;height:70px;border-radius:50%;border:3px solid #888;display:flex;flex-direction:column;align-items:center;justify-content:center">
+            <div style="font-size:20px;font-weight:700;color:#555">${kpi.endYear2025}</div>
+            <div style="font-size:8px;color:#888">End 2025</div>
+            <div style="font-size:7px;color:#aaa">(of ${kpi.maxPts2025} pts)</div>
+          </div>
+          <div style="font-size:20px;color:var(--accent);font-weight:700">→</div>
+          <div style="width:70px;height:70px;border-radius:50%;border:3px solid var(--green);display:flex;flex-direction:column;align-items:center;justify-content:center">
+            <div style="font-size:20px;font-weight:700;color:var(--green)">${kpi.target2026}</div>
+            <div style="font-size:8px;color:#888">Target 2026</div>
+            <div style="font-size:7px;color:#aaa">(of ${kpi.maxPts} pts)</div>
+          </div>
+        </div>`;
+    }
+    // Factory plan table
+    let planTableHtml = '';
+    if (extra.factoryData) {
+      planTableHtml = buildDataTable(extra.factoryData.headers, extra.factoryData.rows);
+      if (extra.factoryData.summary) {
+        planTableHtml += `<div style="text-align:center;font-size:11px;color:var(--accent);margin-top:3px;font-weight:700">${extra.factoryData.summary}</div>`;
+      }
+    }
+    // Improvement plan bullets (from parent kpi)
+    let improvePlanHtml = '';
+    if (kpi.improvementPlan && kpi.improvementPlan.length > 0) {
+      const planItems = kpi.improvementPlan.map(item => `<li style="font-size:11px;margin-bottom:2px">${item}</li>`).join('');
+      improvePlanHtml = `
+        <div style="background:var(--bg-card);border:1px solid #e0e0e0;border-radius:8px;padding:8px 12px;margin-top:6px">
+          <h4 style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:4px">Improvement Plan 2026</h4>
+          <ul style="padding-left:16px;margin:0">${planItems}</ul>
+        </div>`;
+    }
+    // Strategy pillars (compact 2x2)
+    let pillarsHtml = '';
+    if (extra.pillars) {
+      pillarsHtml = '<div class="kpi-pillar-grid" style="gap:8px">';
+      extra.pillars.forEach(p => {
+        const items = p.items.map(i => `<li style="font-size:10px;margin-bottom:1px">${i}</li>`).join('');
+        pillarsHtml += `
+          <div class="kpi-pillar-card" style="padding:8px 10px;opacity:1">
+            <h4 style="color:${p.color};font-size:12px;margin-bottom:3px">${p.name}</h4>
+            <ul>${items}</ul>
+          </div>`;
+      });
+      pillarsHtml += '</div>';
+    }
+    // Two-column layout: left = circles + plan table + improvement, right = strategy pillars
+    bodyHtml = `
+      <div style="display:flex;gap:14px;flex:1;min-height:0">
+        <div style="flex:1;display:flex;flex-direction:column;gap:4px;overflow-y:auto">
+          ${circlesHtml}
+          ${planTableHtml}
+          ${improvePlanHtml}
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:4px;overflow-y:auto">
+          ${pillarsHtml}
+        </div>
+      </div>`;
   }
 
   else if (extra.type === 'framework') {
