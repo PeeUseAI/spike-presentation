@@ -2085,15 +2085,15 @@ const kpiData = [
             ['', '', 'Automation', 'Deskilling applications/equipment to drive product excellence at development center and factory level'],
             ['', '', 'Digital', 'Data Driven Production Management & E2E Planning through Production Data Capture and Availability'],
             ['', '', 'Commitment', 'Ensure adequate team setup to drive valued initiatives'],
-            ['Concepts (HPC)', '6 pts<br><span style="font-size:9px;color:#888">(shared)</span>', 'HPC Delivery', 'Deliver brand innovation concepts for athletes/events'],
-            ['', '', 'HPC Ingredients', 'Provide and Deliver Innovation Solutions integrated in the HPC'],
-            ['', '', 'Commitment', 'Dedicated expertise allocated to HPC with innovative mindset'],
-            ['Capabilities', '<span style="color:#888">Future</span>', 'Ingredients', 'Textile Innovation, Foam, Polymer, Process & Method of Make'],
-            ['', '', 'Digital Asset', 'Assisted product engineering for factory in scope'],
-            ['', '', 'Commercial Tech', 'Adopt and land mature technology across products'],
-            ['Excellence', '<span style="color:#888">Future</span>', 'Method of Make', 'Best-in-class practices elevating Product Execution Consistency & Deskilling'],
-            ['', '', 'Benchmarking', 'Feature Complexity, Output Performance, Commercial Readiness for Critical Processes'],
-            ['', '', 'Solution Ownership', 'Deploy resources to new facilities & proactively scout/validate manufacturing technologies'],
+            ['Concepts (HPC)', {text: '6 pts', rowspan: 9}, 'HPC Delivery', 'Deliver brand innovation concepts for athletes/events'],
+            ['', null, 'HPC Ingredients', 'Provide and Deliver Innovation Solutions integrated in the HPC'],
+            ['', null, 'Commitment', 'Dedicated expertise allocated to HPC with innovative mindset'],
+            ['Capabilities', null, 'Ingredients', 'Textile Innovation, Foam, Polymer, Process & Method of Make'],
+            ['', null, 'Digital Asset', 'Assisted product engineering for factory in scope'],
+            ['', null, 'Commercial Tech', 'Adopt and land mature technology across products'],
+            ['Excellence', null, 'Method of Make', 'Best-in-class practices elevating Product Execution Consistency & Deskilling'],
+            ['', null, 'Benchmarking', 'Feature Complexity, Output Performance, Commercial Readiness for Critical Processes'],
+            ['', null, 'Solution Ownership', 'Deploy resources to new facilities & proactively scout/validate manufacturing technologies'],
           ],
           levelDescriptions: [
             { level: 'Fundamentals', focus: 'Continuous Improvement / Self Governance', scored: true },
@@ -2955,11 +2955,15 @@ function buildKpiExtraSlide(kpi, extra) {
       const isLevel = row[0] !== '';
       bodyHtml += `<tr${isLevel ? ' style="border-top:2px solid #ccc"' : ''}>`;
       row.forEach((cell, i) => {
+        if (cell === null) return; // skip — covered by rowspan
+        const isObj = typeof cell === 'object' && cell !== null;
+        const text = isObj ? cell.text : cell;
+        const rowspan = isObj && cell.rowspan ? ` rowspan="${cell.rowspan}"` : '';
         let style = '';
-        if (i === 0 && cell) style = ' style="font-weight:700;color:#e65100"';
-        if (i === 1 && cell) style = ' style="text-align:center;font-weight:700;color:var(--accent)"';
-        if (i === 2) style = ' style="font-weight:600"';
-        bodyHtml += `<td${style}>${cell}</td>`;
+        if (i === 0 && text) style = 'font-weight:700;color:#e65100';
+        if (i === 1 && text) style = 'text-align:center;font-weight:700;color:var(--accent);vertical-align:middle';
+        if (i === 2) style = 'font-weight:600';
+        bodyHtml += `<td${rowspan}${style ? ` style="${style}"` : ''}>${text}</td>`;
       });
       bodyHtml += '</tr>';
     });
