@@ -2424,11 +2424,11 @@ function buildKpiDataSlide(kpi) {
   // Key Learning inline on data slide (Quality — replaces trend image)
   let keyLearningHtml = '';
   if (kpi.showKeyLearningOnDataSlide && kpi.keyLearning) {
-    const learningItems = kpi.keyLearning.map(item => `<li style="margin-bottom:4px">${item}</li>`).join('');
+    const learningItems = kpi.keyLearning.map(item => `<li style="margin-bottom:6px">${item}</li>`).join('');
     keyLearningHtml = `
-      <div style="background:var(--bg-card);border:1px solid #e0e0e0;border-radius:10px;padding:12px 16px;margin:6px 0">
-        <h4 style="font-size:14px;font-weight:700;color:var(--yellow);margin-bottom:6px">Key Learning 2025</h4>
-        <ul style="font-size:12px;padding-left:18px;margin:0">${learningItems}</ul>
+      <div style="background:var(--bg-card);border:1px solid #e0e0e0;border-radius:10px;padding:16px 20px;margin:8px 0">
+        <h4 style="font-size:16px;font-weight:700;color:var(--yellow);margin-bottom:8px">Key Learning 2025</h4>
+        <ul style="font-size:14px;padding-left:20px;margin:0">${learningItems}</ul>
       </div>`;
   }
 
@@ -2665,7 +2665,17 @@ function buildKpiDataSlide(kpi) {
           <span class="kpi-title">${kpi.name}</span>
           <span class="kpi-lead">Lead: ${kpi.lead}</span>
         </div>
-        <div class="kpi-body">
+        <div class="kpi-body"${kpi.hideScoring ? ' style="justify-content:center"' : ''}>
+          ${kpi.hideScoring ? `
+          <div style="flex:1;max-width:800px;display:flex;flex-direction:column;gap:8px;opacity:0" class="kpi-left">
+            ${keyLearningHtml}
+            ${factoryHtml}
+            <div class="kpi-desc" style="font-size:14px">
+              <strong>What it measures:</strong> ${descHtml}<br>
+              <strong>Target:</strong> ${kpi.targetPct}
+            </div>
+          </div>
+          ` : `
           <div class="kpi-left">
             ${chartHtml}
             ${trendImageHtml}
@@ -2688,6 +2698,7 @@ function buildKpiDataSlide(kpi) {
             </div>
             ${tableHtml}
           </div>
+          `}
         </div>
         ${explanationHtml}
       </div>
@@ -2883,15 +2894,15 @@ function buildKpiExtraSlide(kpi, extra) {
           <ul style="padding-left:16px;margin:0">${planItems}</ul>
         </div>`;
     }
-    // Strategy pillars (compact 2x2)
+    // Strategy pillars (2x2 grid)
     let pillarsHtml = '';
     if (extra.pillars) {
-      pillarsHtml = '<div class="kpi-pillar-grid" style="gap:8px">';
+      pillarsHtml = '<div class="kpi-pillar-grid" style="gap:10px">';
       extra.pillars.forEach(p => {
-        const items = p.items.map(i => `<li style="font-size:10px;margin-bottom:1px">${i}</li>`).join('');
+        const items = p.items.map(i => `<li style="font-size:13px;margin-bottom:3px">${i}</li>`).join('');
         pillarsHtml += `
-          <div class="kpi-pillar-card" style="padding:8px 10px;opacity:1">
-            <h4 style="color:${p.color};font-size:12px;margin-bottom:3px">${p.name}</h4>
+          <div class="kpi-pillar-card" style="padding:10px 14px;opacity:1">
+            <h4 style="color:${p.color};font-size:15px;margin-bottom:5px">${p.name}</h4>
             <ul>${items}</ul>
           </div>`;
       });
