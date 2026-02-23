@@ -1487,16 +1487,25 @@ const kpiData = [
     maxPts2025: 7,
     target2026: 7,
     keyLearning: [
-      'Backlog management issues occurred in the first half of the year due to capacity challenges carried over from 2024, resulting in a large backlog.',
-      'Material management was not sufficiently proactive, causing delays in production.',
-      'Short Lead time orders management.',
+      'First half delay was from backlog carried over from end of 2024.',
+      'Second half delay in 2025 was from material delay — back on track by end of year.',
     ],
-    improvementPlan: [
-      'Actively track the status of all POs — both materials and production — to ensure every PO is closed as committed.',
-      'Review material status weekly with all relevant teams and plan at least 3 buckets ahead.',
-      'Monitor risks proactively and escalate issues early to prevent delays.',
-      'Streamlining process to finish order confirmation for SLT faster and information flow faster to all parties.',
-    ],
+    improvementPlan: {
+      sections: [
+        { header: 'Pre-Season', items: [
+          'Utilisation of consolidation and EBR to utilise end of season capacity and minimize peak of each BU and Factory.',
+          'Sub-Process risk assessment — Identify and create action plan for potential high fill rate of sub process.',
+          'Identify styles that can be easily moved to maintain good quality and efficiency and allocate strategically to allow agile capacity shifting.',
+        ]},
+        { header: 'In-Season', items: [
+          'Actively track the status of all POs — both materials and production — to ensure every PO is closed as committed.',
+          'Review material status weekly with all relevant teams and plan at least 3 buckets ahead.',
+          'Monitor risks proactively and escalate issues early to prevent delays.',
+          'Streamlining process to finish order confirmation for SLT faster and information flow faster to all parties.',
+          'Quick identification of overfill in upcoming months from buy plan, and plan to tackle early to allow more time for production to work.',
+        ]},
+      ]
+    },
   },
   {
     id: 'sdp',
@@ -2718,8 +2727,16 @@ function buildKpiLearningSlide(kpi) {
   // Bullet list for key learnings
   const learningItems = kpi.keyLearning.map(item => `<li>${item}</li>`).join('');
 
-  // Bullet list for improvement plan
-  const planItems = kpi.improvementPlan.map(item => `<li>${item}</li>`).join('');
+  // Bullet list for improvement plan (supports flat array or sectioned object)
+  let planItems = '';
+  if (Array.isArray(kpi.improvementPlan)) {
+    planItems = kpi.improvementPlan.map(item => `<li>${item}</li>`).join('');
+  } else if (kpi.improvementPlan && kpi.improvementPlan.sections) {
+    kpi.improvementPlan.sections.forEach(sec => {
+      planItems += `<li style="list-style:none;font-weight:700;margin-top:6px;color:var(--accent)">${sec.header}</li>`;
+      planItems += sec.items.map(item => `<li>${item}</li>`).join('');
+    });
+  }
 
   return `
     <div class="slide" id="kpi-${kpi.id}-learning" data-animate="kpi-learning">
