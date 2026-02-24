@@ -255,9 +255,9 @@ html, body {
   font-weight: 700;
 }
 #chart2026 .bar-target-label {
-  font-size: 11px;
-  font-weight: 600;
-  top: -18px;
+  font-size: 12px;
+  font-weight: 700;
+  top: -22px;
 }
 #chart2026 .bar-pct {
   font-size: 13px;
@@ -557,18 +557,21 @@ html, body {
   position: absolute;
   top: -2px;
   height: calc(100% + 4px);
-  width: 2px;
-  background: #333;
-  border-right: 2px dashed rgba(0,0,0,0.4);
+  width: 3px;
+  background: #d32f2f;
   z-index: 2;
 }
 .bar-target-label {
   position: absolute;
-  top: -16px;
+  top: -20px;
   transform: translateX(-50%);
-  font-size: 10px;
-  color: #777;
+  font-size: 11px;
+  font-weight: 700;
+  color: #d32f2f;
   white-space: nowrap;
+  background: rgba(211,47,47,0.1);
+  padding: 1px 6px;
+  border-radius: 4px;
 }
 .bar-pct {
   position: absolute;
@@ -1346,11 +1349,11 @@ html, body {
     </div>
     <div class="score-arrow" id="s7-arrow">→</div>
     <div class="score-circle target" id="s7-target">
-      <div class="number">69.7</div>
+      <div class="number">70.7</div>
       <div class="label-text">Target</div>
     </div>
     <div class="gap-info" id="s7-gap">
-      <div class="points">+34.8</div>
+      <div class="points">+35.8</div>
       <div class="label-text">points needed</div>
     </div>
   </div>
@@ -1391,12 +1394,12 @@ html, body {
     <div class="timeline-line"><div class="fill" id="tl-fill2"></div></div>
     <div class="timeline-node">
       <div class="year">2026 Target</div>
-      <div class="circle">69.7</div>
+      <div class="circle">70.7</div>
       <div class="rank">Top 5</div>
     </div>
   </div>
   <div class="key-message" id="key-msg">From <span>#12</span> to targeting <span>Top 5</span></div>
-  <div class="closing-sub" id="closing-sub">+17.2 points over 3 years of continuous improvement</div>
+  <div class="closing-sub" id="closing-sub">+18.2 points over 3 years of continuous improvement</div>
 </div>
 
 <!-- ========== SLIDE COUNTER ========== -->
@@ -1446,7 +1449,7 @@ const data2026 = [
   ['Sourcing Sustainability',       10,  7.2,   5.85, null,            null],
   ['Quality',                       15,  10,    0,    'Not yet scored','Quality — 15%'],
   ['Product & Dev Competency',      20, 13,    10,    null,            'Competency — 30%'],
-  ['Engineering Solutions',         10,  6,     0,    'Not yet scored', null],
+  ['Engineering Solutions',         10,  7,     0,    'Not yet scored', null],
 ];
 
 // Gap analysis rows for slide 6: [category, current, target, gap]
@@ -1454,7 +1457,7 @@ const gapData = [
   ['Social Compliance',           0,     8.5,  +8.5],
   ['Quality',                     0,     10,   +10.0],
   ['FOB / Landed Cost',           0,     6,    +6.0],
-  ['Engineering Solutions',       0,     6,    +6.0],
+  ['Engineering Solutions',       0,     7,    +7.0],
   ['Product & Dev Competency',   10,    13,    +3.0],
   ['Sourcing Sustainability',    5.85,   7.2,  +1.35],
 ];
@@ -2275,7 +2278,7 @@ const kpiData = [
     currentScore: null,
     rollingPct: null,
     janPct: null,
-    targetPct: '6 / 10 pts',
+    targetPct: '7 / 10 pts',
     description: 'Measures the overall product & development competency level of the supplier group\'s Development Capability. Replaces ME from Competitive in 2026.',
     scoring: [
       ['Fundamentals', 4], ['Concepts', 6],
@@ -2810,7 +2813,7 @@ function buildKpiDataSlide(kpi) {
               <div class="kpi-score-label">January 2026 Score</div>
             </div>
             <strong>What it measures:</strong> ${descHtml}<br>
-            <strong>Target:</strong> ${kpi.targetPct}
+            <div style="margin-top:6px;padding:6px 10px;background:rgba(211,47,47,0.08);border:1px solid rgba(211,47,47,0.2);border-radius:6px;display:inline-block"><strong style="color:#d32f2f">Target 2026:</strong> <strong>${kpi.targetPct}</strong></div>
             ${evalNoteHtml}
           </div>
           <div style="flex:1;opacity:0" class="kpi-right">${cols[0]}</div>
@@ -2841,7 +2844,7 @@ function buildKpiDataSlide(kpi) {
             </div>
             <div class="kpi-desc" style="font-size:11px">
               <strong>What it measures:</strong> ${descHtml}<br>
-              <strong>Target:</strong> ${kpi.targetPct}
+              <div style="margin-top:6px;padding:6px 10px;background:rgba(211,47,47,0.08);border:1px solid rgba(211,47,47,0.2);border-radius:6px;display:inline-block"><strong style="color:#d32f2f">Target 2026:</strong> <strong>${kpi.targetPct}</strong></div>
             </div>
             ${scaleTableHtml}
           </div>
@@ -2868,7 +2871,7 @@ function buildKpiDataSlide(kpi) {
             ${factoryHtml}
             <div class="kpi-desc" style="font-size:14px">
               <strong>What it measures:</strong> ${descHtml}<br>
-              <strong>Target:</strong> ${kpi.targetPct}
+              <div style="margin-top:6px;padding:6px 10px;background:rgba(211,47,47,0.08);border:1px solid rgba(211,47,47,0.2);border-radius:6px;display:inline-block"><strong style="color:#d32f2f">Target 2026:</strong> <strong>${kpi.targetPct}</strong></div>
             </div>
           </div>
           ` : `
@@ -2882,7 +2885,7 @@ function buildKpiDataSlide(kpi) {
             ${subKpiHtml}
             <div class="kpi-desc">
               <strong>What it measures:</strong> ${descHtml}<br>
-              <strong>Target:</strong> ${kpi.targetPct}
+              <div style="margin-top:6px;padding:6px 10px;background:rgba(211,47,47,0.08);border:1px solid rgba(211,47,47,0.2);border-radius:6px;display:inline-block"><strong style="color:#d32f2f">Target 2026:</strong> <strong>${kpi.targetPct}</strong></div>
             </div>
             ${evalNoteHtml}
           </div>
