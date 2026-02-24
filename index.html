@@ -428,6 +428,12 @@ html, body {
   text-align: center;
   opacity: 0;
 }
+#fw-title-left { color: #888; }
+#fw-title-right {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 28px;
+}
 .fw-header-row .fw-col-arrow { width: 50px; }
 
 /* Container for all paired rows */
@@ -512,22 +518,80 @@ html, body {
 }
 
 .fw-item.highlight-new {
-  border-color: var(--green);
-  background: rgba(52,168,83,0.1);
+  border: 2px solid var(--green);
+  background: rgba(52,168,83,0.15);
+  box-shadow: 0 0 0 1px rgba(52,168,83,0.15);
 }
+.fw-item.highlight-new .pts { color: var(--green); }
 .fw-item.highlight-changed {
-  border-color: var(--yellow);
-  background: rgba(251,188,4,0.08);
+  border: 2px solid #e6a800;
+  background: rgba(251,188,4,0.13);
+  box-shadow: 0 0 0 1px rgba(251,188,4,0.12);
 }
 .fw-item.highlight-removed {
-  border-color: var(--red);
-  background: rgba(211,47,47,0.06);
+  border: 2px solid var(--red);
+  background: rgba(211,47,47,0.08);
   text-decoration: line-through;
   color: #999;
 }
+.fw-change-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-left: 8px;
+  vertical-align: middle;
+  line-height: 16px;
+}
+.fw-change-badge.badge-new {
+  background: var(--green);
+  color: #fff;
+}
+.fw-change-badge.badge-changed {
+  background: #e6a800;
+  color: #fff;
+}
+.fw-change-badge.badge-removed {
+  background: var(--red);
+  color: #fff;
+}
+.fw-pts-change {
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 4px;
+}
+.fw-pts-change.pts-up { color: var(--green); }
+.fw-pts-change.pts-down { color: var(--red); }
+.fw-cat-change {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.fw-cat-change.cat-up { background: rgba(52,168,83,0.15); color: var(--green); }
+.fw-cat-change.cat-down { background: rgba(211,47,47,0.1); color: var(--red); }
 
+.fw-legend {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+  opacity: 0;
+}
+.fw-legend-item {
+  font-size: 12px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 .fw-note {
-  margin-top: 12px;
+  margin-top: 8px;
   text-align: center;
   font-size: 16px;
   color: var(--text-dim);
@@ -1317,6 +1381,11 @@ html, body {
   <div class="structure-badges" id="struct-badges">
     <div class="struct-badge struct-foundation">Foundation — 70 pts</div>
     <div class="struct-badge struct-value">Value — 30 pts</div>
+  </div>
+  <div class="fw-legend" id="fw-legend">
+    <span class="fw-legend-item"><span class="fw-change-badge badge-new" style="margin-left:0">NEW</span> Added</span>
+    <span class="fw-legend-item"><span class="fw-change-badge badge-changed" style="margin-left:0">CHANGED</span> Modified</span>
+    <span class="fw-legend-item"><span class="fw-change-badge badge-removed" style="margin-left:0">REMOVED</span> Dropped</span>
   </div>
   <div class="fw-note" id="fw-note">
     Total still <strong>100 pts</strong> — 8 KPIs across Foundation (70) + Value (30)
@@ -2322,40 +2391,40 @@ const kpiData = [
 // Slide 5 data: grouped by category so left and right rows always align
 const fwGroups = [
   {
-    catLeft: 'Agile — 25%', catRight: 'Agile — 20% (was 25%)', catCls: 'fw-cat-agile',
+    catLeft: 'Agile — 25%', catRight: 'Agile — 20%', catCls: 'fw-cat-agile', catChange: '25→20', catDir: 'down',
     left: [
       { name: 'Availability',   pts: 10, cls: '',                desc: 'MDP (7) + SDP (3)' },
-      { name: 'Responsiveness', pts: 15, cls: 'highlight-changed', desc: 'Resp (5) + Origin Opt (5) + Elevated Focus Delivery (5)' },
+      { name: 'Responsiveness', pts: 15, cls: 'highlight-changed', desc: 'Resp (5) + Origin Opt (5) + Elevated Focus Delivery (5)', badge: 'changed' },
     ],
     right: [
       { name: 'Availability',   pts: 10, cls: '',                desc: 'Same — MDP (7) + SDP (3)' },
-      { name: 'Responsiveness', pts: 10, cls: 'highlight-changed', desc: '15→10; Origin Opt moved to Cost; now Resp(5)+Elevated Focus Delivery(5)' },
+      { name: 'Responsiveness', pts: 10, cls: 'highlight-changed', desc: 'Origin Opt moved to Cost; now Resp(5)+EFD(5)', badge: 'changed', ptsChange: '15→10', ptsDir: 'down' },
     ]
   },
   {
-    catLeft: 'Competitive — 25%', catRight: 'Competitive — 15% (was 25%)', catCls: 'fw-cat-competitive',
+    catLeft: 'Competitive — 25%', catRight: 'Competitive — 15%', catCls: 'fw-cat-competitive', catChange: '25→15', catDir: 'down',
     left: [
-      { name: 'FOB', pts: 10, cls: 'highlight-changed', desc: 'Actual vs Target FOB variance (0-10 scale)' },
-      { name: 'ME',  pts: 15, cls: 'highlight-removed',  desc: 'Efficiency roadmap (5) + Enablers projects (10)' },
+      { name: 'FOB', pts: 10, cls: 'highlight-changed', desc: 'Actual vs Target FOB variance (0-10 scale)', badge: 'changed' },
+      { name: 'ME',  pts: 15, cls: 'highlight-removed',  desc: 'Efficiency roadmap (5) + Enablers projects (10)', badge: 'removed' },
     ],
     right: [
-      { name: 'FOB / Landed Cost Achievement', pts: 15, cls: 'highlight-changed', desc: '10→15; FOB Target(5) + Holistic Cost(5) + Duty Benefit(5)' },
+      { name: 'FOB / Landed Cost Achievement', pts: 15, cls: 'highlight-changed', desc: 'FOB Target(5) + Holistic Cost(5) + Duty Benefit(5)', badge: 'changed', ptsChange: '10→15', ptsDir: 'up' },
       null,  // empty — ME moved to Competency
     ]
   },
   {
-    catLeft: 'ESG — 20%', catRight: 'ESG — 20% (unchanged)', catCls: 'fw-cat-esg',
+    catLeft: 'ESG — 20%', catRight: 'ESG — 20%', catCls: 'fw-cat-esg',
     left: [
       { name: 'Social Compliance',  pts: 10, cls: '', desc: 'S-KPI or Compliance Scorecard' },
-      { name: 'Env + Traceability', pts: 10, cls: 'highlight-changed', desc: 'Environmental (5) + Traceability (5)' },
+      { name: 'Env + Traceability', pts: 10, cls: 'highlight-changed', desc: 'Environmental (5) + Traceability (5)', badge: 'changed' },
     ],
     right: [
       { name: 'Social Compliance',      pts: 10, cls: '', desc: 'Same — S-KPI or Compliance Scorecard' },
-      { name: 'Sourcing Sustainability', pts: 10, cls: 'highlight-changed', desc: 'Was Env(5)+Trace(5) → now Env(7)+Trace(3)' },
+      { name: 'Sourcing Sustainability', pts: 10, cls: 'highlight-changed', desc: 'Was Env(5)+Trace(5) → now Env(7)+Trace(3)', badge: 'changed' },
     ]
   },
   {
-    catLeft: 'Quality — 15%', catRight: 'Quality — 15% (unchanged)', catCls: 'fw-cat-quality',
+    catLeft: 'Quality — 15%', catRight: 'Quality — 15%', catCls: 'fw-cat-quality',
     left: [
       { name: 'Quality', pts: 15, cls: '', desc: 'Q-KPI Full or Q-KPI Light program' },
     ],
@@ -2364,14 +2433,14 @@ const fwGroups = [
     ]
   },
   {
-    catLeft: 'Competency — 15%', catRight: 'Competency — 30% (was 15%)', catCls: 'fw-cat-competency',
+    catLeft: 'Competency — 15%', catRight: 'Competency — 30%', catCls: 'fw-cat-competency', catChange: '15→30', catDir: 'up',
     left: [
-      { name: 'Product & Dev Comp', pts: 15, cls: 'highlight-changed', desc: 'Competency (6) + Discipline (2) + Enablement (2) + NPS (5)' },
+      { name: 'Product & Dev Comp', pts: 15, cls: 'highlight-changed', desc: 'Competency (6) + Discipline (2) + Enablement (2) + NPS (5)', badge: 'changed' },
       null,  // empty — no equivalent for Engineering Solutions in 2025
     ],
     right: [
-      { name: 'Product & Dev Competency', pts: 20, cls: 'highlight-changed', desc: '15→20; +5 pts from new POPS NPS score' },
-      { name: 'Engineering Solutions',    pts: 10, cls: 'highlight-new',     desc: 'NEW — replaces ME (moved from Competitive)' },
+      { name: 'Product & Dev Competency', pts: 20, cls: 'highlight-changed', desc: '+5 pts from new POPS NPS score', badge: 'changed', ptsChange: '15→20', ptsDir: 'up' },
+      { name: 'Engineering Solutions',    pts: 10, cls: 'highlight-new',     desc: 'Replaces ME (moved from Competitive)', badge: 'new' },
     ]
   },
 ];
@@ -3431,24 +3500,29 @@ weightData.forEach(w => {
 function fwItemHtml(item) {
   if (!item) return '<div class="fw-empty"></div>';
   const descHtml = item.desc ? `<div class="fw-desc">${item.desc}</div>` : '';
+  const badgeMap = { 'new': 'badge-new">NEW', 'changed': 'badge-changed">CHANGED', 'removed': 'badge-removed">REMOVED' };
+  const badgeHtml = item.badge ? `<span class="fw-change-badge ${badgeMap[item.badge]}</span>` : '';
+  const ptsChangeHtml = item.ptsChange ? `<span class="fw-pts-change pts-${item.ptsDir}">(${item.ptsChange})</span>` : '';
   return `
     <div class="fw-item ${item.cls}">
       <div class="fw-item-left">
-        <span>${item.name}</span>
+        <span>${item.name}${badgeHtml}</span>
         ${descHtml}
       </div>
-      <span class="pts">${item.pts} pts</span>
+      <span class="pts">${item.pts} pts${ptsChangeHtml}</span>
     </div>`;
 }
 
 const fwRowsEl = document.getElementById('fw-rows');
 fwGroups.forEach(group => {
   // 1) Category header row — left label | empty | right label
+  const catChangeHtml = group.catChange
+    ? `<span class="fw-cat-change cat-${group.catDir}">${group.catChange}</span>` : '';
   fwRowsEl.innerHTML += `
     <div class="fw-row cat-row">
       <div class="fw-row-left"><div class="fw-cat-label ${group.catCls}">${group.catLeft}</div></div>
       <div class="fw-row-arrow"></div>
-      <div class="fw-row-right"><div class="fw-cat-label ${group.catCls}">${group.catRight}</div></div>
+      <div class="fw-row-right"><div class="fw-cat-label ${group.catCls}">${group.catRight}${catChangeHtml}</div></div>
     </div>`;
 
   // 2) Item rows — pair left[i] with right[i], use arrow between them
@@ -3761,6 +3835,10 @@ function animateSlide5() {
   badges.forEach((b, i) => {
     setTimeout(() => { b.style.animation = 'popIn 0.4s ease forwards'; }, badgeDelay + i * 200);
   });
+
+  // Legend
+  const legend = document.getElementById('fw-legend');
+  setTimeout(() => { legend.style.animation = 'fadeIn 0.4s ease forwards'; }, badgeDelay + 300);
 
   // Note
   const note = document.getElementById('fw-note');
